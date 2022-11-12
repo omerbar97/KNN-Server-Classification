@@ -34,32 +34,32 @@ public: //public function here:
     static double Euclidean(std::vector<double> v1, std::vector<double> v2);
 
     /**
- * A taxicab geometry or a Manhattan geometry is a geometry in which the usual distance function
- * or metric of Euclidean geometry is replaced by a new metric in which the distance between two
- * points is the sum of the absolute differences of their Cartesian coordinates.
- * link: https://en.wikipedia.org/wiki/Taxicab_geometry
- * **/
+    * A taxicab geometry or a Manhattan geometry is a geometry in which the usual distance function
+    * or metric of Euclidean geometry is replaced by a new metric in which the distance between two
+    * points is the sum of the absolute differences of their Cartesian coordinates.
+    * link: https://en.wikipedia.org/wiki/Taxicab_geometry
+    * **/
     static double Manhattan(std::vector<double> v1, std::vector<double> v2);
 
     /**
- * In mathematics, Chebyshev distance (or Tchebychev distance), maximum metric, or L∞ metric[1]
- * is a metric defined on a vector space where the distance between two vectors is the greatest
- * of their differences along any coordinate dimension
- * link: https://en.wikipedia.org/wiki/Chebyshev_distance
- * **/
+    * In mathematics, Chebyshev distance (or Tchebychev distance), maximum metric, or L∞ metric[1]
+    * is a metric defined on a vector space where the distance between two vectors is the greatest
+    * of their differences along any coordinate dimension
+    * link: https://en.wikipedia.org/wiki/Chebyshev_distance
+    * **/
     static double Chebyshev(std::vector<double> v1, std::vector<double> v2);
 
     /**
- * The Canberra distance is a numerical measure of the distance between pairs of points in a vector space,
- * link: https://en.wikipedia.org/wiki/Canberra_distance
- * **/
+    * The Canberra distance is a numerical measure of the distance between pairs of points in a vector space,
+    * link: https://en.wikipedia.org/wiki/Canberra_distance
+    * **/
     static double Canberra(std::vector<double> v1, std::vector<double> v2);
 
     /**
- * The Minkowski distance or Minkowski metric is a metric in a normed vector space which can be considered
- * as a generalization of both the Euclidean distance and the Manhattan distance.
- * link: https://en.wikipedia.org/wiki/Minkowski_distance
- * **/
+    * The Minkowski distance or Minkowski metric is a metric in a normed vector space which can be considered
+    * as a generalization of both the Euclidean distance and the Manhattan distance.
+    * link: https://en.wikipedia.org/wiki/Minkowski_distance
+    * **/
     static double Minkowski(std::vector<double> v1, std::vector<double> v2);
 
 
