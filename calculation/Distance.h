@@ -31,7 +31,7 @@ public: //public function here:
      * length of a line segment between the two points.
      * link: https://en.wikipedia.org/wiki/Euclidean_distance
      * **/
-    static double Euclidean(std::vector<double> v1, std::vector<double> v2);
+    static double euclidean(std::vector<double> v1, std::vector<double> v2);
 
     /**
     * A taxicab geometry or a Manhattan geometry is a geometry in which the usual distance function
@@ -39,7 +39,7 @@ public: //public function here:
     * points is the sum of the absolute differences of their Cartesian coordinates.
     * link: https://en.wikipedia.org/wiki/Taxicab_geometry
     * **/
-    static double Manhattan(std::vector<double> v1, std::vector<double> v2);
+    static double manhattan(std::vector<double> v1, std::vector<double> v2);
 
     /**
     * In mathematics, Chebyshev distance (or Tchebychev distance), maximum metric, or L∞ metric[1]
@@ -47,20 +47,20 @@ public: //public function here:
     * of their differences along any coordinate dimension
     * link: https://en.wikipedia.org/wiki/Chebyshev_distance
     * **/
-    static double Chebyshev(std::vector<double> v1, std::vector<double> v2);
+    static double chebyshev(std::vector<double> v1, std::vector<double> v2);
 
     /**
     * The Canberra distance is a numerical measure of the distance between pairs of points in a vector space,
     * link: https://en.wikipedia.org/wiki/Canberra_distance
     * **/
-    static double Canberra(std::vector<double> v1, std::vector<double> v2);
+    static double canberra(std::vector<double> v1, std::vector<double> v2);
 
     /**
     * The Minkowski distance or Minkowski metric is a metric in a normed vector space which can be considered
     * as a generalization of both the Euclidean distance and the Manhattan distance.
     * link: https://en.wikipedia.org/wiki/Minkowski_distance
     * **/
-    static double Minkowski(std::vector<double> v1, std::vector<double> v2);
+    static double minkowski(std::vector<double> v1, std::vector<double> v2);
 
 
 };

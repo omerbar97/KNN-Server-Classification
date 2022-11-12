@@ -17,7 +17,12 @@
     return calc;
 }
 
- double Distance::Euclidean(std::vector<double> v1, std::vector<double> v2) {
+/**
+ * In mathematics, the Euclidean distance between two points in Euclidean space is the
+ * length of a line segment between the two points.
+ * link: https://en.wikipedia.org/wiki/Euclidean_distance
+ * **/
+ double Distance::euclidean(std::vector<double> v1, std::vector<double> v2) {
     if(v1.size() != v2.size()) {
         return -1; // in case the vector not in the same size.
     }
@@ -29,7 +34,12 @@
     return std::sqrt(result);
 }
 
-double Distance::Minkowski(std::vector<double> v1, std::vector<double> v2) {
+/**
+* The Minkowski distance or Minkowski metric is a metric in a normed vector space which can be considered
+* as a generalization of both the Euclidean distance and the Manhattan distance.
+* link: https://en.wikipedia.org/wiki/Minkowski_distance
+* **/
+double Distance::minkowski(std::vector<double> v1, std::vector<double> v2) {
     if(v1.size() != v2.size()) {
         return -1; // in case the vector not in the same size.
     }
@@ -43,6 +53,20 @@ double Distance::Minkowski(std::vector<double> v1, std::vector<double> v2) {
     result = std::pow(result, _p);
     return result;
  }
+
+double Distance::chebyshev(std::vector<double> v1, std::vector<double> v2) {
+    if(v1.size() != v2.size()) {
+        return -1; // in case the vector not in the same size.
+    }
+    std::vector<double> calc(absVector(v1, v2));
+    double max = calc[0];
+    for (double d : calc) {
+        if(max < d) {
+            max = d;
+        }
+    }
+    return max;
+}
 
 
 
