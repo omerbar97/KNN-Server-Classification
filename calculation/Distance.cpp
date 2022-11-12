@@ -1,7 +1,3 @@
-//
-// Created by omerb on 12/11/2022.
-//
-
 #include "Distance.h"
 
 /**
@@ -17,11 +13,32 @@
     return calc;
 }
 
-/**
- * In mathematics, the Euclidean distance between two points in Euclidean space is the
- * length of a line segment between the two points.
- * link: https://en.wikipedia.org/wiki/Euclidean_distance
- * **/
+
+double Distance::manhattan(std::vector<double> v1, std::vector<double> v2) {
+    if(v1.size() != v2.size()) {
+        return -1; // in case the vector not in the same size.
+    }
+    double result = 0;
+    std:: vector<double> vec = absVector(v1, v2);
+    for (int i = 0; i < v1.size() ; i++) {
+        result += vec[i];
+    }
+    return result;
+}
+
+double Distance::canberra(std::vector<double> v1, std::vector<double> v2) {
+    if(v1.size() != v2.size()) {
+        return -1; // in case the vector not in the same size.
+    }
+    double result = 0;
+    std:: vector<double> vec = absVector(v1, v2);
+    for (int i = 0; i < v1.size() ; i++) {
+        result += vec[i] / (std::abs(v1[i])+std::abs(v2[i]));
+    }
+    return result;
+}
+
+
  double Distance::euclidean(std::vector<double> v1, std::vector<double> v2) {
     if(v1.size() != v2.size()) {
         return -1; // in case the vector not in the same size.
@@ -34,11 +51,7 @@
     return std::sqrt(result);
 }
 
-/**
-* The Minkowski distance or Minkowski metric is a metric in a normed vector space which can be considered
-* as a generalization of both the Euclidean distance and the Manhattan distance.
-* link: https://en.wikipedia.org/wiki/Minkowski_distance
-* **/
+
 double Distance::minkowski(std::vector<double> v1, std::vector<double> v2) {
     if(v1.size() != v2.size()) {
         return -1; // in case the vector not in the same size.
@@ -67,9 +80,5 @@ double Distance::chebyshev(std::vector<double> v1, std::vector<double> v2) {
     }
     return max;
 }
-
-
-
-
 
 
