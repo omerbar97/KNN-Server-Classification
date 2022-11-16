@@ -6,6 +6,7 @@
 #include <string>
 #include "calculate/Distance.h"
 #include "calculate/Euclidean.h"
+#include "calculate/Minkowski.h"
 
 using namespace std;
 
@@ -89,16 +90,18 @@ int main() {
 
     // initializing the distance array.
 
-    Euclidean calculate;
+    Euclidean euclidean;
+    Minkowski minkowski;
     Distance* arr[5];
 
     // assign the array
 
-    arr[0] = &calculate;
+    arr[0] = &euclidean;
+    arr[1] = &minkowski;
 
 
-    for (int i = 0; i < 1; i++) {
-        std::cout << arr[i]->operator()(v1, v2);
+    for (int i = 0; i < 2; i++) {
+        std::cout << arr[i]->operator()(v1, v2) << std::endl;
     }
 
     return 0;
