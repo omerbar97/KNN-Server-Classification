@@ -18,12 +18,10 @@ std::vector<std::string> splitString(std::string str) {
         //taking the substring from starting position to the delimiter position.
         position = str.find(delimiter);
         token = str.substr(0, position);
-        //std::cout << token <<std::endl;
         result.push_back(token);
         str.erase(0, position + delimiter.size());
         token = str;
     }
-    //std::cout << token << std::endl;
     result.push_back(token);
     return result;
 }
