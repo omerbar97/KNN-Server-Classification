@@ -14,9 +14,9 @@ int main() {
     std::string vec2;
     string input;
 
-    //std::cout << "Enter vectors: " << std::endl;
-    //getline(cin, vec1);
-    //getline(cin, vec2);
+    std::cout << "Enter vectors: " << std::endl;
+    getline(cin, vec1);
+    getline(cin, vec2);
 
     //Distance :: checkPropriety("34 23 12" , "9 23 43");
 
@@ -29,9 +29,11 @@ int main() {
 //    std::cout << b3 ;
 
     Euclidean calculate;
-    Distance* d = &calculate;
-
-    cout << calculate(v1, v2) << endl;
+    Distance* arr[5];
+    arr[0] = &calculate;
+    double resutl = (arr[0])->operator()(v1, v2);
+    //double result = d(v1, v2);
+    cout << resutl << endl;
 
     return 0;
 }
