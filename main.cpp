@@ -99,9 +99,10 @@ int main() {
     arr[0] = &euclidean;
     arr[1] = &minkowski;
 
+    std::cout.precision(17);
 
     for (int i = 0; i < 2; i++) {
-        std::cout << arr[i]->operator()(v1, v2) << std::endl;
+        std::cout << (*arr[i])(v1, v2) << std::endl;
     }
 
     return 0;

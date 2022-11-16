@@ -16,8 +16,6 @@ double Minkowski::operator()(std::vector<double> v1, std::vector<double> v2) {
     for(double d : calc) {
         result += std::pow(d, 2);
     }
-    if(result != 0) {
-        result = std::pow(result, _p);
-    }
+    result = std::pow(result, _p);
     return result;
 }
