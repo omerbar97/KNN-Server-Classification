@@ -1,7 +1,6 @@
 //
 // Created by shilo on 12/11/2022.
 //
-//#include "calculation//Distance.h"
 #include <iostream>
 #include <string>
 #include "calculate/Distance.h"
@@ -70,13 +69,13 @@ int main() {
     std::string vec2;
     string input;
 
-    std::cout << "Enter vectors: " << std::endl;
+    //std::cout << "Enter vectors: " << std::endl;
     getline(cin, vec1);
     getline(cin, vec2);
-
+    checkPropriety(vec1, vec2);
     if(!checkPropriety(vec1, vec2)) {
         // the string is holding invalid value.
-        std::cout << "invalid value" << std::endl;
+        std::cout << "INVALID INPUT" << std::endl;
         return 0; // exit the program.
     }
 
@@ -97,20 +96,26 @@ int main() {
     Manhattan manhattan;
     Chebyshev chebyshev;
     Canberra canberra;
-    Distance* arr[5];
+    std::vector<Distance*> distance;
+    //Distance* distance[5];
 
     // assign the array
 
-    arr[0] = &euclidean;
-    arr[1] = &minkowski;
-    arr[2] = &manhattan;
-    arr[3] = &chebyshev;
-    arr[4] = &canberra;
+    distance.push_back(&euclidean);
+    distance.push_back(&manhattan);
+    distance.push_back(&chebyshev);
+    distance.push_back(&canberra);
+    distance.push_back(&minkowski);
+
+    // setting print format precision
 
     std::cout.precision(17);
+    std::cout << std::fixed;
 
-    for (int i = 0; i < 5; i++) {
-        std::cout <<(*arr[i])(v1, v2) << std::endl;
+    // printing the result
+
+    for (int i = 0; i < distance.size(); i++) {
+        std::cout <<(*distance[i])(v1, v2) << std::endl;
     }
 
     return 0;

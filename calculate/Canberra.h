@@ -10,6 +10,11 @@
 class Canberra : public Distance {
 
 public:
+
+    /**
+    * The Canberra distance is a numerical measure of the distance between pairs of points in a vector space,
+    * link: https://en.wikipedia.org/wiki/Canberra_distance
+    **/
     double operator()(std::vector<double> v1, std::vector<double> v2) override;
 
 };

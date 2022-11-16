@@ -6,7 +6,7 @@ double Manhattan::operator()(std::vector<double> v1, std::vector<double> v2){
     }
     double result = 0;
     std:: vector<double> vec = absVector(v1, v2);
-    for (int i = 0; i < v1.size() ; i++) {
+    for (int i = 0; i < vec.size(); i++) {
         result += vec[i];
     }
     return result;
