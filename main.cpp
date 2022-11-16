@@ -7,6 +7,10 @@
 #include "calculate/Distance.h"
 #include "calculate/Euclidean.h"
 #include "calculate/Minkowski.h"
+#include "calculate/Canberra.h"
+#include "calculate/Chebyshev.h"
+#include "calculate/Manhattan.h"
+
 
 using namespace std;
 
@@ -90,17 +94,23 @@ int main() {
 
     Euclidean euclidean;
     Minkowski minkowski;
+    Manhattan manhattan;
+    Chebyshev chebyshev;
+    Canberra canberra;
     Distance* arr[5];
 
     // assign the array
 
     arr[0] = &euclidean;
     arr[1] = &minkowski;
+    arr[2] = &manhattan;
+    arr[3] = &chebyshev;
+    arr[4] = &canberra;
 
     std::cout.precision(17);
 
-    for (int i = 0; i < 2; i++) {
-        std::cout << (*arr[i])(v1, v2) << std::endl;
+    for (int i = 0; i < 5; i++) {
+        std::cout <<(*arr[i])(v1, v2) << std::endl;
     }
 
     return 0;
