@@ -2,7 +2,17 @@
 This project was made by Omer Bar and Shilo Padael in our second year of our Computer Science B.A.
 
 <h2>How To Run?</h2>
-<p>NOT FINSHIED</p>
+<h4>For Linux:</h4>
+<ol>
+  <li>Download the zip file of the project, and exctract the zip.</li>
+  <li>open terminal in the project folder.</li>
+  <li>Run the following commands:</li>
+  <pre><code>$ cmake -B build
+$ cd build
+$ make
+$ ./runnable
+  </code></pre>
+</ol>
 
 <h3><i>----------Milestone 1: 24.11.2022 ----------</i></h3>
 <h4>Creating different algorithem to calculate the distance between 2 vectors</h4>
