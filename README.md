@@ -7,11 +7,11 @@ This project was made by Omer Bar and Shilo Padael in our second year of our Com
   <li>Download the zip file of the project, and exctract the zip.</li>
   <li>open terminal in the project folder.</li>
   <li>Run the following commands: (without the '$')</li>
+ </ol>
   <pre><code>$ cmake -B build
 $ cd build
 $ make
 $ ./runnable</code></pre>
-</ol>
 
 <h4>For Windows:</h4>
 <ol>
