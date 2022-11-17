@@ -12,7 +12,11 @@
 
 
 using namespace std;
-
+/**
+ * This function get a String and split the string to a vector by the delimiter of space.
+ * @param str String.
+ * @return Vector<string>.
+ */
 std::vector<std::string> splitString(std::string str) {
     std::vector<std::string> result;
     std::string delimiter  = " ", token;
@@ -28,7 +32,13 @@ std::vector<std::string> splitString(std::string str) {
     result.push_back(token);
     return result;
 }
-
+/**
+ * This function convert string vector to double vector.
+ * if the strings are possible to be converted then the double vector will return,
+ * otherwise(there a string that not include numbers) its will return a null vector.
+ * @param strVec vector<string>.
+ * @return vector<double>.
+ */
 std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
     std::vector<double> doubleVec;
     int vecLen = strVec.size();
@@ -47,7 +57,15 @@ std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
     }
     return doubleVec;
 }
-
+/**
+ * This function get to strings and check if it possible to convert each string to a vector of
+ * doubles(by using the function "splitString" and "convertStrVecToDoubleVec")
+ * and if the sizes of the vectors are equal.
+ * Return true if all the checks get pass and false otherwise.
+ * @param v1 string.
+ * @param v2 string.
+ * @return bool.
+ */
 bool checkPropriety(std::string v1, std::string v2) {
     std::vector<std::string>  firstLine = splitString(v1);
     std::vector<std::string>  secondLine = splitString(v2);
