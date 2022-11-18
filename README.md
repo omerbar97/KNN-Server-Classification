@@ -15,10 +15,15 @@ $ ./runnable</code></pre>
 
 <h4>For Windows:</h4>
 <ol>
-  <li>Download the zip file of the project, and exctract the zip.</li>
-  <li>open project with IDE.</li>
-  <li>build the project from the IDE with the CMakeList.txt file.</li>
+  <li>Download the zip file of the project</li>
+    <li>Extract the zip file in an ASCII supported path. (for example 'D:\test' only english is good)</li>
+  <li>Open the cmd inside the folder project.</li>
+  <li>Run the following commands: (without the comments)</li>
 </ol>
+ <pre><code> mkdir build                                // creating a folder for the build files.
+ cmake -S ../ -G"MinGW Makefiles"           // -S flag for the source CMakeList.txt file, and -G for the windows default compilor.
+ make                                       // Compiling the project. make sure you inside the folder 'build'.
+ start runnable                             // Executing the program.</code></pre>
 
 <h3><i>----------Milestone 1: 24.11.2022 ----------</i></h3>
 <h4>Creating different algorithem to calculate the distance between 2 vectors</h4>
