@@ -3,13 +3,13 @@
 //
 #include <iostream>
 #include <string>
+#include <cstring>
 #include "calculate/Distance.h"
 #include "calculate/Euclidean.h"
 #include "calculate/Minkowski.h"
 #include "calculate/Canberra.h"
 #include "calculate/Chebyshev.h"
 #include "calculate/Manhattan.h"
-
 
 using namespace std;
 /**
@@ -25,38 +25,50 @@ std::vector<std::string> splitString(std::string str) {
         //taking the substring from starting position to the delimiter position.
         position = str.find(delimiter);
         token = str.substr(0, position);
-        result.push_back(token);
+        //if there sequences of spaces
+        if (!token.empty()) {
+            result.push_back(token);
+        }
         str.erase(0, position + delimiter.size());
         token = str;
     }
-    result.push_back(token);
+    //if there sequences of spaces
+    if (!token.empty()) {
+        result.push_back(token);
+    }
     return result;
 }
+
 /**
  * This function convert string vector to double vector.
  * if the strings are possible to be converted then the double vector will return,
  * otherwise(there a string that not include numbers) its will return a null vector.
- * @param strVec vector<string>.
- * @return vector<double>.
+ * ( .1 will count as 0.1 and 3. will count as 3.0).
+ * @param strVec
+ * @return
  */
 std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
+    string dot =  ".";
     std::vector<double> doubleVec;
     int vecLen = strVec.size();
     for (int i = 0 ; i < vecLen ; i++) {
         std::string correctString = strVec[i];
-        std::string::const_iterator iterator = correctString.begin();
-        while (iterator != correctString.end() && std ::isdigit(*iterator)) {
-            ++iterator;
+        size_t d;
+        //try to convert string to double
+        try {
+            doubleVec.push_back(stod(correctString, (&d)));
         }
-        // is not a number, return empty vec.
-        if (iterator != correctString.end()) {
+        //if there is a problem with converting ,return null.
+        catch (std::invalid_argument& argument){
             return {};
         }
-        //we sure that this string can be converted to int
-        doubleVec.push_back(std::stoi(correctString));
     }
     return doubleVec;
 }
+
+
+
+
 /**
  * This function get to strings and check if it possible to convert each string to a vector of
  * doubles(by using the function "splitString" and "convertStrVecToDoubleVec")
@@ -128,7 +140,7 @@ int main() {
     // setting print format precision
 
     std::cout.precision(17);
-    std::cout << std::fixed;
+//    std::cout << std::fixed;
 
     // printing the result
 
