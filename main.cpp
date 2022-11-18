@@ -12,6 +12,7 @@
 #include "calculate/Manhattan.h"
 
 using namespace std;
+
 /**
  * This function get a String and split the string to a vector by the delimiter of space.
  * @param str String.
@@ -19,7 +20,7 @@ using namespace std;
  */
 std::vector<std::string> splitString(std::string str) {
     std::vector<std::string> result;
-    std::string delimiter  = " ", token;
+    std::string delimiter = " ", token;
     size_t position = 0;
     while ((str.find(delimiter) != std::string::npos)) {
         //taking the substring from starting position to the delimiter position.
@@ -48,25 +49,23 @@ std::vector<std::string> splitString(std::string str) {
  * @return
  */
 std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
-    string dot =  ".";
+    string dot = ".";
     std::vector<double> doubleVec;
     int vecLen = strVec.size();
-    for (int i = 0 ; i < vecLen ; i++) {
+    for (int i = 0; i < vecLen; i++) {
         std::string correctString = strVec[i];
         size_t d;
         //try to convert string to double
         try {
             doubleVec.push_back(stod(correctString, (&d)));
         }
-        //if there is a problem with converting ,return null.
-        catch (std::invalid_argument& argument){
+            //if there is a problem with converting ,return null.
+        catch (std::invalid_argument &argument) {
             return {};
         }
     }
     return doubleVec;
 }
-
-
 
 
 /**
@@ -79,8 +78,8 @@ std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
  * @return bool.
  */
 bool checkPropriety(std::string v1, std::string v2) {
-    std::vector<std::string>  firstLine = splitString(v1);
-    std::vector<std::string>  secondLine = splitString(v2);
+    std::vector<std::string> firstLine = splitString(v1);
+    std::vector<std::string> secondLine = splitString(v2);
     if (firstLine.size() != secondLine.size()) {
         return false;
     }
@@ -91,7 +90,6 @@ bool checkPropriety(std::string v1, std::string v2) {
         return false;
     }
     return true;
-
 }
 
 int main() {
@@ -99,13 +97,13 @@ int main() {
     std::string vec2;
     string input;
 
-    //std::cout << "Enter vectors: " << std::endl;
     getline(cin, vec1);
     getline(cin, vec2);
     checkPropriety(vec1, vec2);
-    if(!checkPropriety(vec1, vec2)) {
-        // the string is holding invalid value.
-        std::cout << "INVALID INPUT" << std::endl;
+    if (!checkPropriety(vec1, vec2)) {
+        // the string is holding invalid value. a.k.a. not a number or the vector not in the same size.
+        std::cout << "Incorrect input, Please make sure the vectors are in the same size and " <<
+                  "they are only numeric value." << std::endl;
         return 0; // exit the program.
     }
 
@@ -126,8 +124,7 @@ int main() {
     Manhattan manhattan;
     Chebyshev chebyshev;
     Canberra canberra;
-    std::vector<Distance*> distance;
-    //Distance* distance[5];
+    std::vector<Distance *> distance;
 
     // assign the array
 
@@ -137,16 +134,25 @@ int main() {
     distance.push_back(&canberra);
     distance.push_back(&minkowski);
 
-    // setting print format precision
-
-    std::cout.precision(17);
-//    std::cout << std::fixed;
+    // print format
+    std::cout << std::fixed;
 
     // printing the result
 
-    for (int i = 0; i < distance.size(); i++) {
-        std::cout <<(*distance[i])(v1, v2) << std::endl;
-    }
+    double result;
 
+    for (int i = 0; i < distance.size(); i++) {
+        result = (*distance[i])(v1, v2); // calculate each distance.
+        // in case the result is an integer prints the number like that x.0 for example 5.0
+        if (result == (int) result) {
+            std::cout.precision(1);
+        }
+        // in case the number is a double then prints it with 17 digits after the point.
+        else {
+            std::cout.precision(17);
+        }
+        std::cout << result << std::endl;
+    }
+    std::cin >> vec1;
     return 0;
 }
