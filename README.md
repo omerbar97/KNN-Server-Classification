@@ -6,12 +6,13 @@ This project was made by Omer Bar and Shilo Padael in our second year of our Com
 <ol>
   <li>Download the zip file of the project, and exctract the zip.</li>
   <li>open terminal in the project folder.</li>
-  <li>Run the following commands: (without the '$')</li>
+  <li>Run the following commands: (without the '$' and the comments)</li>
  </ol>
-  <pre><code>$ cmake -B build
-$ cd build
-$ make
-$ ./runnable</code></pre>
+  <pre><code>$ mkdir build                              // creating a folder for the build files.
+$ cd build                                 // moving to the build folder path.
+$ cmake -S ../                             // -S flag for the source CMakeList.txt file.
+$ make                                     // Compiling the project. make sure you inside the folder 'build'.
+$ ./runnable                               // Executing the program.</code></pre>
 
 <h4>For Windows:</h4>
 <ol>
@@ -21,6 +22,7 @@ $ ./runnable</code></pre>
   <li>Run the following commands: (without the comments)</li>
 </ol>
  <pre><code> mkdir build                                // creating a folder for the build files.
+ cd build                                   // moving to the build folder path.
  cmake -S ../ -G"MinGW Makefiles"           // -S flag for the source CMakeList.txt file, and -G for the windows default compilor.
  make                                       // Compiling the project. make sure you inside the folder 'build'.
  start runnable                             // Executing the program.</code></pre>
