@@ -149,10 +149,9 @@ int main() {
         }
         // in case the number is a double then prints it with 17 digits after the point.
         else {
-            std::cout.precision(17);
+            std::cout.precision(16);
         }
         std::cout << result << std::endl;
     }
-    std::cin >> vec1;
     return 0;
 }
