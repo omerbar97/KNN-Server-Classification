@@ -42,19 +42,19 @@ we didnt implement a Vector class, We use the std vector class.</p>
 <pre><code>// creating the vectors
 std::vector v1 = {1, 2, 3};
 std::vector v2 = {3, 2, 1};
-Euclidean euclidean; //creating instance of Euclidean algorithem.
-double result = euclidean(v1, v2) // returning the distance between v1 and v2.
+Euclidean euclidean; // Creating instance of Euclidean algorithem.
+double result = euclidean(v1, v2) // Returning the distance between v1 and v2.
 </code></pre>
 
 <p>By using an abstract class we can make use of polymorphism</p>
 <pre><code>Euclidean euclidean;
 Distance* pDistance = &euclidean;
-double result = (*pDistance)(v1, v2); // returning the distance between v1 and v2.
+double result = (*pDistance)(v1, v2); // Returning the distance between v1 and v2.
 </code></pre>
 
-<h4>How to add another distance algorithem?</h4>
+<h4>How to add another distance algorithm?</h4>
 <ol>
-  <li>Creating a new class by the name of the algorithem inside folder calculate.</li>
+  <li>Creating a new class by the name of the algorithm inside folder calculate.</li>
   <li>Inheritance the Distance class (after including it).</li>
   <li>Override the virtual function in Distance class named: operator().</li>
 </ol>
