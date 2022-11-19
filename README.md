@@ -2,14 +2,15 @@
 This project was made by Omer Bar and Shilo Padael in our second year of our Computer Science B.A.
 
 <h2>How To Run?</h2>
+<h4>To compile the project you need to install cmake: https://cmake.org/download/</h4>
 <h4>For Linux:</h4>
 <ol>
   <li>Download the zip file of the project, and exctract the zip.</li>
-  <li>open terminal in the project folder.</li>
+  <li>Open terminal in the project folder.</li>
   <li>Run the following commands: (without the '$' and the comments)</li>
  </ol>
-  <pre><code>$ mkdir build                              // creating a folder for the build files.
-$ cd build                                 // moving to the build folder path.
+  <pre><code>$ mkdir build                              // Creating a folder for the build files.
+$ cd build                                 // Moving to the build folder path.
 $ cmake -S ../                             // -S flag for the source CMakeList.txt file.
 $ make                                     // Compiling the project. make sure you inside the folder 'build'.
 $ ./runnable                               // Executing the program.</code></pre>
@@ -17,7 +18,7 @@ $ ./runnable                               // Executing the program.</code></pre
 <h4>For Windows:</h4>
 <ol>
   <li>Download the zip file of the project</li>
-    <li>Extract the zip file in an ASCII supported path. (for example 'D:\test' only english is good)</li>
+  <li>Extract the zip file in an ASCII supported path. (for example 'D:\test' only english is good)</li>
   <li>Open the cmd inside the folder project.</li>
   <li>Run the following commands: (without the comments)</li>
 </ol>
@@ -28,9 +29,9 @@ $ ./runnable                               // Executing the program.</code></pre
  start runnable                             // Executing the program.</code></pre>
 
 <h3><i>----------Milestone 1: 24.11.2022 ----------</i></h3>
-<h4>Creating different algorithem to calculate the distance between 2 vectors</h4>
+<h4>Creating different algorithm to calculate the distance between 2 vectors</h4>
 <p>We implement it using an abstract class called Distance that implements 2 functions and another virtual function.
-For each algorithem that inheritance the Distance class it should only implements the virtual function. In this project
+For each algorithm that inheritance the Distance class it should only implements the virtual function. In this project
 we didnt implement a Vector class, We use the std vector class.</p>
 <h4>How to calculate the distance?</h4>
 <ol>
