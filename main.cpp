@@ -22,6 +22,10 @@ std::vector<std::string> splitString(std::string str) {
     std::vector<std::string> result;
     std::string delimiter = " ", token;
     size_t position = 0;
+    //case that the vector with length 1.
+    if((str.find(delimiter)) == std::string::npos){
+        token = str;
+    }
     while ((str.find(delimiter) != std::string::npos)) {
         //taking the substring from starting position to the delimiter position.
         position = str.find(delimiter);
@@ -38,6 +42,27 @@ std::vector<std::string> splitString(std::string str) {
         result.push_back(token);
     }
     return result;
+}
+/**
+ * This function check if there a non-number in the vector string.
+ * @param strVec vector of string.
+ * @return bool , true-is contain char , false otherwise.
+ */
+bool isContainChar(std::vector<std::string> strVec) {
+    int vecLen = strVec.size();
+    for (int i = 0 ; i < vecLen ; i++) {
+        std::string correctString = strVec[i];
+        std::string::const_iterator iterator = correctString.begin();
+        //iterate all over the characters.
+        while (iterator != correctString.end() && (std ::isdigit(*iterator) || *iterator == '.')) {
+            ++iterator;
+        }
+        // is not a number, return empty vec.
+        if (iterator != correctString.end()) {
+            return true;
+        }
+    }
+    return false;
 }
 
 /**
@@ -59,8 +84,13 @@ std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
         try {
             doubleVec.push_back(stod(correctString, (&d)));
         }
-            //if there is a problem with converting ,return null.
-        catch (std::invalid_argument &argument) {
+
+        //if there is a problem with converting ,return null.
+        catch (std::invalid_argument &argument ) {
+            return {};
+        }
+        catch (std::out_of_range &argument) {
+
             return {};
         }
     }
@@ -81,6 +111,9 @@ bool checkPropriety(std::string v1, std::string v2) {
     std::vector<std::string> firstLine = splitString(v1);
     std::vector<std::string> secondLine = splitString(v2);
     if (firstLine.size() != secondLine.size()) {
+        return false;
+    }
+    if (isContainChar(firstLine) || isContainChar(secondLine)) {
         return false;
     }
     //the size is equal
@@ -126,6 +159,8 @@ int main() {
     Canberra canberra;
     std::vector<Distance *> distance;
 
+
+
     // assign the array
 
     distance.push_back(&euclidean);
@@ -142,6 +177,8 @@ int main() {
     double result;
 
     for (int i = 0; i < distance.size(); i++) {
+
+
         result = (*distance[i])(v1, v2); // calculate each distance.
         // in case the result is an integer prints the number like that x.0 for example 5.0
         if (result == (int) result) {
