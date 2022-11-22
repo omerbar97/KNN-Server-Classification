@@ -12,6 +12,7 @@
 #include "calculate/Manhattan.h"
 
 using namespace std;
+
 /**
  * This function get a String and split the string to a vector by the delimiter of space.
  * @param str String.
@@ -19,8 +20,12 @@ using namespace std;
  */
 std::vector<std::string> splitString(std::string str) {
     std::vector<std::string> result;
-    std::string delimiter  = " ", token;
+    std::string delimiter = " ", token;
     size_t position = 0;
+    //case that the vector with length 1.
+    if((str.find(delimiter)) == std::string::npos){
+        token = str;
+    }
     while ((str.find(delimiter) != std::string::npos)) {
         //taking the substring from starting position to the delimiter position.
         position = str.find(delimiter);
@@ -38,6 +43,27 @@ std::vector<std::string> splitString(std::string str) {
     }
     return result;
 }
+/**
+ * This function check if there a non-number in the vector string.
+ * @param strVec vector of string.
+ * @return bool , true-is contain char , false otherwise.
+ */
+bool isContainChar(std::vector<std::string> strVec) {
+    int vecLen = strVec.size();
+    for (int i = 0 ; i < vecLen ; i++) {
+        std::string correctString = strVec[i];
+        std::string::const_iterator iterator = correctString.begin();
+        //iterate all over the characters.
+        while (iterator != correctString.end() && (std ::isdigit(*iterator) || *iterator == '.')) {
+            ++iterator;
+        }
+        // is not a number, return empty vec.
+        if (iterator != correctString.end()) {
+            return true;
+        }
+    }
+    return false;
+}
 
 /**
  * This function convert string vector to double vector.
@@ -48,10 +74,10 @@ std::vector<std::string> splitString(std::string str) {
  * @return
  */
 std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
-    string dot =  ".";
+    string dot = ".";
     std::vector<double> doubleVec;
     int vecLen = strVec.size();
-    for (int i = 0 ; i < vecLen ; i++) {
+    for (int i = 0; i < vecLen; i++) {
         std::string correctString = strVec[i];
         size_t d;
         //try to convert string to double
@@ -59,14 +85,15 @@ std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
             doubleVec.push_back(stod(correctString, (&d)));
         }
         //if there is a problem with converting ,return null.
-        catch (std::invalid_argument& argument){
+        catch (std::invalid_argument &argument ) {
+            return {};
+        }
+        catch (std::out_of_range &argument) {
             return {};
         }
     }
     return doubleVec;
 }
-
-
 
 
 /**
@@ -79,9 +106,12 @@ std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
  * @return bool.
  */
 bool checkPropriety(std::string v1, std::string v2) {
-    std::vector<std::string>  firstLine = splitString(v1);
-    std::vector<std::string>  secondLine = splitString(v2);
+    std::vector<std::string> firstLine = splitString(v1);
+    std::vector<std::string> secondLine = splitString(v2);
     if (firstLine.size() != secondLine.size()) {
+        return false;
+    }
+    if (isContainChar(firstLine) || isContainChar(secondLine)) {
         return false;
     }
     //the size is equal
@@ -99,11 +129,10 @@ int main() {
     std::string vec2;
     string input;
 
-    //std::cout << "Enter vectors: " << std::endl;
     getline(cin, vec1);
     getline(cin, vec2);
     checkPropriety(vec1, vec2);
-    if(!checkPropriety(vec1, vec2)) {
+    if (!checkPropriety(vec1, vec2)) {
         // the string is holding invalid value.
         std::cout << "INVALID INPUT" << std::endl;
         return 0; // exit the program.
@@ -126,7 +155,7 @@ int main() {
     Manhattan manhattan;
     Chebyshev chebyshev;
     Canberra canberra;
-    std::vector<Distance*> distance;
+    std::vector<Distance *> distance;
     //Distance* distance[5];
 
     // assign the array
@@ -145,7 +174,7 @@ int main() {
     // printing the result
 
     for (int i = 0; i < distance.size(); i++) {
-        std::cout <<(*distance[i])(v1, v2) << std::endl;
+        std::cout << (*distance[i])(v1, v2) << std::endl;
     }
 
     return 0;
