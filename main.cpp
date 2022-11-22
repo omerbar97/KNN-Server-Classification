@@ -84,11 +84,13 @@ std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
         try {
             doubleVec.push_back(stod(correctString, (&d)));
         }
+
         //if there is a problem with converting ,return null.
         catch (std::invalid_argument &argument ) {
             return {};
         }
         catch (std::out_of_range &argument) {
+
             return {};
         }
     }
@@ -121,7 +123,6 @@ bool checkPropriety(std::string v1, std::string v2) {
         return false;
     }
     return true;
-
 }
 
 int main() {
@@ -133,8 +134,9 @@ int main() {
     getline(cin, vec2);
     checkPropriety(vec1, vec2);
     if (!checkPropriety(vec1, vec2)) {
-        // the string is holding invalid value.
-        std::cout << "INVALID INPUT" << std::endl;
+        // the string is holding invalid value. a.k.a. not a number or the vector not in the same size.
+        std::cout << "Incorrect input, Please make sure the vectors are in the same size and " <<
+                  "they are only numeric value." << std::endl;
         return 0; // exit the program.
     }
 
@@ -156,7 +158,8 @@ int main() {
     Chebyshev chebyshev;
     Canberra canberra;
     std::vector<Distance *> distance;
-    //Distance* distance[5];
+
+
 
     // assign the array
 
@@ -166,16 +169,26 @@ int main() {
     distance.push_back(&canberra);
     distance.push_back(&minkowski);
 
-    // setting print format precision
-
-    std::cout.precision(17);
-//    std::cout << std::fixed;
+    // print format
+    std::cout << std::fixed;
 
     // printing the result
 
-    for (int i = 0; i < distance.size(); i++) {
-        std::cout << (*distance[i])(v1, v2) << std::endl;
-    }
+    double result;
 
+    for (int i = 0; i < distance.size(); i++) {
+
+
+        result = (*distance[i])(v1, v2); // calculate each distance.
+        // in case the result is an integer prints the number like that x.0 for example 5.0
+        if (result == (int) result) {
+            std::cout.precision(1);
+        }
+        // in case the number is a double then prints it with 17 digits after the point.
+        else {
+            std::cout.precision(16);
+        }
+        std::cout << result << std::endl;
+    }
     return 0;
 }
