@@ -4,12 +4,12 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-#include "calculate/Distance.h"
-#include "calculate/Euclidean.h"
-#include "calculate/Minkowski.h"
-#include "calculate/Canberra.h"
-#include "calculate/Chebyshev.h"
-#include "calculate/Manhattan.h"
+#include "calculate/Distance/Distance.h"
+#include "calculate/Distance/Euclidean.h"
+#include "calculate/Distance/Minkowski.h"
+#include "calculate/Distance/Canberra.h"
+#include "calculate/Distance/Chebyshev.h"
+#include "calculate/Distance/Manhattan.h"
 
 using namespace std;
 
