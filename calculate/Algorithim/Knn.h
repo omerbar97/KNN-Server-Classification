@@ -13,12 +13,10 @@
 #include <map>
 
 
-
-
 class Knn {
 
 private:
-
+    std::vector<VectorCSV> multiVector;
     std::vector<DistanceVec> resultVector;
     std::vector<double> inputVector;
     Distance* distance;
@@ -55,8 +53,12 @@ public:
     */
     void setK(int k);
 
-    void calculate(std::vector<VectorCSV> vectors);
+    void calculate();
 
+    /**
+     * getting the classified result from the K-nn algorithm
+     * @return
+     */
     std::string getClassified();
 };
 

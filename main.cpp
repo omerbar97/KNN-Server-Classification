@@ -127,19 +127,19 @@ bool checkPropriety(std::string v1, std::string v2) {
 }
 
 int main() {
-    std::vector<double> v = {1, 2, 15};
-    std::vector<double> vVector = {1, 89, 3};
-    std::vector<double> vVector2 = {5, 2, 1};
+    std::vector<double> v = {1, 2, 3};
+    std::vector<double> vVector = {1, 1, 3};
+    std::vector<double> vVector2 = {5, 2, 15};
     std::vector<double> vVector3 = {19, 17, 19};
     std::vector<double> vVector4 = {12, 15, 2};
     std::vector<double> vVector5 = {1, 22, 33};
 
 
-    VectorCSV vCSV = {vVector, "name-3"};
+    VectorCSV vCSV = {vVector, "name-1"};
     VectorCSV vCSV2 = {vVector2, "name-2"};
-    VectorCSV vCSV3 = {vVector3, "name-2"};
-    VectorCSV vCSV4 = {vVector4, "name-3"};
-    VectorCSV vCSV5 = {vVector5, "name-3"};
+    VectorCSV vCSV3 = {vVector3, "name-3"};
+    VectorCSV vCSV4 = {vVector4, "name-4"};
+    VectorCSV vCSV5 = {vVector5, "name-5"};
 
     std::vector<VectorCSV> vv;
     vv.push_back(vCSV);
@@ -150,8 +150,19 @@ int main() {
 
     Distance* euc = new Euclidean();
 
-    Knn kTest(v, vv, euc, 5);
-
+    Knn kTest(v, vv, euc, 1);
+    std::cout << kTest.getClassified() << std::endl;
+    kTest.setK(2);
+    kTest.calculate();
+    std::cout << kTest.getClassified() << std::endl;
+    kTest.setK(3);
+    kTest.calculate();
+    std::cout << kTest.getClassified() << std::endl;
+    kTest.setK(4);
+    kTest.calculate();
+    std::cout << kTest.getClassified() << std::endl;
+    kTest.setK(5);
+    kTest.calculate();
     std::cout << kTest.getClassified() << std::endl;
 
 //    std::string vec1;

@@ -4,16 +4,32 @@
 
 #include "Select.h"
 
+/**
+ * constructor for class Select to calculate the K-Element in a std::Vector data structure.
+ * @param dVector - std::vector<DistanceVec>
+ * @param kElement - int
+ */
 Select::Select(std::vector<DistanceVec> &dVector, int kElement) : distanceVector(dVector){
     this->k = kElement;
 }
 
+/**
+ * swap two structure of DistanceVec.
+ * @param v1 - DistanceVec
+ * @param v2 - DistanceVec
+ */
 void Select::swap(DistanceVec &v1, DistanceVec &v2) {
     DistanceVec temp = v1;
     v1 = v2;
     v2 = temp;
 }
 
+/**
+ * doing the algorithm Partition
+ * @param lowIndex - int
+ * @param highIndex - int
+ * @return int
+ */
 int Select::initPartition(int lowIndex, int highIndex) {
     int pivot, index, i;
 
@@ -35,7 +51,12 @@ int Select::initPartition(int lowIndex, int highIndex) {
     return index;
 }
 
-void Select::calculatePartition(int lowIndex, int highIndex, int kElement) {
+/**
+ * the select algorithm.
+ * @param lowIndex - int
+ * @param highIndex - int
+ */
+void Select::calculatePartition(int lowIndex, int highIndex) {
     int pIndex;
     if(lowIndex < highIndex)
     {
@@ -46,12 +67,15 @@ void Select::calculatePartition(int lowIndex, int highIndex, int kElement) {
             return;
         }
         else if(pIndex > k - 1)
-            calculatePartition(lowIndex, pIndex - 1, k);
+            calculatePartition(lowIndex, pIndex - 1);
         else
-            calculatePartition(pIndex + 1, highIndex, k);
+            calculatePartition(pIndex + 1, highIndex);
     }
 }
 
+/**
+ * public method to call to calculate.
+ */
 void Select::calculate() {
-    calculatePartition(0, this->distanceVector.size() - 1, this->k);
+    calculatePartition(0, distanceVector.size() - 1);
 }

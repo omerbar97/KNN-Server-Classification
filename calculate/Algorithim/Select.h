@@ -7,17 +7,28 @@
 
 
 class Select {
+
 private:
+    /**
+     * private variables.
+     */
     std::vector<DistanceVec>& distanceVector;
     int k;
 
+    /**
+     * private Functions:
+     */
     void swap(DistanceVec &v1, DistanceVec &v2);
+
     int initPartition(int lowIndex, int highIndex);
-    void calculatePartition(int lowIndex, int highIndex, int kElement);
+
+    void calculatePartition(int lowIndex, int highIndex);
+
 
 public:
 
     Select(std::vector<DistanceVec> &dVector, int kElement);
+
     void calculate();
 };
 
