@@ -10,6 +10,7 @@
 #include "calculate/Distance/Canberra.h"
 #include "calculate/Distance/Chebyshev.h"
 #include "calculate/Distance/Manhattan.h"
+#include "calculate/Algorithim/Knn.h"
 
 using namespace std;
 
@@ -126,69 +127,96 @@ bool checkPropriety(std::string v1, std::string v2) {
 }
 
 int main() {
-    std::string vec1;
-    std::string vec2;
-    string input;
-
-    getline(cin, vec1);
-    getline(cin, vec2);
-    checkPropriety(vec1, vec2);
-    if (!checkPropriety(vec1, vec2)) {
-        // the string is holding invalid value. a.k.a. not a number or the vector not in the same size.
-        std::cout << "Incorrect input, Please make sure the vectors are in the same size and " <<
-                  "they are only numeric value." << std::endl;
-        return 0; // exit the program.
-    }
-
-    // creating a vector from the string;
-
-    std::vector<std::string> vString1 = splitString(vec1);
-    std::vector<std::string> vString2 = splitString(vec2);
-
-    //converting to vector type double
-
-    std::vector<double> v1 = convertStrVecToDoubleVec(vString1);
-    std::vector<double> v2 = convertStrVecToDoubleVec(vString2);
-
-    // initializing the distance array.
-
-    Euclidean euclidean;
-    Minkowski minkowski;
-    Manhattan manhattan;
-    Chebyshev chebyshev;
-    Canberra canberra;
-    std::vector<Distance *> distance;
+    std::vector<double> v = {1, 2, 15};
+    std::vector<double> vVector = {1, 89, 3};
+    std::vector<double> vVector2 = {5, 2, 1};
+    std::vector<double> vVector3 = {19, 17, 19};
+    std::vector<double> vVector4 = {12, 15, 2};
+    std::vector<double> vVector5 = {1, 22, 33};
 
 
+    VectorCSV vCSV = {vVector, "name-3"};
+    VectorCSV vCSV2 = {vVector2, "name-2"};
+    VectorCSV vCSV3 = {vVector3, "name-2"};
+    VectorCSV vCSV4 = {vVector4, "name-3"};
+    VectorCSV vCSV5 = {vVector5, "name-3"};
 
-    // assign the array
+    std::vector<VectorCSV> vv;
+    vv.push_back(vCSV);
+    vv.push_back(vCSV2);
+    vv.push_back(vCSV3);
+    vv.push_back(vCSV4);
+    vv.push_back(vCSV5);
 
-    distance.push_back(&euclidean);
-    distance.push_back(&manhattan);
-    distance.push_back(&chebyshev);
-    distance.push_back(&canberra);
-    distance.push_back(&minkowski);
+    Distance* euc = new Euclidean();
 
-    // print format
-    std::cout << std::fixed;
+    Knn kTest(v, vv, euc, 5);
 
-    // printing the result
+    std::cout << kTest.getClassified() << std::endl;
 
-    double result;
-
-    for (int i = 0; i < distance.size(); i++) {
-
-
-        result = (*distance[i])(v1, v2); // calculate each distance.
-        // in case the result is an integer prints the number like that x.0 for example 5.0
-        if (result == (int) result) {
-            std::cout.precision(1);
-        }
-        // in case the number is a double then prints it with 17 digits after the point.
-        else {
-            std::cout.precision(16);
-        }
-        std::cout << result << std::endl;
-    }
+//    std::string vec1;
+//    std::string vec2;
+//    string input;
+//
+//    getline(cin, vec1);
+//    getline(cin, vec2);
+//    checkPropriety(vec1, vec2);
+//    if (!checkPropriety(vec1, vec2)) {
+//        // the string is holding invalid value. a.k.a. not a number or the vector not in the same size.
+//        std::cout << "Incorrect input, Please make sure the vectors are in the same size and " <<
+//                  "they are only numeric value." << std::endl;
+//        return 0; // exit the program.
+//    }
+//
+//    // creating a vector from the string;
+//
+//    std::vector<std::string> vString1 = splitString(vec1);
+//    std::vector<std::string> vString2 = splitString(vec2);
+//
+//    //converting to vector type double
+//
+//    std::vector<double> v1 = convertStrVecToDoubleVec(vString1);
+//    std::vector<double> v2 = convertStrVecToDoubleVec(vString2);
+//
+//    // initializing the distance array.
+//
+//    Euclidean euclidean;
+//    Minkowski minkowski;
+//    Manhattan manhattan;
+//    Chebyshev chebyshev;
+//    Canberra canberra;
+//    std::vector<Distance *> distance;
+//
+//
+//
+//    // assign the array
+//
+//    distance.push_back(&euclidean);
+//    distance.push_back(&manhattan);
+//    distance.push_back(&chebyshev);
+//    distance.push_back(&canberra);
+//    distance.push_back(&minkowski);
+//
+//    // print format
+//    std::cout << std::fixed;
+//
+//    // printing the result
+//
+//    double result;
+//
+//    for (int i = 0; i < distance.size(); i++) {
+//
+//
+//        result = (*distance[i])(v1, v2); // calculate each distance.
+//        // in case the result is an integer prints the number like that x.0 for example 5.0
+//        if (result == (int) result) {
+//            std::cout.precision(1);
+//        }
+//        // in case the number is a double then prints it with 17 digits after the point.
+//        else {
+//            std::cout.precision(16);
+//        }
+//        std::cout << result << std::endl;
+//    }
     return 0;
 }
