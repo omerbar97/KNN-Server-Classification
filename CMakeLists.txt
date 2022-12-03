@@ -17,4 +17,6 @@ add_executable(${PROJECT_NAME}
         calculate/Distance/Chebyshev.cpp
         calculate/Distance/Chebyshev.h
         calculate/Distance/Manhattan.cpp
+        calculate/ReadCSV.cpp
+        calculate/ReadCSV.h
         calculate/Distance/Manhattan.h)

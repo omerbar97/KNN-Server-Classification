@@ -10,6 +10,7 @@
 #include "calculate/Distance/Canberra.h"
 #include "calculate/Distance/Chebyshev.h"
 #include "calculate/Distance/Manhattan.h"
+#include "calculate/ReadCSV.h"
 
 using namespace std;
 
@@ -126,69 +127,72 @@ bool checkPropriety(std::string v1, std::string v2) {
 }
 
 int main() {
-    std::string vec1;
-    std::string vec2;
-    string input;
 
-    getline(cin, vec1);
-    getline(cin, vec2);
-    checkPropriety(vec1, vec2);
-    if (!checkPropriety(vec1, vec2)) {
-        // the string is holding invalid value. a.k.a. not a number or the vector not in the same size.
-        std::cout << "Incorrect input, Please make sure the vectors are in the same size and " <<
-                  "they are only numeric value." << std::endl;
-        return 0; // exit the program.
-    }
+    ReadCSV readCsv("C:\\GitProgects\\AsvancePrograming1\\Advanced-Programming-Project\\datasets\\datasets\\iris\\iris_classified.csv");
 
-    // creating a vector from the string;
-
-    std::vector<std::string> vString1 = splitString(vec1);
-    std::vector<std::string> vString2 = splitString(vec2);
-
-    //converting to vector type double
-
-    std::vector<double> v1 = convertStrVecToDoubleVec(vString1);
-    std::vector<double> v2 = convertStrVecToDoubleVec(vString2);
-
-    // initializing the distance array.
-
-    Euclidean euclidean;
-    Minkowski minkowski;
-    Manhattan manhattan;
-    Chebyshev chebyshev;
-    Canberra canberra;
-    std::vector<Distance *> distance;
-
-
-
-    // assign the array
-
-    distance.push_back(&euclidean);
-    distance.push_back(&manhattan);
-    distance.push_back(&chebyshev);
-    distance.push_back(&canberra);
-    distance.push_back(&minkowski);
-
-    // print format
-    std::cout << std::fixed;
-
-    // printing the result
-
-    double result;
-
-    for (int i = 0; i < distance.size(); i++) {
-
-
-        result = (*distance[i])(v1, v2); // calculate each distance.
-        // in case the result is an integer prints the number like that x.0 for example 5.0
-        if (result == (int) result) {
-            std::cout.precision(1);
-        }
-        // in case the number is a double then prints it with 17 digits after the point.
-        else {
-            std::cout.precision(16);
-        }
-        std::cout << result << std::endl;
-    }
+//    std::string vec1;
+//    std::string vec2;
+//    string input;
+//
+//    getline(cin, vec1);
+//    getline(cin, vec2);
+//    checkPropriety(vec1, vec2);
+//    if (!checkPropriety(vec1, vec2)) {
+//        // the string is holding invalid value. a.k.a. not a number or the vector not in the same size.
+//        std::cout << "Incorrect input, Please make sure the vectors are in the same size and " <<
+//                  "they are only numeric value." << std::endl;
+//        return 0; // exit the program.
+//    }
+//
+//    // creating a vector from the string;
+//
+//    std::vector<std::string> vString1 = splitString(vec1);
+//    std::vector<std::string> vString2 = splitString(vec2);
+//
+//    //converting to vector type double
+//
+//    std::vector<double> v1 = convertStrVecToDoubleVec(vString1);
+//    std::vector<double> v2 = convertStrVecToDoubleVec(vString2);
+//
+//    // initializing the distance array.
+//
+//    Euclidean euclidean;
+//    Minkowski minkowski;
+//    Manhattan manhattan;
+//    Chebyshev chebyshev;
+//    Canberra canberra;
+//    std::vector<Distance *> distance;
+//
+//
+//
+//    // assign the array
+//
+//    distance.push_back(&euclidean);
+//    distance.push_back(&manhattan);
+//    distance.push_back(&chebyshev);
+//    distance.push_back(&canberra);
+//    distance.push_back(&minkowski);
+//
+//    // print format
+//    std::cout << std::fixed;
+//
+//    // printing the result
+//
+//    double result;
+//
+//    for (int i = 0; i < distance.size(); i++) {
+//
+//
+//        result = (*distance[i])(v1, v2); // calculate each distance.
+//        // in case the result is an integer prints the number like that x.0 for example 5.0
+//        if (result == (int) result) {
+//            std::cout.precision(1);
+//        }
+//        // in case the number is a double then prints it with 17 digits after the point.
+//        else {
+//            std::cout.precision(16);
+//        }
+//        std::cout << result << std::endl;
+//    }
     return 0;
 }
