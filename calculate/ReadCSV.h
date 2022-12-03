@@ -5,19 +5,16 @@
 #include <string>
 #ifndef MAIN_CPP_READCSV_H
 #define MAIN_CPP_READCSV_H
+#include "../CSVStruct.h"
 
-
-struct VectorCSV {
-    std::vector<double> id;
-    std::string name;
-};
 
 class ReadCSV {
 
+private:
+
     std::string fileName;
     std::vector<VectorCSV> data;
-
-private:
+    
     /**
     * This function move data from csv file to a vector of VectorCSV struct.
     * we assume in this function that each line in the data build with 5 word,
@@ -28,6 +25,7 @@ private:
     void csvToData();
 
 public:
+
     /**
      * getter for the data.
      * @return vector<VectorCSV>.

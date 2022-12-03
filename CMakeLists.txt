@@ -17,6 +17,12 @@ add_executable(${PROJECT_NAME}
         calculate/Distance/Chebyshev.cpp
         calculate/Distance/Chebyshev.h
         calculate/Distance/Manhattan.cpp
+        calculate/Distance/Manhattan.h
         calculate/ReadCSV.cpp
         calculate/ReadCSV.h
-        calculate/Distance/Manhattan.h)
+        calculate/Algorithim/Select.cpp
+        calculate/Algorithim/Select.h
+        calculate/Algorithim/Knn.h
+        calculate/Algorithim/Knn.cpp
+        calculate/Algorithim/CSVStruct.h)
+

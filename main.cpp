@@ -11,6 +11,7 @@
 #include "calculate/Distance/Chebyshev.h"
 #include "calculate/Distance/Manhattan.h"
 #include "calculate/ReadCSV.h"
+#include "calculate/Algorithim/Knn.h"
 
 using namespace std;
 
@@ -50,12 +51,12 @@ std::vector<std::string> splitString(std::string str) {
  * @return bool , true-is contain char , false otherwise.
  */
 bool isContainChar(std::vector<std::string> strVec) {
-    int vecLen = strVec.size();
+    int vecLen = strVec.size(), dotFlag = 0;
     for (int i = 0 ; i < vecLen ; i++) {
         std::string correctString = strVec[i];
         std::string::const_iterator iterator = correctString.begin();
         //iterate all over the characters.
-        while (iterator != correctString.end() && (std ::isdigit(*iterator) || *iterator == '.')) {
+        while (iterator != correctString.end() && (std::isdigit(*iterator) || *iterator == '.')) {
             ++iterator;
         }
         // is not a number, return empty vec.
@@ -75,7 +76,7 @@ bool isContainChar(std::vector<std::string> strVec) {
  * @return
  */
 std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
-    string dot = ".";
+    std::string dot = ".";
     std::vector<double> doubleVec;
     int vecLen = strVec.size();
     for (int i = 0; i < vecLen; i++) {
@@ -85,7 +86,6 @@ std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec) {
         try {
             doubleVec.push_back(stod(correctString, (&d)));
         }
-
         //if there is a problem with converting ,return null.
         catch (std::invalid_argument &argument ) {
             return {};
@@ -126,7 +126,176 @@ bool checkPropriety(std::string v1, std::string v2) {
     return true;
 }
 
+
 int main() {
+=======
+bool checkVectorInput(std::string v) {
+    std::vector<std::string> stringVector = splitString(v);
+    if(isContainChar(stringVector)) {
+        return false;
+    }
+    std::vector<double> doubleVector = convertStrVecToDoubleVec(stringVector);
+    if(doubleVector.empty()) {
+        return false;
+    }
+    return true;
+}
+
+Distance* getDistance(std::string input) {
+    if(input.compare("AUC")) {
+        return new Euclidean();
+    }
+    if(input.compare("MAN")) {
+        return new Manhattan();
+    }
+    if(input.compare("CHB")) {
+        return new Chebyshev();
+    }
+    if(input.compare("CAN")) {
+        return new Canberra();
+    }
+    if(input.compare("MIN")) {
+        return new Minkowski();
+    }
+    return nullptr;
+}
+
+void printErrorTerminalInput() {
+    std::cout << "Incorrect terminal input, please make sure you start the program as follow: \n" <<
+              "<exe/out file> <integer k> <CSV_file_to_read> <distance_algorithm>\n" <<
+              "Make sure the CSV file is in the program main directory.\n" <<
+              "For example: \"a.out 3 iris_classified.csv MAN\"\n" <<
+              "List of all distance algorithm:\n" <<
+              "\t1.\"AUC\" - Euclidean distance\n" <<
+              "\t2.\"MAN\" - Manhattan distance\n" <<
+              "\t3.\"CHB\" - Chebyshev distance\n" <<
+              "\t4.\"CAN\" - Canberra distance\n" <<
+              "\t5.\"MIN\" - Minkowski distance\n" <<
+              "------RESTART PROGRAM IS REQUIRED------" << std::endl;
+}
+
+void deleteAllocatedMemory() {
+
+}
+int main(int argc, char *args[]) {
+
+    if(argc != 4) {
+        printErrorTerminalInput();
+        return 0;
+    }
+    // initializing variables.
+    int k;
+    std::string vInput;
+    Distance* distanceAlgo;
+
+    // getting data from args
+    try {
+        // parsing string to int:
+        k = std::stoi(args[1]);
+    }
+    catch (const std::invalid_argument &e) {
+        printErrorTerminalInput();
+        return 0;
+    }
+
+    distanceAlgo = getDistance(args[3]);
+    if(distanceAlgo == nullptr) {
+        printErrorTerminalInput();
+        return 0;
+    }
+    // getting user input
+    getline(cin, vInput);
+
+    // checking user input:
+    if(checkVectorInput(vInput)) {
+        std::cout << "GOOD vector\n";
+        std::vector<std::string> sVector = splitString(vInput);
+        std::vector<double> v = convertStrVecToDoubleVec(sVector);
+        for(double d : v) {
+            std::cout << d << ", ";
+        }
+        std::cout << std::endl;
+    }
+    else {
+        std::cout << "BAD vector\n";
+    }
+
+    // calculating the K-nn distance
+
+    /*
+     * tests:
+     */
+//    std::vector<double> v = {1, 2, 3};
+//    std::vector<double> vVector = {1, 1, 3};
+//    std::vector<double> vVector2 = {5, 2, 15};
+//    std::vector<double> vVector3 = {19, 17, 19};
+//    std::vector<double> vVector4 = {12, 15, 2};
+//    std::vector<double> vVector5 = {1, 22, 33};
+//
+//
+//    VectorCSV vCSV = {vVector, "name-1"};
+//    VectorCSV vCSV2 = {vVector2, "name-2"};
+//    VectorCSV vCSV3 = {vVector3, "name-3"};
+//    VectorCSV vCSV4 = {vVector4, "name-4"};
+//    VectorCSV vCSV5 = {vVector5, "name-5"};
+//
+//    std::vector<VectorCSV> vv;
+//    vv.push_back(vCSV);
+//    vv.push_back(vCSV2);
+//    vv.push_back(vCSV3);
+//    vv.push_back(vCSV4);
+//    vv.push_back(vCSV5);
+//
+//    Distance* euc = new Euclidean();
+//
+//    Knn kTest(v, vv, euc, 1);
+//    std::cout << kTest.getClassified() << std::endl;
+//    kTest.setK(2);
+//    kTest.calculate();
+//    std::cout << kTest.getClassified() << std::endl;
+//    kTest.setK(3);
+//    kTest.calculate();
+//    std::cout << kTest.getClassified() << std::endl;
+//    kTest.setK(4);
+//    kTest.calculate();
+//    std::cout << kTest.getClassified() << std::endl;
+//    kTest.setK(5);
+//    kTest.calculate();
+//    std::cout << kTest.getClassified() << std::endl;
+
+    std::string vec1;
+    std::string vec2;
+    string input;
+
+    getline(cin, vec1);
+    getline(cin, vec2);
+    checkPropriety(vec1, vec2);
+    if (!checkPropriety(vec1, vec2)) {
+        // the string is holding invalid value. a.k.a. not a number or the vector not in the same size.
+        std::cout << "Incorrect input, Please make sure the vectors are in the same size and " <<
+                  "they are only numeric value." << std::endl;
+        return 0; // exit the program.
+    }
+
+    // creating a vector from the string;
+
+    std::vector<std::string> vString1 = splitString(vec1);
+    std::vector<std::string> vString2 = splitString(vec2);
+
+    //converting to vector type double
+
+    std::vector<double> v1 = convertStrVecToDoubleVec(vString1);
+    std::vector<double> v2 = convertStrVecToDoubleVec(vString2);
+
+    // initializing the distance array.
+
+    Euclidean euclidean;
+    Minkowski minkowski;
+    Manhattan manhattan;
+    Chebyshev chebyshev;
+    Canberra canberra;
+    std::vector<Distance *> distance;
+
 
     ReadCSV readCsv("C:\\GitProgects\\AsvancePrograming1\\Advanced-Programming-Project\\datasets\\datasets\\iris\\iris_classified.csv");
 
