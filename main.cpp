@@ -126,9 +126,6 @@ bool checkPropriety(std::string v1, std::string v2) {
     return true;
 }
 
-
-int main() {
-=======
 bool checkVectorInput(std::string v) {
     std::vector<std::string> stringVector = splitString(v);
     if(isContainChar(stringVector)) {
@@ -177,32 +174,33 @@ void printErrorTerminalInput() {
 void deleteAllocatedMemory() {
 
 }
+
 int main(int argc, char *args[]) {
 
-    if(argc != 4) {
-        printErrorTerminalInput();
-        return 0;
-    }
+//    if(argc != 4) {
+//        printErrorTerminalInput();
+//        return 0;
+//    }
     // initializing variables.
     int k;
     std::string vInput;
     Distance* distanceAlgo;
 
     // getting data from args
-    try {
-        // parsing string to int:
-        k = std::stoi(args[1]);
-    }
-    catch (const std::invalid_argument &e) {
-        printErrorTerminalInput();
-        return 0;
-    }
+//    try {
+//        // parsing string to int:
+//        k = std::stoi(args[1]);
+//    }
+//    catch (const std::invalid_argument &e) {
+//        printErrorTerminalInput();
+//        return 0;
+//    }
 
-    distanceAlgo = getDistance(args[3]);
-    if(distanceAlgo == nullptr) {
-        printErrorTerminalInput();
-        return 0;
-    }
+//    distanceAlgo = getDistance(args[3]);
+//    if(distanceAlgo == nullptr) {
+//        printErrorTerminalInput();
+//        return 0;
+//    }
     // getting user input
     getline(cin, vInput);
 
@@ -212,7 +210,7 @@ int main(int argc, char *args[]) {
         std::vector<std::string> sVector = splitString(vInput);
         std::vector<double> v = convertStrVecToDoubleVec(sVector);
         for(double d : v) {
-            std::cout << d << ", ";
+            std::cout << d << " ";
         }
         std::cout << std::endl;
     }
@@ -220,48 +218,6 @@ int main(int argc, char *args[]) {
         std::cout << "BAD vector\n";
     }
 
-    // calculating the K-nn distance
-
-    /*
-     * tests:
-     */
-//    std::vector<double> v = {1, 2, 3};
-//    std::vector<double> vVector = {1, 1, 3};
-//    std::vector<double> vVector2 = {5, 2, 15};
-//    std::vector<double> vVector3 = {19, 17, 19};
-//    std::vector<double> vVector4 = {12, 15, 2};
-//    std::vector<double> vVector5 = {1, 22, 33};
-//
-//
-//    VectorCSV vCSV = {vVector, "name-1"};
-//    VectorCSV vCSV2 = {vVector2, "name-2"};
-//    VectorCSV vCSV3 = {vVector3, "name-3"};
-//    VectorCSV vCSV4 = {vVector4, "name-4"};
-//    VectorCSV vCSV5 = {vVector5, "name-5"};
-//
-//    std::vector<VectorCSV> vv;
-//    vv.push_back(vCSV);
-//    vv.push_back(vCSV2);
-//    vv.push_back(vCSV3);
-//    vv.push_back(vCSV4);
-//    vv.push_back(vCSV5);
-//
-//    Distance* euc = new Euclidean();
-//
-//    Knn kTest(v, vv, euc, 1);
-//    std::cout << kTest.getClassified() << std::endl;
-//    kTest.setK(2);
-//    kTest.calculate();
-//    std::cout << kTest.getClassified() << std::endl;
-//    kTest.setK(3);
-//    kTest.calculate();
-//    std::cout << kTest.getClassified() << std::endl;
-//    kTest.setK(4);
-//    kTest.calculate();
-//    std::cout << kTest.getClassified() << std::endl;
-//    kTest.setK(5);
-//    kTest.calculate();
-//    std::cout << kTest.getClassified() << std::endl;
 
     std::string vec1;
     std::string vec2;
@@ -297,7 +253,7 @@ int main(int argc, char *args[]) {
     std::vector<Distance *> distance;
 
 
-    ReadCSV readCsv("C:\\GitProgects\\AsvancePrograming1\\Advanced-Programming-Project\\datasets\\datasets\\iris\\iris_classified.csv");
+    ReadCSV readCsv("D:\\git\\datasets\\datasets\\iris\\iris_classified.csv");
 
 //    std::string vec1;
 //    std::string vec2;

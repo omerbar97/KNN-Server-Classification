@@ -5,7 +5,7 @@
 #include <string>
 #ifndef MAIN_CPP_READCSV_H
 #define MAIN_CPP_READCSV_H
-#include "../CSVStruct.h"
+#include "Algorithim//CSVStruct.h"
 
 
 class ReadCSV {
