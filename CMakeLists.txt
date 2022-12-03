@@ -21,4 +21,5 @@ add_executable(${PROJECT_NAME}
         calculate/Algorithim/Select.cpp
         calculate/Algorithim/Select.h
         calculate/Algorithim/Knn.h
-        calculate/Algorithim/Knn.cpp calculate/Algorithim/CSVStruct.h)
+        calculate/Algorithim/Knn.cpp
+        calculate/Algorithim/CSVStruct.h)
