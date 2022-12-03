@@ -175,40 +175,41 @@ void deleteAllocatedMemory() {
 
 }
 
-int main(int argc, char *args[]) {
+int main(int argq, char *argc[]) {
 
+    char* args[] = {"a.out", "3", "iris_classified.csv", "MAN"};
 //    if(argc != 4) {
 //        printErrorTerminalInput();
 //        return 0;
 //    }
     // initializing variables.
-    int k;
+    int k = 3;
     std::string vInput;
     Distance* distanceAlgo;
 
     // getting data from args
-//    try {
-//        // parsing string to int:
-//        k = std::stoi(args[1]);
-//    }
-//    catch (const std::invalid_argument &e) {
-//        printErrorTerminalInput();
-//        return 0;
-//    }
+    try {
+        // parsing string to int:
+        k = std::stoi(args[1]);
+    }
+    catch (const std::invalid_argument &e) {
+        printErrorTerminalInput();
+        return 0;
+    }
 
-//    distanceAlgo = getDistance(args[3]);
-//    if(distanceAlgo == nullptr) {
-//        printErrorTerminalInput();
-//        return 0;
-//    }
+    distanceAlgo = getDistance(args[3]);
+    if(distanceAlgo == nullptr) {
+        printErrorTerminalInput();
+        return 0;
+    }
     // getting user input
     getline(cin, vInput);
-
+    std::vector<double> v;
     // checking user input:
     if(checkVectorInput(vInput)) {
         std::cout << "GOOD vector\n";
         std::vector<std::string> sVector = splitString(vInput);
-        std::vector<double> v = convertStrVecToDoubleVec(sVector);
+        v = convertStrVecToDoubleVec(sVector);
         for(double d : v) {
             std::cout << d << " ";
         }
@@ -218,6 +219,11 @@ int main(int argc, char *args[]) {
         std::cout << "BAD vector\n";
     }
 
+    ReadCSV readCsv("D:\\git\\datasets\\datasets\\iris\\iris_classified.csv");
+    Distance* d = new Manhattan();
+    Knn knn(v, readCsv.getData(), d, k);
+
+    std::cout << "\nClassified: " << knn.getClassified() << "\n" << k;
 
     std::string vec1;
     std::string vec2;
@@ -253,7 +259,7 @@ int main(int argc, char *args[]) {
     std::vector<Distance *> distance;
 
 
-    ReadCSV readCsv("D:\\git\\datasets\\datasets\\iris\\iris_classified.csv");
+
 
 //    std::string vec1;
 //    std::string vec2;

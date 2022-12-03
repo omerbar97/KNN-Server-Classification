@@ -65,6 +65,7 @@ void Knn::setVector(std::vector<double> iVector) {
 void Knn::calculate() {
     int minFlag = 1; // indicate if we need to return the min value of the distances. default = 1;
     std::vector<DistanceVec> temp;
+
     double result;
     // calculating all the distance between all the VectorCSV in multiVector with the inputVector.
     for(int i = 0; i < multiVector.size(); i++) {
@@ -86,7 +87,7 @@ void Knn::calculate() {
 
     // finding the minimum value of distance:
     DistanceVec vMin = temp[0];
-    for(int i = 1; i < temp.size(); i++) {
+    for(int i = 0; i < temp.size(); i++) {
         if(temp[i].vData < vMin.vData) {
             vMin = temp[i];
         }
@@ -117,18 +118,16 @@ void Knn::calculate() {
     // saving the result in the class variable.
     if(minFlag) {
         knnClassified = vMin.className;
-        return;
-    }
-
-    // getting the max value from the map.
-    std::map<std::string, int>::iterator itMax = counter.begin();
-    for(std::map<std::string, int>::iterator it=counter.begin(); it != counter.end(); it++) {
-        // setting new max
-        if(itMax->second < it->second) {
-            itMax = it;
+    } else {
+        // getting the max value from the map.
+        std::map<std::string, int>::iterator itMax = counter.begin();
+        for(std::map<std::string, int>::iterator iterator = counter.begin(); iterator != counter.end(); iterator++) {
+            // setting new max
+            if(itMax->second < iterator->second) {
+                itMax = iterator;
+            }
         }
+        // saving the result in the class variable.
+        knnClassified = itMax->first;
     }
-
-    // saving the result in the class variable.
-    knnClassified = itMax->first;
 }

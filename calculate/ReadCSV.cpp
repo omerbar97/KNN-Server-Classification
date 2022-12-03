@@ -40,7 +40,6 @@ void ReadCSV::csvToData() {
         std::cout << "could not open file\n";
     }
     data = vectorData;
-    printCvs();
 }
 
 std::vector<VectorCSV> ReadCSV::getData() {

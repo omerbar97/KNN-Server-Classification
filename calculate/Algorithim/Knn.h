@@ -16,6 +16,7 @@
 class Knn {
 
 private:
+
     std::vector<VectorCSV> multiVector;
     std::vector<DistanceVec> resultVector;
     std::vector<double> inputVector;
@@ -33,6 +34,7 @@ public:
     * @param k - int
     */
     Knn(std::vector<double> v1, std::vector<VectorCSV> vectors, Distance *distance, int k);
+
     /**
     * getter for the distances result structure vector.
     * @return std::vector<DistanceVec>
@@ -54,7 +56,6 @@ public:
     void setK(int k);
 
     void calculate();
-
     /**
      * getting the classified result from the K-nn algorithm
      * @return
