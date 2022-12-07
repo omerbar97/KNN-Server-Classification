@@ -69,14 +69,27 @@ void Knn::calculate() {
     double result;
     // calculating all the distance between all the VectorCSV in multiVector with the inputVector.
     for(int i = 0; i < multiVector.size(); i++) {
-        if(multiVector[i].id.size() != this->inputVector.size()) {
-            // cannot multiply those two vector
+        result = distance->operator()(multiVector[i].id, inputVector);
+        if(result == -1) {
+            // in case the vector was not in the same size cannot multiply.
             this->knnClassified.clear();
+            std::cout << "malfunction\n";
+            std::cout << "input vector: ";
+            for(int j = 0; j < inputVector.size(); j++) {
+                std::cout << inputVector[j] << ", ";
+            }
+            std::cout << "\n";
+            std::cout << "multiVector[" << i << "]: ";
+            for(int j = 0; j < multiVector[i].id.size(); j++) {
+                std::cout << multiVector[i].id[j] << ", ";
+            }
+            std::cout << "\n";
             return;
         }
-        result = distance->operator()(multiVector[i].id, inputVector);
-        DistanceVec vec = {result, multiVector[i].name};
-        temp.push_back(vec);
+        else {
+            DistanceVec vec = {result, multiVector[i].name};
+            temp.push_back(vec);
+        }
     }
 
     // creating the select algorithm to calculate the K Elements size in the array.
