@@ -182,11 +182,13 @@ int main(int argc, char *args[]) {
         return 0;
     }
     // initializing variables.
-
+    for(int i = 0; i < argc; i++) {
+        std::cout << args[i] << " ";
+    }
     // getting data from args:
     std::string result;
     std::string fileName = args[2];
-    std::string filePath = "..\\resources\\datasets\\";
+    std::string filePath = "../resources/datasets/" + fileName;
     std::string vInput;
     Distance* distanceAlgo;
     int k;
@@ -216,7 +218,7 @@ int main(int argc, char *args[]) {
         v = convertStrVecToDoubleVec(sVector);
 
         // read the data from the file
-        ReadCSV readCsv(filePath + fileName);
+        ReadCSV readCsv(filePath);
 
         Distance* d = new Manhattan();
         Knn knn(v, readCsv.getData(), d, k);
