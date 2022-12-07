@@ -7,7 +7,7 @@
 
 double Minkowski::operator()(std::vector<double> v1, std::vector<double> v2) {
     if(!Distance::checkVectors(v1, v2)) {
-        return 0; // undefined
+        return -1; // undefined
     }
     int p = 2;
     double _p = (float)1/(float)p;
