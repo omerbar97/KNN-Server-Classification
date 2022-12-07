@@ -175,18 +175,21 @@ void deleteAllocatedMemory() {
 
 }
 
-int main(int argq, char *argc[]) {
+int main(int argc, char *args[]) {
 
-    char* args[] = {"a.out", "3", "iris_classified.csv", "MAN"};
-//    if(argc != 4) {
-//        printErrorTerminalInput();
-//        return 0;
-//    }
+    if(argc != 4) {
+        printErrorTerminalInput();
+        return 0;
+    }
     // initializing variables.
-    int k = 3;
+
+    // getting data from args:
+    std::string result;
+    std::string fileName = args[2];
+    std::string filePath = "..\\resources\\datasets\\";
     std::string vInput;
     Distance* distanceAlgo;
-
+    int k;
     // getting data from args
     try {
         // parsing string to int:
@@ -202,28 +205,38 @@ int main(int argq, char *argc[]) {
         printErrorTerminalInput();
         return 0;
     }
-    // getting user input
+    // getting user input vector
     getline(cin, vInput);
     std::vector<double> v;
     // checking user input:
     if(checkVectorInput(vInput)) {
-        std::cout << "GOOD vector\n";
+        // converting the vector into string vector.
         std::vector<std::string> sVector = splitString(vInput);
+        // converting the vector into vector of doubles.
         v = convertStrVecToDoubleVec(sVector);
-        for(double d : v) {
-            std::cout << d << " ";
+
+        // read the data from the file
+        ReadCSV readCsv(filePath + fileName);
+
+        Distance* d = new Manhattan();
+        Knn knn(v, readCsv.getData(), d, k);
+
+        if(knn.getClassified().empty()) {
+            result = "Couldn't calculate the result, the vector that was inserted was not in the same size"
+                     " like every other vector in: " + fileName + " Or in the file there is a vector not "
+                                                                  "in the same size.\n";
         }
-        std::cout << std::endl;
+        else {
+            result = knn.getClassified();
+        }
     }
-    else {
-        std::cout << "BAD vector\n";
+    else{
+        result = "Couldn't calculate the result, the vector that was inserted was not in the same size"
+                 " like every other vector in: " + fileName + " Or in the file there is a vector not "
+                                                              "in the same size.\n";
     }
 
-    ReadCSV readCsv("D:\\git\\datasets\\datasets\\iris\\iris_classified.csv");
-    Distance* d = new Manhattan();
-    Knn knn(v, readCsv.getData(), d, k);
-
-    std::cout << "\nClassified: " << knn.getClassified() << "\n" << k;
+    std::cout << result;
 
     std::string vec1;
     std::string vec2;

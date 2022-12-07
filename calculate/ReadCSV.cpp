@@ -1,9 +1,4 @@
 #include "ReadCSV.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
 
 ReadCSV::ReadCSV(std::string fileName) {
     this->fileName = fileName;
@@ -15,24 +10,23 @@ void ReadCSV::csvToData() {
     std::string line, word,name;
     VectorCSV singleData;
     std::vector<VectorCSV> vectorData;
-    int counter;
+    float d;
     std::fstream file(fileName, std::ios::in);
     if (file.is_open()) {
         while (std::getline(file, line)) {
             id.clear();
             std::stringstream str(line);
-            counter = 0;
-            //we assume that 3 first parameter are number and the forth is string.
+            // getting the number until string appears
             while (std::getline(str, word, ',')) {
-                //if we are in the first 3 arg.
-                if (counter <= 3) {
-                    id.push_back(std::stod(word));
-                    counter++;
-                    continue;
+                try {
+                    d = std::stod(word);
+                    id.push_back(d);
+                } catch(std::exception d) {
+                    singleData.name = word;
+                    singleData.id = id;
                 }
-                singleData.name = word;
-                singleData.id = id;
             }
+            // pushing the vectorCSV struct into the vectorData.
             vectorData.push_back(singleData);
         }
         file.close();
@@ -41,6 +35,7 @@ void ReadCSV::csvToData() {
     }
     data = vectorData;
 }
+
 
 std::vector<VectorCSV> ReadCSV::getData() {
     return data;
@@ -51,12 +46,13 @@ void ReadCSV::printCvs() {
         std::cout<<'\n';
         for (int j = 0; j < data[i].id.size(); ++j) {
             if (j == 0){
-                std::cout << data[i].name<<',';
+                std::cout << "tag-name:" << data[i].name<<", values: ";
             }
             std::cout<<data[i].id[j];
-            if (j != 3) {
-                std::cout<<',';
+            if (j != data[i].id.size()) {
+                std::cout<<", ";
             }
         }
     }
+    std::cout << "\n";
 }

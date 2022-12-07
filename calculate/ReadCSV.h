@@ -1,8 +1,11 @@
 //
 // Created by shilo on 02/12/2022.
 //
-#include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
+#include <vector>
 #ifndef MAIN_CPP_READCSV_H
 #define MAIN_CPP_READCSV_H
 #include "Algorithim//CSVStruct.h"

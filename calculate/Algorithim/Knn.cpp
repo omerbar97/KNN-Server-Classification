@@ -69,6 +69,11 @@ void Knn::calculate() {
     double result;
     // calculating all the distance between all the VectorCSV in multiVector with the inputVector.
     for(int i = 0; i < multiVector.size(); i++) {
+        if(multiVector[i].id.size() != this->inputVector.size()) {
+            // cannot multiply those two vector
+            this->knnClassified.clear();
+            return;
+        }
         result = distance->operator()(multiVector[i].id, inputVector);
         DistanceVec vec = {result, multiVector[i].name};
         temp.push_back(vec);
