@@ -38,10 +38,8 @@ int Select::initPartition(int lowIndex, int highIndex) {
     pivot = highIndex;
 
     // getting the pivot index.
-    for(i=lowIndex; i < highIndex; i++)
-    {
-        if(distanceVector[i].vData < distanceVector[pivot].vData)
-        {
+    for(i=lowIndex; i < highIndex; i++) {
+        if(distanceVector[i].vData < distanceVector[pivot].vData) {
             swap(distanceVector[i], distanceVector[index]);
             index++;
         }
@@ -58,8 +56,7 @@ int Select::initPartition(int lowIndex, int highIndex) {
  */
 void Select::calculatePartition(int lowIndex, int highIndex) {
     int pIndex;
-    if(lowIndex < highIndex)
-    {
+    if(lowIndex < highIndex) {
         // partitioning array using last element as a pivot.
         // recursively implementing partitioning in the direction to place the pivot at (k - 1)th pivot.
         pIndex = initPartition(lowIndex, highIndex);
