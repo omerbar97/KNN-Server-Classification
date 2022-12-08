@@ -17,14 +17,17 @@ void ReadCSV::csvToData() {
             id.clear();
             std::stringstream str(line);
             // getting the number until string appears
-            while (std::getline(str, word, ',')) {
+            while (std::getline(str, word, ',')) { // 1.5 3 4 5
                 try {
                     d = std::stod(word);
                     id.push_back(d);
                 } catch(std::exception d) {
-                    singleData.name = word;
+                    singleData.className = word;
                     singleData.id = id;
                 }
+            }
+            if(singleData.className.empty()) {
+                singleData.id = id;
             }
             // pushing the vectorCSV struct into the vectorData.
             vectorData.push_back(singleData);
@@ -46,7 +49,7 @@ void ReadCSV::printCvs() {
         std::cout<<'\n';
         for (int j = 0; j < data[i].id.size(); ++j) {
             if (j == 0){
-                std::cout << "tag-name:" << data[i].name<<", values: ";
+                std::cout << "tag-name:" << data[i].className<<", values: ";
             }
             std::cout<<data[i].id[j];
             if (j != data[i].id.size()) {

@@ -22,7 +22,7 @@ struct DistanceVec{
  */
 struct VectorCSV {
     std::vector<double> id;
-    std::string name;
+    std::string className;
 };
 
 

@@ -76,7 +76,7 @@ void Knn::calculate() {
             return;
         }
         else {
-            DistanceVec vec = {result, multiVector[i].name};
+            DistanceVec vec = {result, multiVector[i].className};
             temp.push_back(vec);
         }
     }
