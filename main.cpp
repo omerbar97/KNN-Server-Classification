@@ -182,9 +182,6 @@ int main(int argc, char *args[]) {
         return 0;
     }
     // initializing variables.
-    for(int i = 0; i < argc; i++) {
-        std::cout << args[i] << " ";
-    }
     // getting data from args:
     std::string result;
     std::string fileName = args[2];
@@ -238,6 +235,6 @@ int main(int argc, char *args[]) {
                                                               "in the same size.\n";
     }
 
-    std::cout << result;
+    std::cout << result  << "\n";
     return 0;
 }
