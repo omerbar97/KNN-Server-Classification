@@ -96,6 +96,13 @@ void Knn::calculate() {
     Select select(temp, k);
     select.calculate();
 
+    // printing the new vector after select:
+    for(int i = 0; i < temp.size(); i++) {
+        if(i == k) {
+            std::cout << "the k element: ";
+        }
+        std::cout << "position: " << i << " distance: " << temp[i].vData << "\n";
+    }
     // deleting all the vectors that is irrelevant. from the end to the K element.
     int sizeToDelete = temp.size();
     while(k < sizeToDelete) {
