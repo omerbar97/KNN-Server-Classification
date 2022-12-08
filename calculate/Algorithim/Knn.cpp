@@ -101,9 +101,9 @@ void Knn::calculate() {
         if(i == k) {
             std::cout << "the k element: ";
         }
-        std::cout << "position: " << i << " distance: " << temp[i].vData << "\n";
+        std::cout << "position: " << i << " distance: " << temp[i].vData << " tag: " << temp[i].className <<"\n";
     }
-    
+
     // deleting all the vectors that is irrelevant. from the end to the K element.
     int sizeToDelete = temp.size();
     while(k < sizeToDelete) {
