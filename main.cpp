@@ -212,11 +212,6 @@ int main(int argc, char *args[]) {
         std::vector<std::string> sVector = splitString(vInput);
         // converting the vector into vector of doubles.
         v = convertStrVecToDoubleVec(sVector);
-        std::cout << "input vector: ";
-        for(double d : v) {
-            std::cout << d << ", ";
-        }
-        std::cout << "\n";
         // read the data from the file
         ReadCSV readCsv(filePath);
         Knn knn(v, readCsv.getData(), distanceAlgo, k);
