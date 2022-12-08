@@ -139,19 +139,19 @@ bool checkVectorInput(std::string v) {
 }
 
 Distance* getDistance(std::string input) {
-    if(input.compare("AUC")) {
+    if(input.compare("AUC") == 0) {
         return new Euclidean();
     }
-    if(input.compare("MAN")) {
+    if(input.compare("MAN") == 0) {
         return new Manhattan();
     }
-    if(input.compare("CHB")) {
+    if(input.compare("CHB") == 0) {
         return new Chebyshev();
     }
-    if(input.compare("CAN")) {
+    if(input.compare("CAN") == 0) {
         return new Canberra();
     }
-    if(input.compare("MIN")) {
+    if(input.compare("MIN") == 0) {
         return new Minkowski();
     }
     return nullptr;
@@ -176,7 +176,6 @@ void deleteAllocatedMemory() {
 }
 
 int main(int argc, char *args[]) {
-
     if(argc != 4) {
         printErrorTerminalInput();
         return 0;
@@ -213,12 +212,14 @@ int main(int argc, char *args[]) {
         std::vector<std::string> sVector = splitString(vInput);
         // converting the vector into vector of doubles.
         v = convertStrVecToDoubleVec(sVector);
-
+        std::cout << "input vector: ";
+        for(double d : v) {
+            std::cout << d << ", ";
+        }
+        std::cout << "\n";
         // read the data from the file
         ReadCSV readCsv(filePath);
-
-        Distance* d = new Manhattan();
-        Knn knn(v, readCsv.getData(), d, k);
+        Knn knn(v, readCsv.getData(), distanceAlgo, k);
 
         if(knn.getClassified().empty()) {
             result = "Couldn't calculate the result, the vector that was inserted was not in the same size"

@@ -73,17 +73,6 @@ void Knn::calculate() {
         if(result == -1) {
             // in case the vector was not in the same size cannot multiply.
             this->knnClassified.clear();
-            std::cout << "malfunction\n";
-            std::cout << "input vector: ";
-            for(int j = 0; j < inputVector.size(); j++) {
-                std::cout << inputVector[j] << ", ";
-            }
-            std::cout << "\n";
-            std::cout << "multiVector[" << i << "]: ";
-            for(int j = 0; j < multiVector[i].id.size(); j++) {
-                std::cout << multiVector[i].id[j] << ", ";
-            }
-            std::cout << "\n";
             return;
         }
         else {
@@ -95,14 +84,6 @@ void Knn::calculate() {
     // creating the select algorithm to calculate the K Elements size in the array.
     Select select(temp, k);
     select.calculate();
-
-    // printing the new vector after select:
-    for(int i = 0; i < temp.size(); i++) {
-        if(i == k) {
-            std::cout << "the k element: ";
-        }
-        std::cout << "position: " << i << " distance: " << temp[i].vData << " tag: " << temp[i].className <<"\n";
-    }
 
     // deleting all the vectors that is irrelevant. from the end to the K element.
     int sizeToDelete = temp.size();

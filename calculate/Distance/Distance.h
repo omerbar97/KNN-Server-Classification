@@ -1,7 +1,6 @@
 //
 // Created by omerb on 16/11/2022.
 //
-
 #ifndef ADVANCED_PROGRAMMING_DISTANCE_H
 #define ADVANCED_PROGRAMMING_DISTANCE_H
 #include <vector>
