@@ -1,0 +1,3 @@
+/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/build-for-linux/CMakeFiles/a.out.dir
+/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/build-for-linux/CMakeFiles/edit_cache.dir
+/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/build-for-linux/CMakeFiles/rebuild_cache.dir
