@@ -204,33 +204,39 @@ int main(int argc, char *args[]) {
         return 0;
     }
     // getting user input vector
-    getline(cin, vInput);
-    std::vector<double> v;
-    // checking user input:
-    if(checkVectorInput(vInput)) {
-        // converting the vector into string vector.
-        std::vector<std::string> sVector = splitString(vInput);
-        // converting the vector into vector of doubles.
-        v = convertStrVecToDoubleVec(sVector);
-        // read the data from the file
-        ReadCSV readCsv(filePath);
-        Knn knn(v, readCsv.getData(), distanceAlgo, k);
+    while(true) {
+        getline(cin, vInput);
+        std::vector<double> v;
+        // checking user input:
+        if(checkVectorInput(vInput)) {
+            // converting the vector into string vector.
+            std::vector<std::string> sVector = splitString(vInput);
+            // converting the vector into vector of doubles.
+            v = convertStrVecToDoubleVec(sVector);
+            // read the data from the file
+            ReadCSV readCsv(filePath);
+            Knn knn(v, readCsv.getData(), distanceAlgo, k);
 
-        if(knn.getClassified().empty()) {
+            if(knn.getClassified().empty()) {
+                result = "Couldn't calculate the result, the vector that was inserted was not in the same size"
+                         " like every other vector in: " + fileName + " Or in the file there is a vector not "
+                                                                      "in the same size.\n";
+                std::cout << result  << "\n";
+                continue;
+            }
+            else {
+                result = knn.getClassified();
+                std::cout << result  << "\n";
+                continue;
+            }
+        }
+        else{
             result = "Couldn't calculate the result, the vector that was inserted was not in the same size"
                      " like every other vector in: " + fileName + " Or in the file there is a vector not "
                                                                   "in the same size.\n";
-        }
-        else {
-            result = knn.getClassified();
+            std::cout << result  << "\n";
+            continue;
         }
     }
-    else{
-        result = "Couldn't calculate the result, the vector that was inserted was not in the same size"
-                 " like every other vector in: " + fileName + " Or in the file there is a vector not "
-                                                              "in the same size.\n";
-    }
-
-    std::cout << result  << "\n";
     return 0;
 }
