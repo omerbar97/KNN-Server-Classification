@@ -2,7 +2,17 @@
 This project was made by Omer Bar and Shilo Padael in our second year of our Computer Science B.A.
 
 <h2>How To Run?</h2>
-<h4>To compile the project you need to install cmake: https://cmake.org/download/</h4>
+<h3>To run the project only for linux or in Bar-Ilan Planet server:</h3>
+<ol>
+  <li>Pull the git repository to a local folder.</li>
+  <li>Open terminal in the project folder.</li>
+  <li>Run the following commands: (without the '$' and the comments)</li>
+ </ol>
+<pre><code>$ cd build-for-linux                       // Moving to the desired folder.
+$ make                                     // Compiling the project.
+$ ./a.out                                  // Executing the program.</code></pre>
+ 
+<h4>To compile the project for a desired machine, you need to install cmake: https://cmake.org/download/ and follow the tutorial:</h4>
 <h4>For Linux:</h4>
 <ol>
   <li>Download the zip file of the project, and exctract the zip.</li>
