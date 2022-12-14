@@ -11,6 +11,7 @@ void ReadCSV::csvToData() {
     VectorCSV singleData;
     std::vector<VectorCSV> vectorData;
     float d;
+    int lenOfVec = 0, flag = 0, counter = 0;
     std::fstream file(fileName, std::ios::in);
     if (file.is_open()) {
         while (std::getline(file, line)) {
@@ -18,6 +19,9 @@ void ReadCSV::csvToData() {
             std::stringstream str(line);
             // getting the number until string appears
             while (std::getline(str, word, ',')) { // 1.5 3 4 5
+//                if (flag == 0) {
+                counter++;
+//                }
                 try {
                     d = std::stod(word);
                     id.push_back(d);
@@ -26,6 +30,16 @@ void ReadCSV::csvToData() {
                     singleData.id = id;
                 }
             }
+            if (flag == 0) {
+                lenOfVec = counter;
+            }
+            // if there a line that not the same size with the other
+            if (counter != lenOfVec) {
+                printf("The folder does not match the format");
+                exit(0);
+            }
+            flag = 1;
+            counter = 0;
             if(singleData.className.empty()) {
                 singleData.id = id;
             }
