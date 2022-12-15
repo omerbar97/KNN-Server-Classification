@@ -38,7 +38,6 @@ public:
      */
     virtual double operator()(std::vector<double> v1, std::vector<double> v2) = 0;
 
-    
 };
 
 
