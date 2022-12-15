@@ -1,28 +1,29 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
-set(CMAKE_DEPENDS_LANGUAGES
+SET(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
   )
-
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Algorithim/Knn.cpp" "CMakeFiles/a.out.dir/calculate/Algorithim/Knn.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Algorithim/Knn.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Algorithim/Select.cpp" "CMakeFiles/a.out.dir/calculate/Algorithim/Select.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Algorithim/Select.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Distance/Canberra.cpp" "CMakeFiles/a.out.dir/calculate/Distance/Canberra.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Distance/Canberra.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Distance/Chebyshev.cpp" "CMakeFiles/a.out.dir/calculate/Distance/Chebyshev.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Distance/Chebyshev.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Distance/Distance.cpp" "CMakeFiles/a.out.dir/calculate/Distance/Distance.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Distance/Distance.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Distance/Euclidean.cpp" "CMakeFiles/a.out.dir/calculate/Distance/Euclidean.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Distance/Euclidean.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Distance/Manhattan.cpp" "CMakeFiles/a.out.dir/calculate/Distance/Manhattan.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Distance/Manhattan.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/Distance/Minkowski.cpp" "CMakeFiles/a.out.dir/calculate/Distance/Minkowski.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/Distance/Minkowski.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/calculate/ReadCSV.cpp" "CMakeFiles/a.out.dir/calculate/ReadCSV.cpp.o" "gcc" "CMakeFiles/a.out.dir/calculate/ReadCSV.cpp.o.d"
-  "/home/omer/Desktop/projects in linux/advenced programming/Advanced-Programming-Project/main.cpp" "CMakeFiles/a.out.dir/main.cpp.o" "gcc" "CMakeFiles/a.out.dir/main.cpp.o.d"
+# The set of files for implicit dependencies of each language:
+SET(CMAKE_DEPENDS_CHECK_CXX
+  "/u/students/baromer4/second year/advenced programming/calculate/Algorithim/Knn.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Algorithim/Knn.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/Algorithim/Select.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Algorithim/Select.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/Distance/Canberra.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Distance/Canberra.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/Distance/Chebyshev.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Distance/Chebyshev.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/Distance/Distance.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Distance/Distance.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/Distance/Euclidean.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Distance/Euclidean.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/Distance/Manhattan.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Distance/Manhattan.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/Distance/Minkowski.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/Distance/Minkowski.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/calculate/ReadCSV.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/calculate/ReadCSV.cpp.o"
+  "/u/students/baromer4/second year/advenced programming/main.cpp" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/a.out.dir/main.cpp.o"
   )
+SET(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+SET(CMAKE_TARGET_LINKED_INFO_FILES
   )
 
-# Fortran module output directory.
-set(CMAKE_Fortran_TARGET_MODULE_DIR "")
+# The include file search paths:
+SET(CMAKE_C_TARGET_INCLUDE_PATH
+  )
+SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+SET(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
