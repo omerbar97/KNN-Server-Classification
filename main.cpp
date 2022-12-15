@@ -126,6 +126,11 @@ bool checkPropriety(std::string v1, std::string v2) {
     return true;
 }
 
+/**
+ * given a string checks if the string hold only numeric value (can hold spaces between)
+ * @param v - std::string
+ * @return - True if the string is only number. False otherwise.
+ */
 bool checkVectorInput(std::string v) {
     std::vector<std::string> stringVector = splitString(v);
     if(isContainChar(stringVector)) {
@@ -138,6 +143,11 @@ bool checkVectorInput(std::string v) {
     return true;
 }
 
+/**
+ *
+ * @param input
+ * @return
+ */
 Distance* getDistance(std::string input) {
     if(input.compare("AUC") == 0) {
         return new Euclidean();
@@ -171,10 +181,6 @@ void printErrorTerminalInput() {
               "------RESTART PROGRAM IS REQUIRED------" << std::endl;
 }
 
-void deleteAllocatedMemory() {
-
-}
-
 int main(int argc, char *args[]) {
     if(argc != 4) {
         printErrorTerminalInput();
@@ -186,7 +192,7 @@ int main(int argc, char *args[]) {
     std::string fileName = args[2];
     std::string filePath = "../resources/datasets/" + fileName;
     std::string vInput;
-    Distance* distanceAlgo;
+    Distance* distanceAlgo = nullptr;
     int k;
     // getting data from args
     try {
@@ -219,10 +225,10 @@ int main(int argc, char *args[]) {
 
             if(knn.getClassified().empty()) {
                 result = "Couldn't calculate the result, the vector that was inserted was not in the same size"
-                         " like every other vector in: " + fileName + " Or in the file there is a vector not "
-                                                                      "in the same size.\n";
+                         " like every other vector in: \n" + fileName + " Or in the file there is a vector not "
+                                                                      "in the same size.";
                 std::cout << result  << "\n";
-                continue;
+                break;
             }
             else {
                 result = knn.getClassified();
@@ -232,11 +238,14 @@ int main(int argc, char *args[]) {
         }
         else{
             result = "Couldn't calculate the result, the vector that was inserted was not in the same size"
-                     " like every other vector in: " + fileName + " Or in the file there is a vector not "
-                                                                  "in the same size.\n";
+                     " like every other vector in: \n" + fileName + " Or in the file there is a vector not "
+                                                                  "in the same size.";
             std::cout << result  << "\n";
-            continue;
+            break;
         }
     }
+    // deleting the distance algorithim at the end of use.
+    delete distanceAlgo;
+    distanceAlgo = nullptr; // after deletion
     return 0;
 }
