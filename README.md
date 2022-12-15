@@ -49,7 +49,7 @@ Once a Knn class was created it is not fixed, you can change all the parameters 
 <p><b>Important: to avoid segmentaion fault you cannot delete the distance pointer that use the Knn algorithim, only after you changed the Knn distance you can do so.</b></p>
 
 
-<h2><i>-------------------------Milestone 1 - Part A - 24.11.2022-------------------------<i></h2>
+<h2><i>-------------------------Milestone 1 - Part A - 24.11.2022-------------------------</i></h2>
 <h4>Creating different algorithm to calculate the distance between 2 vectors</h4>
 <p>We implement it using an abstract class called Distance that implements 2 functions and another virtual function.
 For each algorithm that inheritance the Distance class it should only implements the virtual function. In this project
