@@ -1,4 +1,0 @@
-main:
-- קורא מקובץ למחלקה שאתה מכין
--מקבל מערך של Struct {vector, string}
--עושה for each
