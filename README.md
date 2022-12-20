@@ -1,6 +1,4 @@
 # Advanced-Programming-Project
-<h1>EX2 IS IN BRANCH: "MAIN_EX2"</h1>
-<h2>About The Project</h2>
 <p>This project was made by Omer Bar and Shilo Padael in our second year of our Computer Science B.A. This project was written in C++ language, this course is all about "Advanced-Porigramming" through out this course we learn new stuff, such as: C++ language syntax, Socket, Procceing, MultiThreading -- for now --</p>
 
 <h2>How To Run On Bar-Ilan Server?</h2>

@@ -1,7 +1,6 @@
 //
 // Created by omerb on 16/11/2022.
 //
-
 #ifndef ADVANCED_PROGRAMMING_DISTANCE_H
 #define ADVANCED_PROGRAMMING_DISTANCE_H
 #include <vector>
@@ -38,8 +37,6 @@ public:
      * @return return the distance between them.
      */
     virtual double operator()(std::vector<double> v1, std::vector<double> v2) = 0;
-
-
 
 };
 
