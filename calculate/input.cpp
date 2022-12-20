@@ -77,7 +77,7 @@ std::vector<double> input::convertStrVecToDoubleVec(std::vector<std::string> str
             doubleVec.push_back(stod(correctString, (&d)));
         }
             //if there is a problem with converting ,return null.
-        catch (std::invalid_argument &argument ) {
+        catch (std::invalid_argument &argument) {
             return {};
         }
         catch (std::out_of_range &argument) {

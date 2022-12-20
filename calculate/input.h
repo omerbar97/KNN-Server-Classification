@@ -28,7 +28,7 @@ namespace input {
     bool checkVectorInput(std::string v);
     std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec);
     Distance* getDistance(std::string input);
-    void print(std::string message = "invalid input!", std::ostream& stream = std::cout);
+    void print(std::string message = "", std::ostream& stream = std::cout);
     void error(std::ostream& stream = std::cout);
 }
 
