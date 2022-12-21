@@ -22,7 +22,7 @@ bool Server::initServer() {
     this->socketId = socket(AF_INET, SOCK_STREAM, 0);
     if(socketId < 0) {
         // printing error to the stream and returning false.
-        input::print("failed to create socket!", stream);
+        input::print("failed to create a socket!", stream);
         return false;
     }
     // binding the port information:
@@ -31,12 +31,29 @@ bool Server::initServer() {
         input::print("failed binding the port to the socket!", stream);
         return false;
     }
+    return true;
 }
 
 void Server::closeServer() {
     if(socketId >= 0) {
         close(socketId);
     }
+}
+
+int Server::getSocketId() {
+    return this->socketId;
+}
+
+sockaddr_in Server::getSockaddrIn() {
+    return this->sockaddrIn;
+}
+
+std::ostream &Server::getStream() {
+    return this->stream;
+}
+
+int Server::listenServer(int n) {
+    listen(socketId, n);
 }
 
 

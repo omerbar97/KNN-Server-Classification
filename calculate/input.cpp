@@ -163,8 +163,8 @@ Distance* input::getDistance(std::string input) {
  * @param message - std::string
  * @param stream - std::ostream&
  */
-void input::print(std::string message, std::ostream &stream) {
-    stream << message << "\n";
+void input::print(const std::string& message, std::ostream &stream, const std::string& end) {
+    stream << message << end;
 }
 
 /**

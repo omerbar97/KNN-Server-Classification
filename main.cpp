@@ -49,7 +49,7 @@ int main(int argc, char *args[]) {
             // converting the vector into vector of doubles.
             v = input::convertStrVecToDoubleVec(sVector);
             // read the data from the file
-            ReadCSV readCsv(filePath);
+            ReadCSV readCsv(filePath, std::cout);
             Knn knn(v, readCsv.getData(), distanceAlgo, k);
 
             if(knn.getClassified().empty()) {

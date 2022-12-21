@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "input.h"
 #ifndef MAIN_CPP_READCSV_H
 #define MAIN_CPP_READCSV_H
 #include "Algorithim//CSVStruct.h"
@@ -17,6 +18,7 @@ private:
 
     std::string fileName;
     std::vector<VectorCSV> data;
+    std::ostream& stream;
     
     /**
     * This function move data from csv file to a vector of VectorCSV struct.
@@ -37,7 +39,7 @@ public:
     /**
      * @param fileName string, path to csv file.
      */
-    explicit ReadCSV(std::string fileName);
+    explicit ReadCSV(std::string fileName, std::ostream& stream);
     /**
      * print on the screen the data member.
     * we assume that the data contain vector of 4 numbers.

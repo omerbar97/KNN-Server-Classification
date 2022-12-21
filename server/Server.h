@@ -7,7 +7,6 @@
 #include <cstdlib> // For exit() and EXIT_FAILURE
 #include <unistd.h>
 #include <arpa/inet.h>
-#include "Server.h"
 #ifndef A_OUT_SERVER_H
 #define A_OUT_SERVER_H
 
@@ -26,8 +25,11 @@ public:
     Server(int port, std::ostream& stream);
     bool initServer();
     void closeServer();
+    int listenServer(int n);
 
-
+    int getSocketId();
+    std::ostream& getStream();
+    sockaddr_in getSockaddrIn();
 
 };
 
