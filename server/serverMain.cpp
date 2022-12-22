@@ -91,7 +91,7 @@ std::string retrieveFilePath(std::string fileName, int flag) {
 }
 
 std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
-
+    // vector DISTANCE K
     std::vector<std::string> vInput = getClientInputVector(buffer);
     if(vInput.empty()) {
         // error invalid input returning empty string.
@@ -177,16 +177,17 @@ int main(int argc, char *args[]) {
     int readBytes;
     int sendBytes;
 
-
+    if(tcpServer.listenServer(5) < 0){
+        input::print("failed listening to the socket.",  tcpServer.getStream());
+        exit(1);
+    }
     // server loop. -----------------------------------------------------------------
     while(true) {
-        if(tcpServer.listenServer(5) < 0){
-            input::print("failed listening to the socket.",  tcpServer.getStream());
-        }
         // waiting to client.
         clientSocket = accept(tcpServer.getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
         if(clientSocket < 0) {
             input::print("failed connecting the client", tcpServer.getStream());
+            continue;
         }
         char buffer[BUFFER_SIZE];
         readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
