@@ -27,13 +27,15 @@ private:
 public:
 
     /**
-    * Constructor getting all the information to calculate the Knn algorithim.
+    * Constructor getting all the information to calculate the Knn algorithm.
     * @param vInput - std::vector<double>
     * @param vectors - std::vector<Vector>
     * @param distance - Distance
     * @param k - int
     */
     Knn(std::vector<double> v1, std::vector<VectorCSV> vectors, Distance *distance, int k);
+
+    Knn(std::vector<VectorCSV> vectors);
 
     /**
     * getter for the distances result structure vector.
@@ -44,7 +46,7 @@ public:
     void setVector(std::vector<double> inputVector);
 
     /**
-    * To change the distance algorithim for which the Knn works this method will change the logic algorithm.
+    * To change the distance algorithm for which the Knn works this method will change the logic algorithm.
     * @param distance - Distance
     */
     void setDistance(Distance* distance);

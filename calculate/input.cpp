@@ -77,7 +77,7 @@ std::vector<double> input::convertStrVecToDoubleVec(std::vector<std::string> str
             doubleVec.push_back(stod(correctString, (&d)));
         }
             //if there is a problem with converting ,return null.
-        catch (std::invalid_argument &argument ) {
+        catch (std::invalid_argument &argument) {
             return {};
         }
         catch (std::out_of_range &argument) {
@@ -163,8 +163,8 @@ Distance* input::getDistance(std::string input) {
  * @param message - std::string
  * @param stream - std::ostream&
  */
-void input::print(std::string message, std::ostream &stream) {
-    stream << message << "\n";
+void input::print(const std::string& message, std::ostream &stream, const std::string& end) {
+    stream << message << end;
 }
 
 /**
