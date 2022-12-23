@@ -18,13 +18,20 @@ struct Data {
 class Client {
 private:
     const char* ip_address;
-    const int port_no;
+    int port_no;
     int socket;
     sockaddr_in sin;
-    Data data;
+    char buffer[4096];
+    bool initSin();
+    bool initSocket();
 
 public:
-    Client(int port_no);
+    Client(int port_no, const char* ip_address);
+    Data getData();
+    bool SendData(char data_addr[] , int data_len);
+    char* readData();
+    int closeSock();
+
 
 
 };
