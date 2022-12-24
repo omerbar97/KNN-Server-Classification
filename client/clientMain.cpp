@@ -52,10 +52,8 @@ char* strToChrArray(std::string s) {
 int main(int argc, char *args[]) {
     int isOn = 1;
     std::string userInput;
-    std::cout<< argc<< " 0" << std::endl;
-    std::cout<< args[1]<<" 1"<<std::endl;
-    std::cout<< args[2]<< " 2" <<std::endl;
-    if(argc != 3 || !isPort(args[2]) || !isIp(args[1])) {
+    std::cout<< "IN CLIENT: " << std::endl;
+    if(argc != 3 || !isPort(args[2]) || isIp(args[1])) {
         std::cout<<"invalid input!" << std::endl;
         //return 0;
     }
@@ -75,7 +73,7 @@ int main(int argc, char *args[]) {
             isOn = 0;
         }
         //otherwise, send the data to server.
-        char * data = strToChrArray(userInput);
+        char *data = strToChrArray(userInput);
         client.SendData(data, userInput.size());
         client.readData();
     }

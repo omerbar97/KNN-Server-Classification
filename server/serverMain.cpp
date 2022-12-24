@@ -29,7 +29,7 @@ int isArgsServerInputValid(char* args[]) {
         flag = 2;     // full path
     }
     // checking port input:
-    int port, counter = 0;
+    int port;
     try {
         port = std::atoi(args[2]);
     }
@@ -37,11 +37,7 @@ int isArgsServerInputValid(char* args[]) {
         return false;
     }
     // checking if the port is only 4 digis.
-    while(port > 0) {
-        counter++;
-        port /= 10;
-    }
-    if(counter != 4) {
+    if(!(port >= 10000 && port <= 65000)) {
         return 0; // error
     }
     return flag;
@@ -51,15 +47,25 @@ std::vector<std::string> getClientInputVector(char input[BUFFER_SIZE]) {
     // client data is in the form <vector> <distance> <int k>
     std::string temp(input);
     std::vector<std::string> result;
-    std::size_t distancePos = 0;
-    if((distancePos = temp.find("MAN")) > 0);
-    else if((distancePos = temp.find("AUC")) > 0);
-    else if((distancePos = temp.find("CHB")) > 0);
-    else if((distancePos = temp.find("CAN")) > 0);
-    else if((distancePos = temp.find("MIN")) > 0);
+    std::size_t distancePos = -1;
+    if(temp.find("MAN") != std::string::npos) {
+        distancePos = temp.find("MAN");
+    }
+    else if(temp.find("AUC") != std::string::npos) {
+        distancePos = temp.find("AUC");
+    }
+    else if(temp.find("CHB") != std::string::npos) {
+        distancePos = temp.find("CHB");
+    }
+    else if(temp.find("CAN") != std::string::npos) {
+        distancePos = temp.find("CAN");
+    }
+    else if(temp.find("MIN") != std::string::npos) {
+        distancePos = temp.find("MIN");
+    }
     if(distancePos == -1) {
         // error returning empty vector.
-        return result;
+        return {};
     }
     // getting the all the vector elements.
     std::string vector(temp.substr(0, distancePos - 1));
@@ -95,8 +101,7 @@ std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
     std::vector<std::string> vInput = getClientInputVector(buffer);
     if(vInput.empty()) {
         // error invalid input returning empty string.
-        std::string n;
-        return n;
+        return {};
     }
 
     // client data is in the form <vector> <distance> <int k>
@@ -115,19 +120,25 @@ std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
         k = std::stoi(vInput[2]);
     }
     catch(std::invalid_argument &argument) {
-        std::string n;
-        return n;
+        std::cout << "invalid_argument\n";
+        return {};
     }
     // checking the input of the Vector<double>
     if(vDouble.empty()) {
-        std::string n;
-        return n;
+        std::cout << "vDouble empty\n";
+        return {};
     }
     distance = input::getDistance(vInput[1]);
     if(distance == nullptr) {
-        std::string n;
-        return n;
+        std::cout << "distance = nullptr\n";
+        return {};
     }
+
+    std::cout << "VECTOR: ";
+    for(double d : vDouble) {
+        std::cout << d << " ";
+    }
+    std::cout << "\narguments - distance = " << distance << " -- K = " << k << "  --vDouble " << vDouble.empty() << "\n";
 
     knn.setDistance(distance);
     knn.setK(k);
@@ -177,23 +188,27 @@ int main(int argc, char *args[]) {
     int readBytes;
     int sendBytes;
 
+    std::cout << "Socket number: " << tcpServer.getSocketId() << "\n";
+    std::cout << "Port number: " << tcpServer.getSockaddrIn().sin_port << "\n";
+
     if(tcpServer.listenServer(5) < 0){
         input::print("failed listening to the socket.",  tcpServer.getStream());
         exit(1);
     }
+    std::cout << "Done listening" << "\n";
+    clientSocket = accept(tcpServer.getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
+    if(clientSocket < 0) {
+        input::print("failed connecting the client", tcpServer.getStream());
+    }
+    input::print("connected to client", tcpServer.getStream());
     // server loop. -----------------------------------------------------------------
     while(true) {
         // waiting to client.
-        clientSocket = accept(tcpServer.getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
-        if(clientSocket < 0) {
-            input::print("failed connecting the client", tcpServer.getStream());
-            continue;
-        }
         char buffer[BUFFER_SIZE];
         readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
         if(readBytes == 0) {
             // empty message;
-            input::error();
+            input::error(tcpServer.getStream());
         }
         else if(readBytes < 0) {
             input::print("failed receiving data from the client.", tcpServer.getStream());
@@ -216,6 +231,7 @@ int main(int argc, char *args[]) {
                 std::strcpy(bufferToSend, knn.getClassified().c_str());
             }
             // sending the data.
+            std::cout << "buffer to send: " << bufferToSend << "\n";
             sendBytes = send(clientSocket, bufferToSend, readBytes, 0);
             if(sendBytes < 0) {
                 input::print("failed to send data to the client.", tcpServer.getStream());

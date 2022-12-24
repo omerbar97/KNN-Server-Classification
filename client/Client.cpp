@@ -5,11 +5,11 @@
 #include "Client.h"
 
 
-Client::Client(int port_no, const char* ip_address) : port_no(port_no){
+Client::Client(int port_no, const char* ip_address){
     this->port_no = port_no;
-    this->ip_address = ip_address;
+    this->ip_address = "127.0.0.1";
     this->valid = true;
-    if( !initSin() || !initSocket()) {
+    if(!initSocket() ||  !initSin()) {
         this->valid = false;
     }
 
@@ -25,21 +25,19 @@ bool Client::initSocket() {
         return false;
     }
     this->socketNum = sock;
-    return false;
+    return true;
 }
 
-//returnning fale if faield.
+//returnning false if faield.
 bool Client::initSin() {
-    struct sockaddr_in sin;
-    memset(&sin, 0 , sizeof(sin));
-    sin.sin_family = AF_INET;
-    sin.sin_addr.s_addr = inet_addr(this->ip_address);
-    sin.sin_port = htons(port_no);
-    if (connect(this->socketNum,(struct sockaddr*)&sin, sizeof(sin))<0){
+    memset(&this->sin, 0, sizeof(this->sin));
+    this->sin.sin_family = AF_INET;
+    this->sin.sin_addr.s_addr = inet_addr(this->ip_address);
+    this->sin.sin_port = htons(port_no);
+    if (connect(this->socketNum,(struct sockaddr*)&sin, sizeof(sin)) < 0){
         perror("error connecting to server");
         return false;
     }
-    this->sin = sin;
     return true;
 }
 
@@ -56,8 +54,9 @@ bool Client::SendData(char data_addr[], int data_len) {
 
 char* Client::readData() {
     int expected_data_len = sizeof(buffer);
+    strcat(buffer, "");
     int read_bytes= recv(socketNum, buffer, expected_data_len,0);
-    if (read_bytes ==0){
+    if (read_bytes == 0){
         // connection is closed
         perror("connection is closed");
         return nullptr;
@@ -67,6 +66,7 @@ char* Client::readData() {
         return nullptr;
     }
     else {
+        std::cout << buffer << "\n";
         return this->buffer;
     }
 }
