@@ -1,15 +1,15 @@
 #include "Client.h"
 #include <fstream>
-
+#include <iostream>
 bool isPort(const char * port) {
-    try {
-        std::atoi(port);
+    int x = atoi(port);
+    if (x == 0) {
+        return false;
+    } else if(x >= 1000 && x < 65000){
         return true;
     }
-    catch(std::exception d) {
-        return false;
+    return false;
 
-    }
 }
 bool isIp(char * ip) {
     char * ptr;
@@ -18,12 +18,11 @@ bool isIp(char * ip) {
 
     while (!ptr) {
         counter++;
-        try {
-            atoi(ptr);
-            ptr = strtok(NULL,".");
-        }catch (std::exception d) {
+        if(atoi(ptr) == 0) {
             return false;
         }
+        atoi(ptr);
+        ptr = strtok(NULL,".");
     }
     counter++;
     if(counter == 4) {
@@ -39,6 +38,7 @@ bool userAskToClose(std::string str) {
     }catch (std::exception d) {
         return false;
     }
+    return false;
 }
 char* strToChrArray(std::string s) {
     char * data = new char [s.size()];
@@ -52,8 +52,12 @@ char* strToChrArray(std::string s) {
 int main(int argc, char *args[]) {
     int isOn = 1;
     std::string userInput;
+    std::cout<< argc<< " 0" << std::endl;
+    std::cout<< args[1]<<" 1"<<std::endl;
+    std::cout<< args[2]<< " 2" <<std::endl;
     if(argc != 3 || !isPort(args[2]) || !isIp(args[1])) {
         std::cout<<"invalid input!" << std::endl;
+        //return 0;
     }
     //otherwise, the input is correct.
     const char* ip_address = args[1];

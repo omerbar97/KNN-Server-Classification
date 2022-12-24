@@ -19,7 +19,7 @@ class Client {
 private:
     const char* ip_address;
     int port_no;
-    int socket;
+    int socketNum;
     sockaddr_in sin;
     char buffer[4096];
     bool initSin();
