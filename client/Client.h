@@ -17,6 +17,7 @@ struct Data {
 
 class Client {
 private:
+    bool valid;
     const char* ip_address;
     int port_no;
     int socketNum;
@@ -27,7 +28,6 @@ private:
 
 public:
     Client(int port_no, const char* ip_address);
-    Data getData();
     bool SendData(char data_addr[] , int data_len);
     char* readData();
     int closeSock();

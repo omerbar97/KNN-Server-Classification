@@ -8,8 +8,13 @@
 Client::Client(int port_no, const char* ip_address) : port_no(port_no){
     this->port_no = port_no;
     this->ip_address = ip_address;
-    initSin();
-    initSocket();
+    this->valid = true;
+    if( !initSin() || !initSocket()) {
+        this->valid = false;
+    }
+
+
+
 
 }
 bool Client::initSocket() {
