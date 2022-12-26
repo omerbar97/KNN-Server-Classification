@@ -19,6 +19,7 @@ class Client {
 private:
     bool valid;
     const char* ip_address;
+    std::ostream &stream;
     int port_no;
     int socketNum;
     sockaddr_in sin;
@@ -27,10 +28,12 @@ private:
     bool initSocket();
 
 public:
-    Client(int port_no, const char* ip_address);
+    Client(int port_no, const char* ip_address, std::ostream &stream);
     bool SendData(char data_addr[] , int data_len);
     char* readData();
     int closeSock();
+    char* getBuffer();
+    std::ostream& getStream();
 
 
 

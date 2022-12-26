@@ -1,16 +1,26 @@
 #include "Client.h"
 #include <fstream>
 #include <iostream>
-bool isPort(const char * port) {
-    int x = atoi(port);
-    if (x == 0) {
+#define BUFFER_SIZE 4096
+
+bool isPort(const char *port) {
+    int x;
+    try{
+        x = atoi(port);
+    }
+    catch(std::exception d) {
         return false;
-    } else if(x >= 1000 && x < 65000){
+    }
+    if(x >= 10000 && x < 65000) {
         return true;
     }
     return false;
-
 }
+/**
+ * BUGSSS need TO FIX!
+ * @param ip
+ * @return
+ */
 bool isIp(char * ip) {
     char * ptr;
     int counter = 0;
@@ -35,7 +45,8 @@ bool userAskToClose(std::string str) {
         if (atoi(str.c_str()) == -1) {
             return true;
         }
-    }catch (std::exception d) {
+    }
+    catch (std::exception d) {
         return false;
     }
     return false;
@@ -50,19 +61,18 @@ char* strToChrArray(std::string s) {
 
 
 int main(int argc, char *args[]) {
-    int isOn = 1;
+    bool isOn = true;
     std::string userInput;
-    std::cout<< "IN CLIENT: " << std::endl;
     if(argc != 3 || !isPort(args[2]) || isIp(args[1])) {
-        std::cout<<"invalid input!" << std::endl;
-        //return 0;
+        std::cout<<"Invalid argument input!" << std::endl;
+        return 0;
     }
     //otherwise, the input is correct.
     const char* ip_address = args[1];
     int port_no = atoi(args[2]);
 
     //initializing  Client.
-    Client client(port_no, ip_address);
+    Client client(port_no, ip_address, std::cout);
 
     //looping and sending message from client to server until client send -1.
     while (isOn) {
@@ -70,12 +80,14 @@ int main(int argc, char *args[]) {
         if(userAskToClose(userInput)) {
             //exit from the loop and close socket.
             client.closeSock();
-            isOn = 0;
+            isOn = false;
+            break;
         }
         //otherwise, send the data to server.
         char *data = strToChrArray(userInput);
-        client.SendData(data, userInput.size());
+        client.SendData(data, BUFFER_SIZE);
         client.readData();
+        std::cout << "BufferReturn: " << client.getBuffer() << "\n";
     }
     return 0;
 }

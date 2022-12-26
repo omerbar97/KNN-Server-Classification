@@ -196,45 +196,52 @@ int main(int argc, char *args[]) {
         exit(1);
     }
     std::cout << "Done listening" << "\n";
-    clientSocket = accept(tcpServer.getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
-    if(clientSocket < 0) {
-        input::print("failed connecting the client", tcpServer.getStream());
-    }
-    input::print("connected to client", tcpServer.getStream());
-    // server loop. -----------------------------------------------------------------
     while(true) {
-        // waiting to client.
-        char buffer[BUFFER_SIZE];
-        readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-        if(readBytes == 0) {
-            // empty message;
-            input::error(tcpServer.getStream());
+        clientSocket = accept(tcpServer.getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
+        if(clientSocket < 0) {
+            input::print("failed connecting the client", tcpServer.getStream());
         }
-        else if(readBytes < 0) {
-            input::print("failed receiving data from the client.", tcpServer.getStream());
-        }
-        else {
-
-            // client data is in the form <vector> <distance> <int k>
-            // input[0] - vectors string
-            // input[1] - distance string
-            // input[2] - k.
-            std::string classifiedToPrint = calculateClientInput(buffer, knn);
-            char bufferToSend[BUFFER_SIZE];
-            if(classifiedToPrint.empty()) {
-                // error invalid input.
-                input::error(tcpServer.getStream());
-                std::strcpy(bufferToSend, "invalid input");
+        input::print("connected to client", tcpServer.getStream());
+        // client handle loop:
+        while(true) {
+            // waiting to client.
+            char buffer[BUFFER_SIZE];
+            readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+            if(readBytes == 0) {
+                // the socket with client was closed.
+                input::print("Connection with the client was closed.", tcpServer.getStream());
+                break;
+            }
+            else if(readBytes < 0) {
+                // writing to std::stderr
+                perror("Failed receiving data from the client.");
+                input::print("Failed receiving data from the client.", tcpServer.getStream());
             }
             else {
-                input::print("In Server: ", tcpServer.getStream(), knn.getClassified() + "\n");
-                std::strcpy(bufferToSend, knn.getClassified().c_str());
-            }
-            // sending the data.
-            std::cout << "buffer to send: " << bufferToSend << "\n";
-            sendBytes = send(clientSocket, bufferToSend, readBytes, 0);
-            if(sendBytes < 0) {
-                input::print("failed to send data to the client.", tcpServer.getStream());
+                // client data is in the form <vector> <distance> <int k>
+                // input[0] - vectors string
+                // input[1] - distance string
+                // input[2] - k.
+                input::print("Message from client: ", tcpServer.getStream(), buffer); // printing message from the client.
+                input::print("", tcpServer.getStream()); // printing newline to screen.
+                std::string classifiedToPrint = calculateClientInput(buffer, knn);
+                char bufferToSend[BUFFER_SIZE];
+                if(classifiedToPrint.empty()) {
+                    // error invalid input.
+                    input::print("Sending to client: ", tcpServer.getStream(),  "");
+                    input::error(tcpServer.getStream());
+                    std::strcpy(bufferToSend, "invalid input");
+                }
+                else {
+                    input::print("Sending to client: ", tcpServer.getStream(), knn.getClassified() + "\n");
+                    std::strcpy(bufferToSend, knn.getClassified().c_str());
+                }
+                // sending the data.
+                sendBytes = send(clientSocket, bufferToSend, readBytes, 0);
+                if(sendBytes < 0) {
+                    perror("Failed to send data to the client.");
+                    input::print("Failed to send data to the client.", tcpServer.getStream());
+                }
             }
         }
     }
