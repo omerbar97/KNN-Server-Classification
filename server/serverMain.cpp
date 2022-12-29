@@ -120,25 +120,20 @@ std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
         k = std::stoi(vInput[2]);
     }
     catch(std::invalid_argument &argument) {
-        std::cout << "invalid_argument\n";
         return {};
     }
     // checking the input of the Vector<double>
     if(vDouble.empty()) {
-        std::cout << "vDouble empty\n";
         return {};
     }
     distance = input::getDistance(vInput[1]);
     if(distance == nullptr) {
-        std::cout << "distance = nullptr\n";
         return {};
     }
 
-    std::cout << "VECTOR: ";
     for(double d : vDouble) {
         std::cout << d << " ";
     }
-    std::cout << "\narguments - distance = " << distance << " -- K = " << k << "  --vDouble " << vDouble.empty() << "\n";
 
     knn.setDistance(distance);
     knn.setK(k);
@@ -188,20 +183,25 @@ int main(int argc, char *args[]) {
     int readBytes;
     int sendBytes;
 
-    std::cout << "Socket number: " << tcpServer.getSocketId() << "\n";
-    std::cout << "Port number: " << tcpServer.getSockaddrIn().sin_port << "\n";
+    std::cout << "-------------Server Socket number: " << tcpServer.getSocketId() << "\n";
+    std::cout << "-------------Server Port number: " << tcpServer.getSockaddrIn().sin_port << "\n";
 
     if(tcpServer.listenServer(5) < 0){
-        input::print("failed listening to the socket.",  tcpServer.getStream());
+        input::print("failed listening to the socket",  tcpServer.getStream());
         exit(1);
     }
-    std::cout << "Done listening" << "\n";
     while(true) {
+        std::stringstream portString;
         clientSocket = accept(tcpServer.getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
         if(clientSocket < 0) {
-            input::print("failed connecting the client", tcpServer.getStream());
+            perror("Failed connecting the client");
+            input::print("Failed connecting the client", tcpServer.getStream());
+            continue;
         }
-        input::print("connected to client", tcpServer.getStream());
+        input::print("-------------Connected to client-------------", tcpServer.getStream());
+        input::print("-------------Client Port Number: ", tcpServer.getStream(), "");
+        portString << client_sin.sin_port;
+        input::print(portString.str(), tcpServer.getStream(), "-------------\n");
         // client handle loop:
         while(true) {
             // waiting to client.
@@ -209,7 +209,7 @@ int main(int argc, char *args[]) {
             readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
             if(readBytes == 0) {
                 // the socket with client was closed.
-                input::print("Connection with the client was closed.", tcpServer.getStream());
+                input::print("Connection with the client was closed", tcpServer.getStream());
                 break;
             }
             else if(readBytes < 0) {
@@ -230,7 +230,7 @@ int main(int argc, char *args[]) {
                     // error invalid input.
                     input::print("Sending to client: ", tcpServer.getStream(),  "");
                     input::error(tcpServer.getStream());
-                    std::strcpy(bufferToSend, "invalid input");
+                    std::strcpy(bufferToSend, "invalid input!");
                 }
                 else {
                     input::print("Sending to client: ", tcpServer.getStream(), knn.getClassified() + "\n");

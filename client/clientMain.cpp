@@ -1,17 +1,15 @@
 #include "Client.h"
 #include <fstream>
 #include <iostream>
+#include "../calculate/input.h"
+
 #define BUFFER_SIZE 4096
 
 bool isPort(const char *port) {
+
     int x;
-    try{
-        x = atoi(port);
-    }
-    catch(std::exception d) {
-        return false;
-    }
-    if(x >= 10000 && x < 65000) {
+    x = atoi(port);
+    if(x >= 1024 && x < 65536) {
         return true;
     }
     return false;
@@ -26,15 +24,14 @@ bool isIp(char * ip) {
     int counter = 0;
     ptr = strtok(ip,".");
 
-    while (!ptr) {
+    while (ptr != NULL) {
         counter++;
-        if(atoi(ptr) == 0) {
+        if(atoi(ptr) == 0 && *ptr != '0') {
             return false;
         }
         atoi(ptr);
         ptr = strtok(NULL,".");
     }
-    counter++;
     if(counter == 4) {
         return true;
     }
@@ -73,7 +70,10 @@ int main(int argc, char *args[]) {
 
     //initializing  Client.
     Client client(port_no, ip_address, std::cout);
-
+    if(!client.isValid()) {
+        input::print("Failed to initializing the client.", client.getStream());
+        exit(1);
+    }
     //looping and sending message from client to server until client send -1.
     while (isOn) {
         std::getline(std::cin, userInput);
@@ -87,7 +87,8 @@ int main(int argc, char *args[]) {
         char *data = strToChrArray(userInput);
         client.SendData(data, BUFFER_SIZE);
         client.readData();
-        std::cout << "BufferReturn: " << client.getBuffer() << "\n";
+        input::print("Server send: " , client.getStream(), "");
+        input::print(client.getBuffer(), client.getStream());
     }
     return 0;
 }

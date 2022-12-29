@@ -23,13 +23,21 @@
 namespace input {
 
     std::vector<std::string> splitString(std::string str);
+
     bool isContainChar(std::vector<std::string> strVec);
+
     bool checkPropriety(std::string v1, std::string v2);
+
     bool checkVectorInput(std::string v);
+
     std::vector<double> convertStrVecToDoubleVec(std::vector<std::string> strVec);
+
     Distance* getDistance(std::string input);
+
     void print(const std::string& message = "", std::ostream& stream = std::cout, const std::string& end = "\n");
+
     void error(std::ostream& stream = std::cout);
+
 }
 
 
