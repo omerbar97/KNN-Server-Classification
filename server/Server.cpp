@@ -25,12 +25,15 @@ bool Server::initServer() {
         input::print("failed to create a socket!", stream);
         return false;
     }
+    input::print("-------------Success creating socket!", stream);
     // binding the port information:
     if(bind(socketId, (struct sockaddr *) &sockaddrIn, sizeof(sockaddrIn)) < 0) {
         // printing error to the stream and returning false.
         input::print("failed binding the port to the socket!", stream);
         return false;
     }
+    input::print("-------------Success binding the port to the socket!", stream);
+
     return true;
 }
 

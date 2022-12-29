@@ -63,5 +63,6 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/a.out.dir/DependInfo.cmake"
+  "CMakeFiles/client.out.dir/DependInfo.cmake"
+  "CMakeFiles/server.out.dir/DependInfo.cmake"
   )

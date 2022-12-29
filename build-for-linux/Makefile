@@ -102,24 +102,37 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named a.out
+# Target rules for targets named client.out
 
 # Build rule for target.
-a.out: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 a.out
-.PHONY : a.out
+client.out: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client.out
+.PHONY : client.out
 
 # fast build rule for target.
-a.out/fast:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/build
-.PHONY : a.out/fast
+client.out/fast:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/build
+.PHONY : client.out/fast
+
+#=============================================================================
+# Target rules for targets named server.out
+
+# Build rule for target.
+server.out: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 server.out
+.PHONY : server.out
+
+# fast build rule for target.
+server.out/fast:
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/build
+.PHONY : server.out/fast
 
 calculate/Algorithim/Knn.o: calculate/Algorithim/Knn.cpp.o
 .PHONY : calculate/Algorithim/Knn.o
 
 # target to build an object file
 calculate/Algorithim/Knn.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Algorithim/Knn.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Algorithim/Knn.cpp.o
 .PHONY : calculate/Algorithim/Knn.cpp.o
 
 calculate/Algorithim/Knn.i: calculate/Algorithim/Knn.cpp.i
@@ -127,7 +140,7 @@ calculate/Algorithim/Knn.i: calculate/Algorithim/Knn.cpp.i
 
 # target to preprocess a source file
 calculate/Algorithim/Knn.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Algorithim/Knn.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Algorithim/Knn.cpp.i
 .PHONY : calculate/Algorithim/Knn.cpp.i
 
 calculate/Algorithim/Knn.s: calculate/Algorithim/Knn.cpp.s
@@ -135,7 +148,7 @@ calculate/Algorithim/Knn.s: calculate/Algorithim/Knn.cpp.s
 
 # target to generate assembly for a file
 calculate/Algorithim/Knn.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Algorithim/Knn.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Algorithim/Knn.cpp.s
 .PHONY : calculate/Algorithim/Knn.cpp.s
 
 calculate/Algorithim/Select.o: calculate/Algorithim/Select.cpp.o
@@ -143,7 +156,7 @@ calculate/Algorithim/Select.o: calculate/Algorithim/Select.cpp.o
 
 # target to build an object file
 calculate/Algorithim/Select.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Algorithim/Select.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Algorithim/Select.cpp.o
 .PHONY : calculate/Algorithim/Select.cpp.o
 
 calculate/Algorithim/Select.i: calculate/Algorithim/Select.cpp.i
@@ -151,7 +164,7 @@ calculate/Algorithim/Select.i: calculate/Algorithim/Select.cpp.i
 
 # target to preprocess a source file
 calculate/Algorithim/Select.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Algorithim/Select.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Algorithim/Select.cpp.i
 .PHONY : calculate/Algorithim/Select.cpp.i
 
 calculate/Algorithim/Select.s: calculate/Algorithim/Select.cpp.s
@@ -159,7 +172,7 @@ calculate/Algorithim/Select.s: calculate/Algorithim/Select.cpp.s
 
 # target to generate assembly for a file
 calculate/Algorithim/Select.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Algorithim/Select.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Algorithim/Select.cpp.s
 .PHONY : calculate/Algorithim/Select.cpp.s
 
 calculate/Distance/Canberra.o: calculate/Distance/Canberra.cpp.o
@@ -167,7 +180,8 @@ calculate/Distance/Canberra.o: calculate/Distance/Canberra.cpp.o
 
 # target to build an object file
 calculate/Distance/Canberra.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Canberra.cpp.o
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Canberra.cpp.o
 .PHONY : calculate/Distance/Canberra.cpp.o
 
 calculate/Distance/Canberra.i: calculate/Distance/Canberra.cpp.i
@@ -175,7 +189,8 @@ calculate/Distance/Canberra.i: calculate/Distance/Canberra.cpp.i
 
 # target to preprocess a source file
 calculate/Distance/Canberra.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Canberra.cpp.i
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Canberra.cpp.i
 .PHONY : calculate/Distance/Canberra.cpp.i
 
 calculate/Distance/Canberra.s: calculate/Distance/Canberra.cpp.s
@@ -183,7 +198,8 @@ calculate/Distance/Canberra.s: calculate/Distance/Canberra.cpp.s
 
 # target to generate assembly for a file
 calculate/Distance/Canberra.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Canberra.cpp.s
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Canberra.cpp.s
 .PHONY : calculate/Distance/Canberra.cpp.s
 
 calculate/Distance/Chebyshev.o: calculate/Distance/Chebyshev.cpp.o
@@ -191,7 +207,8 @@ calculate/Distance/Chebyshev.o: calculate/Distance/Chebyshev.cpp.o
 
 # target to build an object file
 calculate/Distance/Chebyshev.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Chebyshev.cpp.o
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Chebyshev.cpp.o
 .PHONY : calculate/Distance/Chebyshev.cpp.o
 
 calculate/Distance/Chebyshev.i: calculate/Distance/Chebyshev.cpp.i
@@ -199,7 +216,8 @@ calculate/Distance/Chebyshev.i: calculate/Distance/Chebyshev.cpp.i
 
 # target to preprocess a source file
 calculate/Distance/Chebyshev.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Chebyshev.cpp.i
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Chebyshev.cpp.i
 .PHONY : calculate/Distance/Chebyshev.cpp.i
 
 calculate/Distance/Chebyshev.s: calculate/Distance/Chebyshev.cpp.s
@@ -207,7 +225,8 @@ calculate/Distance/Chebyshev.s: calculate/Distance/Chebyshev.cpp.s
 
 # target to generate assembly for a file
 calculate/Distance/Chebyshev.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Chebyshev.cpp.s
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Chebyshev.cpp.s
 .PHONY : calculate/Distance/Chebyshev.cpp.s
 
 calculate/Distance/Distance.o: calculate/Distance/Distance.cpp.o
@@ -215,7 +234,8 @@ calculate/Distance/Distance.o: calculate/Distance/Distance.cpp.o
 
 # target to build an object file
 calculate/Distance/Distance.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Distance.cpp.o
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Distance.cpp.o
 .PHONY : calculate/Distance/Distance.cpp.o
 
 calculate/Distance/Distance.i: calculate/Distance/Distance.cpp.i
@@ -223,7 +243,8 @@ calculate/Distance/Distance.i: calculate/Distance/Distance.cpp.i
 
 # target to preprocess a source file
 calculate/Distance/Distance.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Distance.cpp.i
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Distance.cpp.i
 .PHONY : calculate/Distance/Distance.cpp.i
 
 calculate/Distance/Distance.s: calculate/Distance/Distance.cpp.s
@@ -231,7 +252,8 @@ calculate/Distance/Distance.s: calculate/Distance/Distance.cpp.s
 
 # target to generate assembly for a file
 calculate/Distance/Distance.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Distance.cpp.s
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Distance.cpp.s
 .PHONY : calculate/Distance/Distance.cpp.s
 
 calculate/Distance/Euclidean.o: calculate/Distance/Euclidean.cpp.o
@@ -239,7 +261,8 @@ calculate/Distance/Euclidean.o: calculate/Distance/Euclidean.cpp.o
 
 # target to build an object file
 calculate/Distance/Euclidean.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Euclidean.cpp.o
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Euclidean.cpp.o
 .PHONY : calculate/Distance/Euclidean.cpp.o
 
 calculate/Distance/Euclidean.i: calculate/Distance/Euclidean.cpp.i
@@ -247,7 +270,8 @@ calculate/Distance/Euclidean.i: calculate/Distance/Euclidean.cpp.i
 
 # target to preprocess a source file
 calculate/Distance/Euclidean.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Euclidean.cpp.i
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Euclidean.cpp.i
 .PHONY : calculate/Distance/Euclidean.cpp.i
 
 calculate/Distance/Euclidean.s: calculate/Distance/Euclidean.cpp.s
@@ -255,7 +279,8 @@ calculate/Distance/Euclidean.s: calculate/Distance/Euclidean.cpp.s
 
 # target to generate assembly for a file
 calculate/Distance/Euclidean.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Euclidean.cpp.s
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Euclidean.cpp.s
 .PHONY : calculate/Distance/Euclidean.cpp.s
 
 calculate/Distance/Manhattan.o: calculate/Distance/Manhattan.cpp.o
@@ -263,7 +288,8 @@ calculate/Distance/Manhattan.o: calculate/Distance/Manhattan.cpp.o
 
 # target to build an object file
 calculate/Distance/Manhattan.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Manhattan.cpp.o
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Manhattan.cpp.o
 .PHONY : calculate/Distance/Manhattan.cpp.o
 
 calculate/Distance/Manhattan.i: calculate/Distance/Manhattan.cpp.i
@@ -271,7 +297,8 @@ calculate/Distance/Manhattan.i: calculate/Distance/Manhattan.cpp.i
 
 # target to preprocess a source file
 calculate/Distance/Manhattan.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Manhattan.cpp.i
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Manhattan.cpp.i
 .PHONY : calculate/Distance/Manhattan.cpp.i
 
 calculate/Distance/Manhattan.s: calculate/Distance/Manhattan.cpp.s
@@ -279,7 +306,8 @@ calculate/Distance/Manhattan.s: calculate/Distance/Manhattan.cpp.s
 
 # target to generate assembly for a file
 calculate/Distance/Manhattan.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Manhattan.cpp.s
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Manhattan.cpp.s
 .PHONY : calculate/Distance/Manhattan.cpp.s
 
 calculate/Distance/Minkowski.o: calculate/Distance/Minkowski.cpp.o
@@ -287,7 +315,8 @@ calculate/Distance/Minkowski.o: calculate/Distance/Minkowski.cpp.o
 
 # target to build an object file
 calculate/Distance/Minkowski.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Minkowski.cpp.o
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Minkowski.cpp.o
 .PHONY : calculate/Distance/Minkowski.cpp.o
 
 calculate/Distance/Minkowski.i: calculate/Distance/Minkowski.cpp.i
@@ -295,7 +324,8 @@ calculate/Distance/Minkowski.i: calculate/Distance/Minkowski.cpp.i
 
 # target to preprocess a source file
 calculate/Distance/Minkowski.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Minkowski.cpp.i
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Minkowski.cpp.i
 .PHONY : calculate/Distance/Minkowski.cpp.i
 
 calculate/Distance/Minkowski.s: calculate/Distance/Minkowski.cpp.s
@@ -303,7 +333,8 @@ calculate/Distance/Minkowski.s: calculate/Distance/Minkowski.cpp.s
 
 # target to generate assembly for a file
 calculate/Distance/Minkowski.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/Distance/Minkowski.cpp.s
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/Distance/Minkowski.cpp.s
 .PHONY : calculate/Distance/Minkowski.cpp.s
 
 calculate/ReadCSV.o: calculate/ReadCSV.cpp.o
@@ -311,7 +342,7 @@ calculate/ReadCSV.o: calculate/ReadCSV.cpp.o
 
 # target to build an object file
 calculate/ReadCSV.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/ReadCSV.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/ReadCSV.cpp.o
 .PHONY : calculate/ReadCSV.cpp.o
 
 calculate/ReadCSV.i: calculate/ReadCSV.cpp.i
@@ -319,7 +350,7 @@ calculate/ReadCSV.i: calculate/ReadCSV.cpp.i
 
 # target to preprocess a source file
 calculate/ReadCSV.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/ReadCSV.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/ReadCSV.cpp.i
 .PHONY : calculate/ReadCSV.cpp.i
 
 calculate/ReadCSV.s: calculate/ReadCSV.cpp.s
@@ -327,32 +358,131 @@ calculate/ReadCSV.s: calculate/ReadCSV.cpp.s
 
 # target to generate assembly for a file
 calculate/ReadCSV.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/calculate/ReadCSV.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/ReadCSV.cpp.s
 .PHONY : calculate/ReadCSV.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+calculate/input.o: calculate/input.cpp.o
+.PHONY : calculate/input.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/main.cpp.o
-.PHONY : main.cpp.o
+calculate/input.cpp.o:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/input.cpp.o
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/input.cpp.o
+.PHONY : calculate/input.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+calculate/input.i: calculate/input.cpp.i
+.PHONY : calculate/input.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/main.cpp.i
-.PHONY : main.cpp.i
+calculate/input.cpp.i:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/input.cpp.i
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/input.cpp.i
+.PHONY : calculate/input.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+calculate/input.s: calculate/input.cpp.s
+.PHONY : calculate/input.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/main.cpp.s
-.PHONY : main.cpp.s
+calculate/input.cpp.s:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/input.cpp.s
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/calculate/input.cpp.s
+.PHONY : calculate/input.cpp.s
+
+client/Client.o: client/Client.cpp.o
+.PHONY : client/Client.o
+
+# target to build an object file
+client/Client.cpp.o:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/client/Client.cpp.o
+.PHONY : client/Client.cpp.o
+
+client/Client.i: client/Client.cpp.i
+.PHONY : client/Client.i
+
+# target to preprocess a source file
+client/Client.cpp.i:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/client/Client.cpp.i
+.PHONY : client/Client.cpp.i
+
+client/Client.s: client/Client.cpp.s
+.PHONY : client/Client.s
+
+# target to generate assembly for a file
+client/Client.cpp.s:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/client/Client.cpp.s
+.PHONY : client/Client.cpp.s
+
+client/clientMain.o: client/clientMain.cpp.o
+.PHONY : client/clientMain.o
+
+# target to build an object file
+client/clientMain.cpp.o:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/client/clientMain.cpp.o
+.PHONY : client/clientMain.cpp.o
+
+client/clientMain.i: client/clientMain.cpp.i
+.PHONY : client/clientMain.i
+
+# target to preprocess a source file
+client/clientMain.cpp.i:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/client/clientMain.cpp.i
+.PHONY : client/clientMain.cpp.i
+
+client/clientMain.s: client/clientMain.cpp.s
+.PHONY : client/clientMain.s
+
+# target to generate assembly for a file
+client/clientMain.cpp.s:
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/client/clientMain.cpp.s
+.PHONY : client/clientMain.cpp.s
+
+server/Server.o: server/Server.cpp.o
+.PHONY : server/Server.o
+
+# target to build an object file
+server/Server.cpp.o:
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/server/Server.cpp.o
+.PHONY : server/Server.cpp.o
+
+server/Server.i: server/Server.cpp.i
+.PHONY : server/Server.i
+
+# target to preprocess a source file
+server/Server.cpp.i:
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/server/Server.cpp.i
+.PHONY : server/Server.cpp.i
+
+server/Server.s: server/Server.cpp.s
+.PHONY : server/Server.s
+
+# target to generate assembly for a file
+server/Server.cpp.s:
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/server/Server.cpp.s
+.PHONY : server/Server.cpp.s
+
+server/serverMain.o: server/serverMain.cpp.o
+.PHONY : server/serverMain.o
+
+# target to build an object file
+server/serverMain.cpp.o:
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/server/serverMain.cpp.o
+.PHONY : server/serverMain.cpp.o
+
+server/serverMain.i: server/serverMain.cpp.i
+.PHONY : server/serverMain.i
+
+# target to preprocess a source file
+server/serverMain.cpp.i:
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/server/serverMain.cpp.i
+.PHONY : server/serverMain.cpp.i
+
+server/serverMain.s: server/serverMain.cpp.s
+.PHONY : server/serverMain.s
+
+# target to generate assembly for a file
+server/serverMain.cpp.s:
+	$(MAKE) -f CMakeFiles/server.out.dir/build.make CMakeFiles/server.out.dir/server/serverMain.cpp.s
+.PHONY : server/serverMain.cpp.s
 
 # Help Target
 help:
@@ -360,9 +490,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... a.out"
+	@echo "... client.out"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... server.out"
 	@echo "... calculate/Algorithim/Knn.o"
 	@echo "... calculate/Algorithim/Knn.i"
 	@echo "... calculate/Algorithim/Knn.s"
@@ -390,9 +521,21 @@ help:
 	@echo "... calculate/ReadCSV.o"
 	@echo "... calculate/ReadCSV.i"
 	@echo "... calculate/ReadCSV.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... calculate/input.o"
+	@echo "... calculate/input.i"
+	@echo "... calculate/input.s"
+	@echo "... client/Client.o"
+	@echo "... client/Client.i"
+	@echo "... client/Client.s"
+	@echo "... client/clientMain.o"
+	@echo "... client/clientMain.i"
+	@echo "... client/clientMain.s"
+	@echo "... server/Server.o"
+	@echo "... server/Server.i"
+	@echo "... server/Server.s"
+	@echo "... server/serverMain.o"
+	@echo "... server/serverMain.i"
+	@echo "... server/serverMain.s"
 .PHONY : help
 
 

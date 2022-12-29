@@ -81,7 +81,6 @@ std::vector<double> input::convertStrVecToDoubleVec(std::vector<std::string> str
             return {};
         }
         catch (std::out_of_range &argument) {
-
             return {};
         }
     }

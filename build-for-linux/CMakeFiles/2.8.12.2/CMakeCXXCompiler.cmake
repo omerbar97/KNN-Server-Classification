@@ -1,12 +1,12 @@
-set(CMAKE_CXX_COMPILER "/usr/bin/c++")
+set(CMAKE_CXX_COMPILER "/opt/rh/devtoolset-11/root/usr/bin/c++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "GNU")
-set(CMAKE_CXX_COMPILER_VERSION "4.8.5")
+set(CMAKE_CXX_COMPILER_VERSION "11.2.1")
 set(CMAKE_CXX_PLATFORM_ID "Linux")
 
-set(CMAKE_AR "/usr/bin/ar")
-set(CMAKE_RANLIB "/usr/bin/ranlib")
-set(CMAKE_LINKER "/usr/bin/ld")
+set(CMAKE_AR "/opt/rh/devtoolset-11/root/usr/bin/ar")
+set(CMAKE_RANLIB "/opt/rh/devtoolset-11/root/usr/bin/ranlib")
+set(CMAKE_LINKER "/opt/rh/devtoolset-11/root/usr/bin/ld")
 set(CMAKE_COMPILER_IS_GNUCXX 1)
 set(CMAKE_CXX_COMPILER_LOADED 1)
 set(CMAKE_CXX_COMPILER_WORKS TRUE)
@@ -50,7 +50,7 @@ endif()
 
 
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;c")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/x86_64-redhat-linux/4.8.5;/usr/lib64;/lib64;/usr/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11;/opt/rh/devtoolset-11/root/usr/lib64;/lib64;/usr/lib64;/opt/rh/devtoolset-11/root/usr/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")
 
 
