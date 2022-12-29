@@ -16,6 +16,9 @@ $ make                                     // Compiling the project.</code></pre
 <h5>Running the client: (make sure you inside the folder build-for-linux)</h5>
 <pre><code>$ ./client.out &#60ip address&#62 &#60server port&#62   // For example: ./client.out 127.0.0.1 12345</code></pre>
 
+<h2><i>------------------------------Milestone 2 - 1.1.2023------------------------------</i></h2>
+<p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas the both client and server creating a socket to communicate </p>
+
 <h2><i>-------------------------Milestone 1 - Part B - 15.12.2022-------------------------</i></h2>
 <h4>Reading from a CSV files of data, Knn Algorithim, Machine Learning</h4>
 <p>In this part of the project, We implemented the Knn algorithim, to explain the Knn algorithim we define a few things:</p>
