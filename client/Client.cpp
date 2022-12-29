@@ -5,7 +5,7 @@
 
 Client::Client(int port_no, const char* ip_address, std::ostream& stream) : stream(stream){
     this->port_no = port_no;
-    this->ip_address = "127.0.0.1";
+    this->ip_address = ip_address;
     this->valid = true;
     if(!initSocket() ||  !initSin()) {
         this->valid = false;

@@ -2,9 +2,9 @@
 #include <fstream>
 #include <iostream>
 #include "../calculate/input.h"
-
+#define IP_SIZE 15
 #define BUFFER_SIZE 4096
-
+//255.255.255.255
 bool isPort(const char *port) {
 
     int x;
@@ -19,22 +19,28 @@ bool isPort(const char *port) {
  * @param ip
  * @return
  */
-bool isIp(char * ip) {
-    char * ptr;
+bool isIp(const char *ip) {
+    char *ptr = (char*)malloc(sizeof(ip)*IP_SIZE + 1);
+    if(ptr == NULL) {
+        return false;
+    }
+    memcpy(ptr, ip, IP_SIZE);
     int counter = 0;
-    ptr = strtok(ip,".");
-
+    ptr = strtok(ptr,".");
     while (ptr != NULL) {
         counter++;
         if(atoi(ptr) == 0 && *ptr != '0') {
+            free(ptr);
             return false;
         }
         atoi(ptr);
         ptr = strtok(NULL,".");
     }
     if(counter == 4) {
+        free(ptr);
         return true;
     }
+    free(ptr);
     return false;
 }
 bool userAskToClose(std::string str) {
@@ -60,7 +66,7 @@ char* strToChrArray(std::string s) {
 int main(int argc, char *args[]) {
     bool isOn = true;
     std::string userInput;
-    if(argc != 3 || !isPort(args[2]) || isIp(args[1])) {
+    if(argc != 3 || !isPort(args[2]) || !isIp(args[1])) {
         std::cout<<"Invalid argument input!" << std::endl;
         return 0;
     }
