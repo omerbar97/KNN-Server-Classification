@@ -17,7 +17,11 @@ $ make                                     // Compiling the project.</code></pre
 <pre><code>$ ./client.out &#60ip address&#62 &#60server port&#62   // For example: ./client.out 127.0.0.1 12345</code></pre>
 
 <h2><i>------------------------------Milestone 2 - 1.1.2023------------------------------</i></h2>
-<p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas the both client and server creating a socket to communicate </p>
+<p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas both client and server creating a socket to communicate.  When creating the server, we bind it to a specifc port given in the program arguments. When creating the client we give ip address and server port in the program argument.</p>
+<h5>Server side:</h5>
+<p>The server purpose is to get input from the client in the form: &#60Vector&#62 &#60Distance Algorithm&#62 &#60Integer K&#62 and will send back to the client the classified of the vector with the distance algorithm and k that was given from the client. The server side handle any bugs or error the may occur from an incorrect input, in that case a message: "invalid input!" will be sent back to the client. The connection is still on, if the client enters "-1" the connection to the server will be closed, The server is stays online.</p>
+<h5>Client side:</h5>
+<p>The client gets an ip address and the server port from the program arguments and connect to the server. While the client is connected to the server, the server won't hanlde any other client until the current client will close the connection. the clients send to the server: &#60Vector&#62 &#60Distance Algorithm&#62 &#60Integer K&#62 incase the input was correct the client will recive the classified tag for that vector that he sent. otherwise the server will sent back "invalid input!". Because the client doesn't do any calculation, all the responsability to check the input is on the server side. To close the connection the client must enter "-1".</p>
 
 <h2><i>-------------------------Milestone 1 - Part B - 15.12.2022-------------------------</i></h2>
 <h4>Reading from a CSV files of data, Knn Algorithim, Machine Learning</h4>
