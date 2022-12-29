@@ -10,8 +10,11 @@
   <li>Run the following commands: (without the '$' and the comments)</li>
  </ol>
 <pre><code>$ cd build-for-linux                       // Moving to the desired folder.
-$ make                                     // Compiling the project.
-$ ./a.out                                  // Executing the program.</code></pre>
+$ make                                     // Compiling the project.</code></pre>
+<h5>Running the server: (make sure you inside the folder build-for-linux)</h5>
+<pre><code>$ ./server.out &#60file&#62 &#60port&#62                // For example: ./server.out iris_classified.csv 12345</code></pre>
+<h5>Running the client: (make sure you inside the folder build-for-linux)</h5>
+<pre><code>$ ./client.out &#60ip address&#62 &#60server port&#62   // For example: ./client.out 127.0.0.1 12345</code></pre>
 
 <h2><i>-------------------------Milestone 1 - Part B - 15.12.2022-------------------------</i></h2>
 <h4>Reading from a CSV files of data, Knn Algorithim, Machine Learning</h4>
