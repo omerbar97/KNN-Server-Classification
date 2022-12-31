@@ -7,6 +7,7 @@ Client::Client(int port_no, const char* ip_address, std::ostream& stream) : stre
     this->port_no = port_no;
     this->ip_address = ip_address;
     this->valid = true;
+    //in the condition initialize socket and sin.
     if(!initSocket() ||  !initSin()) {
         this->valid = false;
     }
@@ -16,6 +17,7 @@ Client::Client(int port_no, const char* ip_address, std::ostream& stream) : stre
 bool Client::initSocket() {
     //creating socket
     int sock = socket(AF_INET, SOCK_STREAM, 0);
+    //if there is any fail.
     if (sock < 0){
         perror("Failed creating the client socket");
         return false;
@@ -24,7 +26,7 @@ bool Client::initSocket() {
     return true;
 }
 
-//returnning false if faield.
+
 bool Client::initSin() {
     memset(&this->sin, 0, sizeof(this->sin));
     this->sin.sin_family = AF_INET;
@@ -66,9 +68,8 @@ char* Client::readData() {
     }
 }
 
-int Client::closeSock() {
+void Client::closeSock() {
     close(this->socketNum);
-    return 0;
 }
 
 char *Client::getBuffer() {
@@ -79,7 +80,7 @@ std::ostream& Client::getStream() {
     return this->stream;
 }
 
-bool Client::isValid() {
+bool Client::getValid() {
     return this->valid;
 }
 

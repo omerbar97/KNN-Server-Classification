@@ -5,6 +5,11 @@
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
 //255.255.255.255
+/**
+ * This function check if char* is in a correct pattern of ip.
+ * @param port  const char *.
+ * @return bool.
+ */
 bool isPort(const char *port) {
 
     int x;
@@ -15,9 +20,11 @@ bool isPort(const char *port) {
     return false;
 }
 /**
- * BUGSSS need TO FIX!
- * @param ip
- * @return
+ * This function get an const chat array and check if this array are match to the pattern of ip
+ * which the pattern is x.y.z.q where x,y,z,q are numbers.
+ * if thre tany unsuitability function will return false , otherwise return true.
+ * @param ip const char *.
+ * @return bool.
  */
 bool isIp(const char *ip) {
     char *ptr = (char*)malloc(sizeof(ip)*IP_SIZE + 1);
@@ -26,9 +33,11 @@ bool isIp(const char *ip) {
     }
     memcpy(ptr, ip, IP_SIZE);
     int counter = 0;
+    //take the  part until the first point.
     ptr = strtok(ptr,".");
     while (ptr != NULL) {
         counter++;
+        //atoi function return 0 for any fail, so we check also that the string os not the number 0.
         if(atoi(ptr) == 0 && *ptr != '0') {
             free(ptr);
             return false;
@@ -36,6 +45,7 @@ bool isIp(const char *ip) {
         atoi(ptr);
         ptr = strtok(NULL,".");
     }
+    //if there are 4 parts correspond to the pattern.
     if(counter == 4) {
         free(ptr);
         return true;
@@ -43,6 +53,11 @@ bool isIp(const char *ip) {
     free(ptr);
     return false;
 }
+/**
+ * This function get a string and check if the string is -1 then return true, otherwise false.
+ * @param str std::string str
+ * @return bool.
+ */
 bool userAskToClose(std::string str) {
     try {
         if (atoi(str.c_str()) == -1) {
@@ -54,6 +69,11 @@ bool userAskToClose(std::string str) {
     }
     return false;
 }
+/**
+ * This function convert from string to char* array.
+ * @param s std::string s.
+ * @return char *.
+ */
 char* strToChrArray(std::string s) {
     char * data = new char [s.size()];
     for(int i = 0 ; i < s.size() ; i++) {
@@ -76,7 +96,7 @@ int main(int argc, char *args[]) {
 
     //initializing  Client.
     Client client(port_no, ip_address, std::cout);
-    if(!client.isValid()) {
+    if(!client.getValid()) {
         input::print("Failed to initializing the client.", client.getStream());
         exit(1);
     }
