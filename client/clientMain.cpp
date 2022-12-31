@@ -37,7 +37,7 @@ bool isIp(const char *ip) {
     ptr = strtok(ptr,".");
     while (ptr != NULL) {
         counter++;
-        //atoi function return 0 for any fail, so we check also that the string os not the number 0.
+        //atoi function return 0 for any fail, so we check also that the string is not the number 0.
         if(atoi(ptr) == 0 && *ptr != '0') {
             free(ptr);
             return false;
@@ -84,11 +84,14 @@ char* strToChrArray(std::string s) {
 
 
 int main(int argc, char *args[]) {
-    bool isOn = true;
     std::string userInput;
     if(argc != 3 || !isPort(args[2]) || !isIp(args[1])) {
-        std::cout<<"Invalid argument input!" << std::endl;
-        return 0;
+        // invalid argument input.
+        std::cout <<"Invalid argument input, please make sure you execute the program as follow:\n"
+        << "./client.out <ip_address> <server_port>\n"
+        << "for example: ./client.out 127.0.0.1 12345\n"
+        << "Make sure the ip address is the same as the example and the port number is the same server port number.\n";
+        exit(1);
     }
     //otherwise, the input is correct.
     const char* ip_address = args[1];
@@ -100,20 +103,20 @@ int main(int argc, char *args[]) {
         input::print("Failed to initializing the client.", client.getStream());
         exit(1);
     }
-    //looping and sending message from client to server until client send -1.
-    while (isOn) {
+    input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
+                 "<vector> <distance algorithm> <integer k>", client.getStream());
+    // looping and sending message from client to server until client send -1.
+    while (true) {
         std::getline(std::cin, userInput);
         if(userAskToClose(userInput)) {
             //exit from the loop and close socket.
             client.closeSock();
-            isOn = false;
             break;
         }
         //otherwise, send the data to server.
         char *data = strToChrArray(userInput);
-        client.SendData(data, BUFFER_SIZE);
+        client.sendData(data, BUFFER_SIZE);
         client.readData();
-        input::print("Server send: " , client.getStream(), "");
         input::print(client.getBuffer(), client.getStream());
     }
     return 0;

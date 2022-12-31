@@ -54,7 +54,7 @@ public:
      * @param data_len int.
      * @return bool.
      */
-    bool SendData(char data_addr[] , int data_len);
+    bool sendData(char data_addr[] , int data_len);
 
 
     /**

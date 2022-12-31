@@ -55,8 +55,9 @@ std::ostream &Server::getStream() {
     return this->stream;
 }
 
-int Server::listenServer(int n) {
-    listen(socketId, n);
+bool Server::listenServer(int n) {
+    int t = listen(socketId, n);
+    return t >= 0;
 }
 
 

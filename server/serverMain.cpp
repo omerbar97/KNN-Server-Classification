@@ -8,6 +8,12 @@
 
 #define BUFFER_SIZE 4096
 
+/**
+ * checking if the server arguments are valid.
+ * @param args - program argument.
+ * @return - 0 if arguments are invalid, 1 if arguments valid and the path is relative,
+ * 2 if the arguments valid and the file is only name.
+ */
 int isArgsServerInputValid(char* args[]) {
     // looking at args[1] should be the file_name or file_path:
     // trying the open the file with not added path:
@@ -29,20 +35,32 @@ int isArgsServerInputValid(char* args[]) {
         flag = 2;     // full path
     }
     // checking port input:
-    int port;
-    try {
-        port = std::atoi(args[2]);
+    int port, i = 0;
+    port = std::atoi(args[2]);
+    while(args[2][i] != '\0') {
+        i++;
     }
-    catch(std::exception const &e) {
-        return false;
+    // function atoi transforming string to int but if the string is 1234a5 the atoi returns 1234 then we check if the
+    // last digit is the same as the port result.
+    if(port == 0 || port % 10 != args[2][i - 1] - '0') {
+        return 0;
     }
     // checking if the port is only 4 digis.
-    if(!(port >= 10000 && port <= 65000)) {
+    if(!(port >= 1024 && port <= 65536)) {
         return 0; // error
     }
     return flag;
 }
 
+/**
+ * getting the input from the client in the form of <vector> <distance> <int k> and checking the input by all the parameters.
+ * if all the input is correct then returning an vector of size 3 of string.
+ * at index 0 - the string vector.
+ * at index 1 - the distance string.
+ * at index 2 - the integer k.
+ * @param input - arrays of char in the size 4096
+ * @return - std::vector<string>
+ */
 std::vector<std::string> getClientInputVector(char input[BUFFER_SIZE]) {
     // client data is in the form <vector> <distance> <int k>
     std::string temp(input);
@@ -96,6 +114,17 @@ std::string retrieveFilePath(std::string fileName, int flag) {
     return path;
 }
 
+/**
+ * calculating the client input, given the buffer input got from the client and reference to knn algorithm, separating the
+ * buffer input into 3:
+ * 1. vector
+ * 2. distance
+ * 3. integer k
+ * returning the result classified of the vector with the given algorithm, file, integer k.
+ * @param buffer - char arrays size 4096
+ * @param knn - the knn algorithm.
+ * @return if the input is correct. returning the classified result from the knn, otherwise returning empty object.
+ */
 std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
     // vector DISTANCE K
     std::vector<std::string> vInput = getClientInputVector(buffer);
@@ -131,10 +160,6 @@ std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
         return {};
     }
 
-    for(double d : vDouble) {
-        std::cout << d << " ";
-    }
-
     knn.setDistance(distance);
     knn.setK(k);
     knn.setVector(vDouble);
@@ -155,7 +180,10 @@ int main(int argc, char *args[]) {
     // 1 - the file path is relative (only name)
     // 2 - the file path is a full path.
     if(argc != 3 || isArgsServerInputValid(args) == 0) {
-        input::error();
+        std::cout <<"Invalid argument input, please make sure you execute the program as follow:\n"
+                  << "./server.out <file name/full_path> <server_port>\n"
+                  << "for example: ./server.out iris_classified.csv 12345\n"
+                  << "Make sure the port number is between 1024 to 65536 and that the file name/path is case sensitive.\n";
         exit(1); // input exit code 1
     }
 
@@ -186,7 +214,7 @@ int main(int argc, char *args[]) {
     std::cout << "-------------Server Socket number: " << tcpServer.getSocketId() << "\n";
     std::cout << "-------------Server Port number: " << tcpServer.getSockaddrIn().sin_port << "\n";
 
-    if(tcpServer.listenServer(5) < 0){
+    if(!tcpServer.listenServer(5)){
         input::print("failed listening to the socket",  tcpServer.getStream());
         exit(1);
     }
@@ -196,6 +224,7 @@ int main(int argc, char *args[]) {
         if(clientSocket < 0) {
             perror("Failed connecting the client");
             input::print("Failed connecting the client", tcpServer.getStream());
+            // connecting to other clients.
             continue;
         }
         input::print("-------------Connected to client-------------", tcpServer.getStream());
@@ -209,12 +238,13 @@ int main(int argc, char *args[]) {
             readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
             if(readBytes == 0) {
                 // the socket with client was closed.
-                input::print("Connection with the client was closed", tcpServer.getStream());
+                input::print("-------------Connection with client ", tcpServer.getStream(), portString.str());
+                input::print(" was closed-------------", tcpServer.getStream());
                 break;
             }
             else if(readBytes < 0) {
                 // writing to std::stderr
-                perror("Failed receiving data from the client.");
+                perror("Failed receiving data from the client");
                 input::print("Failed receiving data from the client.", tcpServer.getStream());
             }
             else {
@@ -239,7 +269,7 @@ int main(int argc, char *args[]) {
                 // sending the data.
                 sendBytes = send(clientSocket, bufferToSend, readBytes, 0);
                 if(sendBytes < 0) {
-                    perror("Failed to send data to the client.");
+                    perror("Failed to send data to the client");
                     input::print("Failed to send data to the client.", tcpServer.getStream());
                 }
             }

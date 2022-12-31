@@ -41,7 +41,7 @@ bool Client::initSin() {
 
 
 
-bool Client::SendData(char data_addr[], int data_len) {
+bool Client::sendData(char data_addr[], int data_len) {
     int sent_bytes = send(socketNum, data_addr, data_len, 0);
     if (sent_bytes < 0) {
         perror("Failed sending to the server");
