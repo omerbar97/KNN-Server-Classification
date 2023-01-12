@@ -38,6 +38,8 @@ namespace input {
 
     void error(std::ostream& stream = std::cout);
 
+    char* strToChrArray(std::string s);
+
 }
 
 

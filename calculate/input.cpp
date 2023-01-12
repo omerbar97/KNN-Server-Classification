@@ -174,3 +174,17 @@ void input::print(const std::string& message, std::ostream &stream, const std::s
 void input::error(std::ostream &stream) {
     input::print("invalid input!", stream);
 }
+
+
+/**
+ * This function convert from string to char* array.
+ * @param s std::string s.
+ * @return char *.
+ */
+char* input::strToChrArray(std::string s) {
+    char * data = new char [s.size()];
+    for(int i = 0 ; i < s.size() ; i++) {
+        data[i] = s[i];
+    }
+    return data;
+}

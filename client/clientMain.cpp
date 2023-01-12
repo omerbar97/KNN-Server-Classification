@@ -69,18 +69,7 @@ bool userAskToClose(std::string str) {
     }
     return false;
 }
-/**
- * This function convert from string to char* array.
- * @param s std::string s.
- * @return char *.
- */
-char* strToChrArray(std::string s) {
-    char * data = new char [s.size()];
-    for(int i = 0 ; i < s.size() ; i++) {
-        data[i] = s[i];
-    }
-    return data;
-}
+
 
 
 int main(int argc, char *args[]) {
@@ -114,7 +103,7 @@ int main(int argc, char *args[]) {
             break;
         }
         //otherwise, send the data to server.
-        char *data = strToChrArray(userInput);
+        char *data = input::strToChrArray(userInput);
         client.sendData(data, BUFFER_SIZE);
         client.readData();
         input::print(client.getBuffer(), client.getStream());
