@@ -29,7 +29,7 @@ add_executable(client.out
         calculate/IO/SocketIO.cpp
         calculate/IO/SocketIO.h
         calculate/ICommand.cpp
-        calculate/ICommand.h)
+        calculate/ICommand.h calculate/IO/FileIO.cpp calculate/IO/FileIO.h)
 
 add_executable(server.out
         calculate/Distance/Distance.cpp
@@ -63,4 +63,4 @@ add_executable(server.out
         calculate/IO/SocketIO.cpp
         calculate/IO/SocketIO.h
         calculate/ICommand.cpp
-        calculate/ICommand.h)
+        calculate/ICommand.h calculate/IO/FileIO.cpp calculate/IO/FileIO.h)
