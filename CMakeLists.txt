@@ -21,7 +21,15 @@ add_executable(client.out
         calculate/Distance/Chebyshev.h
         calculate/Distance/Manhattan.cpp
         calculate/Distance/Manhattan.h
-        client/clientMain.cpp calculate/IO/StandardIO.cpp calculate/IO/StandardIO.h)
+        client/clientMain.cpp
+        calculate/IO/StandardIO.cpp
+        calculate/IO/StandardIO.h
+        calculate/IO/DefaultIO.cpp
+        calculate/IO/DefaultIO.h
+        calculate/IO/SocketIO.cpp
+        calculate/IO/SocketIO.h
+        calculate/ICommand.cpp
+        calculate/ICommand.h)
 
 add_executable(server.out
         calculate/Distance/Distance.cpp
@@ -47,4 +55,12 @@ add_executable(server.out
         calculate/input.h
         server/Server.cpp
         server/Server.h
-        server/serverMain.cpp calculate/ICommand.cpp calculate/ICommand.h calculate/IO/StandardIO.cpp calculate/IO/StandardIO.h)
+        server/serverMain.cpp
+        calculate/IO/StandardIO.cpp
+        calculate/IO/StandardIO.h
+        calculate/IO/DefaultIO.cpp
+        calculate/IO/DefaultIO.h
+        calculate/IO/SocketIO.cpp
+        calculate/IO/SocketIO.h
+        calculate/ICommand.cpp
+        calculate/ICommand.h)

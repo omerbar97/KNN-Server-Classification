@@ -6,11 +6,15 @@
 #define A_OUT_ICOMMAND_H
 #include <string>
 #include <fstream>
+#include "IO/DefaultIO.h"
+
 
 class ICommand {
 public:
     std::string description;
+    DefaultIO& io;
 
+    ICommand(std::string description, const DefaultIO& io);
     virtual ~ICommand();
     virtual void execute() const = 0;
 };

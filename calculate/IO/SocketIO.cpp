@@ -24,15 +24,23 @@ void SocketIO::write(std::string string){
 
 std::string SocketIO::read(){
     int message;
-    char bufferToSend[BUFFER];
-    message = recv(this->socketNumber, bufferToSend, BUFFER, 0);
+    std::ostringstream temp;
+    char bufferToRead[BUFFER];
+    message = recv(this->socketNumber, bufferToRead, BUFFER, 0);
     if(message < 0) {
         perror("failed receiving data");
         this->valid = false;
     }
     else {
         this->valid = true;
+        int i = 0;
+        while(bufferToRead[i] != '\0' && i < BUFFER) {
+            temp << bufferToRead[i];
+            i++;
+        }
+        return temp.str();
     }
+    return {};
 }
 
 bool SocketIO::isValid() {

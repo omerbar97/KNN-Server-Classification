@@ -181,7 +181,7 @@ void input::error(std::ostream &stream) {
  * @param s std::string s.
  * @return char *.
  */
-char* strToChrArray(std::string s) {
+char* input::strToChrArray(std::string s) {
     char * data = new char [s.size()];
     for(int i = 0 ; i < s.size() ; i++) {
         data[i] = s[i];

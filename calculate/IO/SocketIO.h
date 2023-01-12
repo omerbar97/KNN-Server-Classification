@@ -6,6 +6,7 @@
 #define A_OUT_SOCKETIO_H
 #include "DefaultIO.h"
 #include <string.h>
+#include <sstream>
 
 class SocketIO : public DefaultIO {
 

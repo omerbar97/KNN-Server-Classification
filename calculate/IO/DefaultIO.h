@@ -7,6 +7,7 @@
 #define BUFFER 4096
 #include <sys/socket.h>
 #include <string>
+#include "../input.h"
 
 class DefaultIO {
 public:
@@ -14,7 +15,7 @@ public:
     /**
      * destructor for all the resources that the defaultIO class used.
      */
-    virtual ~DefaultIO();
+    virtual ~DefaultIO() {};
 
     /**
      * every class that inherits this abstract class need to implements the read method for reading the data from the stream.
