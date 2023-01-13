@@ -5,7 +5,7 @@
 #include "Knn.h"
 
 /**
- * Constructor getting all the information to calculate the Knn algorithim.
+ * Constructor getting all the information to src the Knn algorithim.
  * @param vInput - std::vector<double>
  * @param vectors - std::vector<VectorCSV>
  * @param distance - Distance
@@ -89,7 +89,7 @@ void Knn::calculate() {
         }
     }
 
-    // creating the select algorithm to calculate the K Elements size in the array.
+    // creating the select algorithm to src the K Elements size in the array.
     Select select(temp, k);
     select.calculate();
 

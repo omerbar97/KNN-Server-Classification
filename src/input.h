@@ -2,6 +2,7 @@
 // Created by omerb on 20/12/2022.
 //
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <cstring>
 #include "Distance/Distance.h"
@@ -39,6 +40,8 @@ namespace input {
     void error(std::ostream& stream = std::cout);
 
     char* strToChrArray(std::string s);
+
+    bool checkFilePath(std::string);
 
 }
 

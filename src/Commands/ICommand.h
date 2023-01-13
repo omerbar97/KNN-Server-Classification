@@ -5,8 +5,10 @@
 #ifndef A_OUT_ICOMMAND_H
 #define A_OUT_ICOMMAND_H
 #include <string>
+#include "../input.h"
+#include <sstream>
 #include <fstream>
-#include "IO/DefaultIO.h"
+#include "../IO/DefaultIO.h"
 
 
 class ICommand {
