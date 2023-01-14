@@ -4,11 +4,11 @@
 
 #ifndef A_OUT_UPLOADFILESCOMMAND_H
 #define A_OUT_UPLOADFILESCOMMAND_H
-#include "ICommand.h"
+#include "../ICommand.cpp"
 #include <string>
-#include "../IO/DefaultIO.h"
+#include "../../IO/DefaultIO.h"
 
-class UploadFilesCommand :  private ICommand {
+class UploadFilesCommand : public ICommand {
 private:
 
     bool uploadFile(std::string file);
@@ -16,7 +16,7 @@ private:
 
 public:
 
-    UploadFilesCommand(std::string description, DefaultIO &io);
+    UploadFilesCommand(DefaultIO &io);
 
     ~UploadFilesCommand();
 

@@ -4,7 +4,10 @@
 
 #include "UploadFilesCommand.h"
 
-UploadFilesCommand::UploadFilesCommand(std::string description, DefaultIO &io) : ICommand(description, io) {
+#include <utility>
+
+UploadFilesCommand::UploadFilesCommand(DefaultIO &io) : ICommand(io) {
+    this->description = "1. upload an unclassified csv data file\n";
 
 }
 

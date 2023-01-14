@@ -5,6 +5,10 @@
 #include <fstream>
 #include "Server.h"
 #include "../src/Algorithim/Knn.h"
+#include "../src/Commands/clientCommeds/AlgorithemSettingCommand.h"
+#include "../src/Commands/clientCommeds/ClassifyDataCommand.h"
+#include "../src/Commands/ICommand.h"
+#include "../src/IO/SocketIO.h"
 
 #define BUFFER_SIZE 4096
 
@@ -15,6 +19,7 @@
  * 2 if the arguments valid and the file is only name.
  */
 int isArgsServerInputValid(char* args[]) {
+
     // looking at args[1] should be the file_name or file_path:
     // trying the open the file with not added path:
     std::fstream file(args[1], std::ios::in);
@@ -173,6 +178,7 @@ std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
 }
 
 int main(int argc, char *args[]) {
+
     // in args: <server.out> <file(name or path)> <int port>
     int flag = isArgsServerInputValid(args);
     // in case flag is equal to:
@@ -194,6 +200,7 @@ int main(int argc, char *args[]) {
 
     // creating the server instance:
     Server tcpServer(port, std::cout);
+    ICommand[] *commands = {AlgorithemSettingCommand() , ClassifyDataCommand(SocketIO())} ;
 
     // initializing the server:
     if(!tcpServer.initServer()) {

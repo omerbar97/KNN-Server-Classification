@@ -4,12 +4,21 @@
 
 #include "ICommand.h"
 
-#include <utility>
+//#include <utility>
+//
+//class ICommand {
+//public:
+//    std::string description;
+//    DefaultIO& io;
+//
+//    ICommand(DefaultIO &io) : io(io) {
+//        //this->description = std::move(description);
+//
+//    }
+//    virtual ~ICommand() {
+//
+//    }
+//    virtual void execute() = 0;
+//};
 
-ICommand::ICommand(std::string description, const DefaultIO& io) : io(const_cast<DefaultIO &>(io)) , description(std::move(description)){
 
-}
-
-ICommand::~ICommand() {
-
-}

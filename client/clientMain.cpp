@@ -1,7 +1,9 @@
 #include "Client.h"
 #include <fstream>
 #include <iostream>
-#include "../calculate/input.h"
+//#include "../calculate/input.h"
+#include "../src/input.h"
+
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
 //255.255.255.255
