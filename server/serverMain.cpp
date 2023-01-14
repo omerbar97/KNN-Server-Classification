@@ -2,11 +2,23 @@
 // Created by omer on 12/21/22.
 //
 #include "../src/input.h"
+#include "stdlib.h"
 #include <fstream>
 #include "Server.h"
 #include "../src/Algorithim/Knn.h"
-
+#include <pthread.h>
+#include "../src/Commands/UploadFilesCommand.h"
+#include "../src/Commands/ICommand.h"
+#include "../src/IO/DefaultIO.h"
+#include "../src/IO/SocketIO.h"
+#include "../src/IO/FileIO.h"
+#include "../src/IO/StandardIO.h"
 #define BUFFER_SIZE 4096
+
+struct Data{
+    int* clientSocket;
+    Server* server;
+};
 
 /**
  * checking if the server arguments are valid.
@@ -172,38 +184,118 @@ std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
     return knn.getClassified();
 }
 
+ICommand** initCommands(Server* server, int clientSocket) {
+    // first command
+    SocketIO io(clientSocket);
+    ICommand** pCommand = (ICommand**)malloc(sizeof(ICommand)*1);
+    ICommand* command = new UploadFilesCommand("1. uploading files to server\n", io, *server);
+    pCommand[0] = command;
+    return pCommand;
+}
+
+void deleteCommands(ICommand** pCommand, int size) {
+    for(int i = 0; i < size; i++) {
+        delete(pCommand[i]);
+    }
+}
+
+
+void* handleConnection(void* data) {
+    // handle all the client connection with the server
+    char buffer[BUFFER_SIZE];
+    char bufferToSend[BUFFER_SIZE];
+    Data* d = (Data*)data;
+    int clientSocket = *((int*)d->clientSocket);
+    Server* server = d->server;
+    int readBytes, choice;
+    std::cout << "###-------------Connected to client-------------###" << std::endl;
+    std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
+    SocketIO io(clientSocket);
+    UploadFilesCommand upload("1. uploading files to server\n", io, *server);
+    while(true) {
+        // waiting to client.
+        readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+        if(readBytes == 0) {
+            // the socket with client was closed.
+            std::cout << "the connection with client_socket_number: " << clientSocket << "was closed" << std::endl;
+            break;
+        }
+        else if(readBytes < 0) {
+            perror("failed receiving data from the client");
+            continue;
+        }
+        else {
+            // client has 6 options:
+            /**
+             * 1. uploading files to the server
+             * 2. change algorithm settings
+             * 3. classifying the data
+             * 4. display result
+             * 5. writing result to file
+             * 8. ending connection.
+             */
+             std::cout << "Message from client: " << buffer << std::endl;
+            // calling the call command.
+        }
+        choice = std::atoi(&buffer[0]);
+        if(choice == 0) {
+            // invalid input..
+            break;
+        }
+        switch (choice) {
+            case 1:
+                upload.execute();
+                break;
+            case 2:
+
+
+            case 3:
+
+
+            case 4:
+
+
+            case 5:
+
+
+            case 8:
+
+                break;
+        }
+    }
+    free(d->clientSocket);
+    free(d);
+    return NULL;
+}
+
 int main(int argc, char *args[]) {
     // in args: <server.out> <file(name or path)> <int port>
-    int flag = isArgsServerInputValid(args);
+//    int flag = isArgsServerInputValid(args);
     // in case flag is equal to:
     // 0 - incorrect input.
     // 1 - the file path is relative (only name)
     // 2 - the file path is a full path.
-    if(argc != 3 || isArgsServerInputValid(args) == 0) {
-        std::cout <<"Invalid argument input, please make sure you execute the program as follow:\n"
-                  << "./server.out <file name/full_path> <server_port>\n"
-                  << "for example: ./server.out iris_classified.csv 12345\n"
-                  << "Make sure the port number is between 1024 to 65536 and that the file name/path is case sensitive.\n";
-        exit(1); // input exit code 1
-    }
+//    if(argc != 3 || isArgsServerInputValid(args) == 0) {
+//        std::cout <<"Invalid argument input, please make sure you execute the program as follow:\n"
+//                  << "./server.out <file name/full_path> <server_port>\n"
+//                  << "for example: ./server.out iris_classified.csv 12345\n"
+//                  << "Make sure the port number is between 1024 to 65536 and that the file name/path is case sensitive.\n";
+//        exit(1); // input exit code 1
+//    }
 
-    std::string filePath = retrieveFilePath(args[1], flag);
+    //std::string filePath = retrieveFilePath(args[1], flag);
 
     // input already check no need for try and catch.
     int port = std::atoi(args[2]);
 
     // creating the server instance:
-    Server tcpServer(port, std::cout);
+    Server* mainServer = new Server(port);
 
     // initializing the server:
-    if(!tcpServer.initServer()) {
+    if(!mainServer->initServer()) {
         // failed initializing.
         exit(2); // server exit code 2
     }
-
-    ReadCSV fileCSV(filePath, tcpServer.getStream());
-
-    Knn knn(fileCSV.getData());
 
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
@@ -211,70 +303,27 @@ int main(int argc, char *args[]) {
     int readBytes;
     int sendBytes;
 
-    std::cout << "-------------Server Socket number: " << tcpServer.getSocketId() << "\n";
-    std::cout << "-------------Server Port number: " << tcpServer.getSockaddrIn().sin_port << "\n";
+    std::cout << "-------------Server Socket number: " << mainServer->getSocketId() << std::endl;
+    std::cout << "-------------Server Port number: " << mainServer->getSockaddrIn().sin_port << std::endl;
 
-    if(!tcpServer.listenServer(5)){
-        input::print("failed listening to the socket",  tcpServer.getStream());
+    if(!mainServer->listenServer(5)){
+        perror("failed listening to the socket");
         exit(1);
     }
     while(true) {
-        std::stringstream portString;
-        clientSocket = accept(tcpServer.getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
+        clientSocket = accept(mainServer->getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
         if(clientSocket < 0) {
-            perror("Failed connecting the client");
-            input::print("Failed connecting the client", tcpServer.getStream());
+            perror("failed connecting the client");
             // connecting to other clients.
             continue;
         }
-        input::print("-------------Connected to client-------------", tcpServer.getStream());
-        input::print("-------------Client Port Number: ", tcpServer.getStream(), "");
-        portString << client_sin.sin_port;
-        input::print(portString.str(), tcpServer.getStream(), "-------------\n");
-        // client handle loop:
-        while(true) {
-            // waiting to client.
-            char buffer[BUFFER_SIZE];
-            readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-            if(readBytes == 0) {
-                // the socket with client was closed.
-                input::print("-------------Connection with client ", tcpServer.getStream(), portString.str());
-                input::print(" was closed-------------", tcpServer.getStream());
-                break;
-            }
-            else if(readBytes < 0) {
-                // writing to std::stderr
-                perror("Failed receiving data from the client");
-                input::print("Failed receiving data from the client.", tcpServer.getStream());
-            }
-            else {
-                // client data is in the form <vector> <distance> <int k>
-                // input[0] - vectors string
-                // input[1] - distance string
-                // input[2] - k.
-                input::print("Message from client: ", tcpServer.getStream(), buffer); // printing message from the client.
-                input::print("", tcpServer.getStream()); // printing newline to screen.
-                std::string classifiedToPrint = calculateClientInput(buffer, knn);
-                char bufferToSend[BUFFER_SIZE];
-                if(classifiedToPrint.empty()) {
-                    // error invalid input.
-                    input::print("Sending to client: ", tcpServer.getStream(),  "");
-                    input::error(tcpServer.getStream());
-                    std::strcpy(bufferToSend, "invalid input!");
-                }
-                else {
-                    input::print("Sending to client: ", tcpServer.getStream(), knn.getClassified() + "\n");
-                    std::strcpy(bufferToSend, knn.getClassified().c_str());
-                }
-                // sending the data.
-                sendBytes = send(clientSocket, bufferToSend, readBytes, 0);
-                if(sendBytes < 0) {
-                    perror("Failed to send data to the client");
-                    input::print("Failed to send data to the client.", tcpServer.getStream());
-                }
-            }
-        }
+        Data *args = (Data*)malloc(sizeof(Data));
+        args->clientSocket = (int*)malloc(sizeof(int));
+        *args->clientSocket = clientSocket;
+        args->server = mainServer;
+        pthread_t tid;
+        pthread_create(&tid, NULL, handleConnection, (void*)args);
     }
-    tcpServer.closeServer();
+    mainServer->closeServer();
     return 0;
 }

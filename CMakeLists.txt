@@ -63,4 +63,8 @@ add_executable(server.out
         src/IO/SocketIO.cpp
         src/IO/SocketIO.h
         src/Commands/ICommand.cpp
-        src/Commands/ICommand.h src/IO/FileIO.cpp src/IO/FileIO.h src/Commands/UploadFilesCommand.cpp src/Commands/UploadFilesCommand.h)
+        src/Commands/ICommand.h
+        src/IO/FileIO.cpp
+        src/IO/FileIO.h
+        src/Commands/UploadFilesCommand.cpp
+        src/Commands/UploadFilesCommand.h)

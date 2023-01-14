@@ -17,8 +17,6 @@ private:
 
     int port;
     int socketId;
-
-    std::ostream& stream;
     sockaddr_in sockaddrIn;
 
 
@@ -34,7 +32,7 @@ public:
      * @param port - int
      * @param stream - std::ostream
      */
-    Server(int port, std::ostream& stream);
+    Server(int port);
 
     Server(Server& server);
 
@@ -61,11 +59,6 @@ public:
      * @return - int
      */
     int getSocketId();
-
-    /**
-     * getting the server stream, so if we want to print value to the server stream we use this stream.
-     */
-    std::ostream& getStream();
 
     /**
      * getting the socketAddrIn structure.
