@@ -1,6 +1,6 @@
 #include "ReadCSV.h"
 
-ReadCSV::ReadCSV(std::string fileName, std::ostream& stream) : stream(stream) {
+ReadCSV::ReadCSV(std::string fileName){
     this->fileName = fileName;
     csvToData();
 }
@@ -33,7 +33,7 @@ void ReadCSV::csvToData() {
             }
             // if there a line that not the same size with the other
             if (counter != lenOfVec) {
-                input::print("the folder does not match the format", this->stream);
+                std::cout << "the folder does not match the format" << std::endl;
                 exit(0);
             }
             flag = 1;
@@ -46,7 +46,7 @@ void ReadCSV::csvToData() {
         }
         file.close();
     } else {
-        input::print("could not open file", this->stream);
+        std::cout << "could not open file" << std::endl;
     }
     data = vectorData;
 }

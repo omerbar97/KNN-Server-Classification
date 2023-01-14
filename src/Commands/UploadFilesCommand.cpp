@@ -46,4 +46,8 @@ bool UploadFilesCommand::uploadFile(std::string file) {
     }
 }
 
+UploadFilesCommand::~UploadFilesCommand() {
+
+}
+
 
