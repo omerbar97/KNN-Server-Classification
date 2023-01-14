@@ -22,7 +22,7 @@ public:
 
 
 
-    void execute() const override;
+    void execute() = 0;
 
 };
 

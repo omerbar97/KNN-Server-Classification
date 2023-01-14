@@ -83,5 +83,9 @@ std::ostream& Client::getStream() {
 bool Client::getValid() {
     return this->valid;
 }
+int Client::getsocketNum() {
+    return this->socketNum;
+}
+
 
 

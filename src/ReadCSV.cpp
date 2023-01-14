@@ -56,6 +56,18 @@ std::vector<VectorCSV> ReadCSV::getData() {
     return data;
 }
 
+void ReadCSV::executeLines(ICommand *command,const std::string& name) {
+    std::string line;
+    std::fstream file(name, std::ios::in);
+    if (file.is_open()) {
+        while (std::getline(file, line)) {
+            command->io.write(line);
+        }
+        file.close();
+    }
+}
+
+
 void ReadCSV::printCvs() {
     for (int i = 0; i < data.size(); ++i) {
         std::cout<<'\n';

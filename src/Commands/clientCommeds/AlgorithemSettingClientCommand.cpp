@@ -15,7 +15,7 @@ AlgorithemSettingClientCommand::AlgorithemSettingClientCommand(DefaultIO &io1) :
  * e.g "The current KNN parameters are: K = 5, distance metric = EUC"
  * and cluent change K,metric e.g "6 CHB", sending this data to server and change the setting.
  */
-void AlgorithemSettingClientCommand::ICommand::execute()  {
+void AlgorithemSettingClientCommand::execute()  {
     std::string receiveData, userInput;
     //get input from the user
 

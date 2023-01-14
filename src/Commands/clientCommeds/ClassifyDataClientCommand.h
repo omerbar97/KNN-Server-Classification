@@ -9,8 +9,8 @@
 
 class ClassifyDataClientCommand : public ICommand {
 public:
-    ClassifyDataClientCommand(DefaultIO &io);
-
+    explicit ClassifyDataClientCommand(DefaultIO &io);
+    void execute() override;
 private:
 };
 #endif //A_OUT_CLASSIFYDATACLIENTCOMMAND_H

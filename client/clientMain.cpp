@@ -3,6 +3,12 @@
 #include <iostream>
 //#include "../calculate/input.h"
 #include "../src/input.h"
+#include "../src/Commands/clientCommeds/AlgorithemSettingClientCommand.h"
+#include "../src/Commands/clientCommeds/ClassifyDataClientCommand.h"
+#include "../src/Commands/clientCommeds/DisplayClientCommand.h"
+#include "../src/Commands/clientCommeds/DownloadClientCommand.h"
+#include "../src/Commands/clientCommeds/UploadFilesClientCommand.h"
+#include "../src/IO/SocketIO.h"
 
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
@@ -60,11 +66,17 @@ bool isIp(const char *ip) {
  * @param str std::string str
  * @return bool.
  */
-bool userAskToClose(std::string str) {
+int userAskToClose(std::string str) {
     try {
-        if (atoi(str.c_str()) == -1) {
-            return true;
+        int x = atoi(str.c_str());
+        //if user input is one of the options
+        if ((x <= 5 && x >=1 ) || x == 8) {
+            return x;
+        //user input is invalid.
+        } else {
+            return -1;
         }
+
     }
     catch (std::exception d) {
         return false;
@@ -76,6 +88,7 @@ bool userAskToClose(std::string str) {
 
 int main(int argc, char *args[]) {
     std::string userInput;
+    int index;
     if(argc != 3 || !isPort(args[2]) || !isIp(args[1])) {
         // invalid argument input.
         std::cout <<"Invalid argument input, please make sure you execute the program as follow:\n"
@@ -94,21 +107,48 @@ int main(int argc, char *args[]) {
         input::print("Failed to initializing the client.", client.getStream());
         exit(1);
     }
-    input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
-                 "<vector> <distance algorithm> <integer k>", client.getStream());
+    //init SocketIO
+    SocketIO socketIo(client.getsocketNum());
+    //init list of the commands.
+    ICommand *option1 = new UploadFilesClientCommand(socketIo);
+    ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
+    ICommand *option3= new ClassifyDataClientCommand(socketIo);
+    ICommand *option4 = new DisplayClientCommand(socketIo);
+    ICommand *option5 = new DownloadClientCommand(socketIo);
+
+//    std::vector<ICommand> commands{option1, option2, option3, option4, option5};
+    std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
+
+    //starting the connection with the server.
+    char *data = input::strToChrArray("start");
+    client.sendData(data, BUFFER_SIZE);
+    client.readData();
+    //printing the options.
+    input::print(client.getBuffer(), client.getStream());
+
+//    input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
+//                 "<vector> <distance algorithm> <integer k>", client.getStream());
     // looping and sending message from client to server until client send -1.
     while (true) {
         std::getline(std::cin, userInput);
-        if(userAskToClose(userInput)) {
+        index = userAskToClose(userInput);
+
+        if(index == -1) {
+            continue;
+        }
+        if (index == 8) {
             //exit from the loop and close socket.
             client.closeSock();
             break;
         }
+        //otherwise execute the correct option.
+        commandVec[index]->execute();
+
         //otherwise, send the data to server.
-        char *data = input::strToChrArray(userInput);
-        client.sendData(data, BUFFER_SIZE);
-        client.readData();
-        input::print(client.getBuffer(), client.getStream());
+//        data = input::strToChrArray(userInput);
+//        client.sendData(data, BUFFER_SIZE);
+//        client.readData();
+//        input::print(client.getBuffer(), client.getStream());
     }
     return 0;
 }

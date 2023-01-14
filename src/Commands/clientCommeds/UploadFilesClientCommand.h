@@ -5,4 +5,14 @@
 #ifndef A_OUT_UPLOADFILESCLIENTCOMMAND_H
 #define A_OUT_UPLOADFILESCLIENTCOMMAND_H
 
+#include "../ICommand.h"
+
+class UploadFilesClientCommand : public ICommand {
+public:
+    std::string fileName;
+     UploadFilesClientCommand(DefaultIO &io);
+     void execute() override;
+     void setFileName(std::string fileName);
+private:
+};
 #endif //A_OUT_UPLOADFILESCLIENTCOMMAND_H

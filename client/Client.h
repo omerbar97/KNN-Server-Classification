@@ -86,6 +86,8 @@ public:
      * @return bool.
      */
     bool getValid();
+
+    int getsocketNum();
 };
 
 
