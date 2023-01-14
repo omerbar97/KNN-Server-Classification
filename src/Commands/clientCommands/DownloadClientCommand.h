@@ -18,3 +18,4 @@ private:
 
 };
 #endif //A_OUT_DOWNLOADCLIENTCOMMAND_H
+
