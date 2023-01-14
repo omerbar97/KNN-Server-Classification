@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_executable(client.out
+        src/ReadCSV.h
+        src/ReadCSV.cpp
         src/input.h
         src/input.cpp
         client/Client.h
@@ -28,8 +30,19 @@ add_executable(client.out
         src/IO/DefaultIO.h
         src/IO/SocketIO.cpp
         src/IO/SocketIO.h
-        src/Commands/ICommand.cpp
-        src/Commands/ICommand.h src/IO/FileIO.cpp src/IO/FileIO.h src/Commands/UploadFilesCommand.cpp src/Commands/UploadFilesCommand.h)
+        src/Commands/ICommand.h
+        src/IO/FileIO.cpp
+        src/IO/FileIO.h
+        src/Commands/clientCommands/AlgorithemSettingClientCommand.h
+        src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp
+        src/Commands/clientCommands/ClassifyDataClientCommand.cpp
+        src/Commands/clientCommands/ClassifyDataClientCommand.h
+        src/Commands/clientCommands/DisplayClientCommand.cpp
+        src/Commands/clientCommands/DisplayClientCommand.h
+        src/Commands/clientCommands/DownloadClientCommand.cpp
+        src/Commands/clientCommands/DownloadClientCommand.h
+        src/Commands/clientCommands/UploadFilesClientCommand.cpp
+        src/Commands/clientCommands/UploadFilesClientCommand.h)
 
 add_executable(server.out
         src/Distance/Distance.cpp
@@ -62,9 +75,16 @@ add_executable(server.out
         src/IO/DefaultIO.h
         src/IO/SocketIO.cpp
         src/IO/SocketIO.h
-        src/Commands/ICommand.cpp
         src/Commands/ICommand.h
         src/IO/FileIO.cpp
         src/IO/FileIO.h
-        src/Commands/UploadFilesCommand.cpp
-        src/Commands/UploadFilesCommand.h)
+        src/Commands/serverCommands/AlgorithemSettingServerCommand.h
+        src/Commands/serverCommands/AlgorithemSettingServerCommand.cpp
+        src/Commands/serverCommands/ClassifyDataServerCommand.cpp
+        src/Commands/serverCommands/ClassifyDataServerCommand.h
+        src/Commands/serverCommands/DisplayServerCommand.cpp
+        src/Commands/serverCommands/DisplayServerCommand.h
+        src/Commands/serverCommands/DownloadServerCommand.cpp
+        src/Commands/serverCommands/DownloadServerCommand.h
+        src/Commands/serverCommands/UploadFilesServerCommand.cpp
+        src/Commands/serverCommands/UploadFilesServerCommand.h)

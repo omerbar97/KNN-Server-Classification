@@ -6,16 +6,21 @@
 #include <fstream>
 #include "Server.h"
 #include "../src/Algorithim/Knn.h"
+#include "../src/Commands/clientCommands/AlgorithemSettingClientCommand.h"
+#include "../src/Commands/clientCommands/ClassifyDataClientCommand.h"
+#include "../src/Commands/ICommand.h"
+#include "../src/IO/SocketIO.h"
 #include <pthread.h>
-#include "../src/Commands/UploadFilesCommand.h"
 #include "../src/Commands/ICommand.h"
 #include "../src/IO/DefaultIO.h"
 #include "../src/IO/SocketIO.h"
 #include "../src/IO/FileIO.h"
 #include "../src/IO/StandardIO.h"
+#include "../src/Commands/serverCommands/UploadFilesServerCommand.h"
+
 #define BUFFER_SIZE 4096
 
-struct Data{
+struct ServerData{
     int* clientSocket;
     Server* server;
 };
@@ -27,6 +32,7 @@ struct Data{
  * 2 if the arguments valid and the file is only name.
  */
 int isArgsServerInputValid(char* args[]) {
+
     // looking at args[1] should be the file_name or file_path:
     // trying the open the file with not added path:
     std::fstream file(args[1], std::ios::in);
@@ -184,14 +190,14 @@ std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
     return knn.getClassified();
 }
 
-ICommand** initCommands(Server* server, int clientSocket) {
-    // first command
-    SocketIO io(clientSocket);
-    ICommand** pCommand = (ICommand**)malloc(sizeof(ICommand)*1);
-    ICommand* command = new UploadFilesCommand("1. uploading files to server\n", io, *server);
-    pCommand[0] = command;
-    return pCommand;
-}
+//ICommand** initCommands(Server* server, int clientSocket) {
+//    // first command
+//    SocketIO io(clientSocket);
+//    ICommand** pCommand = (ICommand**)malloc(sizeof(ICommand)*1);
+//    ICommand* command = new UploadFilesCommand("1. uploading files to server\n", io, *server);
+//    pCommand[0] = command;
+//    return pCommand;
+//}
 
 void deleteCommands(ICommand** pCommand, int size) {
     for(int i = 0; i < size; i++) {
@@ -204,14 +210,14 @@ void* handleConnection(void* data) {
     // handle all the client connection with the server
     char buffer[BUFFER_SIZE];
     char bufferToSend[BUFFER_SIZE];
-    Data* d = (Data*)data;
+    ServerData* d = (ServerData*)data;
     int clientSocket = *((int*)d->clientSocket);
     Server* server = d->server;
     int readBytes, choice;
     std::cout << "###-------------Connected to client-------------###" << std::endl;
     std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
     SocketIO io(clientSocket);
-    UploadFilesCommand upload("1. uploading files to server\n", io, *server);
+    UploadFilesServerCommand uploadFiles(io);
     while(true) {
         // waiting to client.
         readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
@@ -239,12 +245,12 @@ void* handleConnection(void* data) {
         }
         choice = std::atoi(&buffer[0]);
         if(choice == 0) {
-            // invalid input..
-            break;
+            // invalid input.. print message and return to loop
+            continue;
         }
         switch (choice) {
             case 1:
-                upload.execute();
+                uploadFiles.execute();
                 break;
             case 2:
 
@@ -269,6 +275,7 @@ void* handleConnection(void* data) {
 }
 
 int main(int argc, char *args[]) {
+
     // in args: <server.out> <file(name or path)> <int port>
 //    int flag = isArgsServerInputValid(args);
     // in case flag is equal to:
@@ -289,6 +296,8 @@ int main(int argc, char *args[]) {
     int port = std::atoi(args[2]);
 
     // creating the server instance:
+    Server tcpServer(port);
+    // ICommand[] *commands = {AlgorithemSettingCommand() , ClassifyDataCommand(SocketIO())} ;
     Server* mainServer = new Server(port);
 
     // initializing the server:
@@ -317,7 +326,7 @@ int main(int argc, char *args[]) {
             // connecting to other clients.
             continue;
         }
-        Data *args = (Data*)malloc(sizeof(Data));
+        ServerData *args = (ServerData*)malloc(sizeof(ServerData));
         args->clientSocket = (int*)malloc(sizeof(int));
         *args->clientSocket = clientSocket;
         args->server = mainServer;

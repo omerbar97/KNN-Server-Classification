@@ -10,6 +10,7 @@
 #ifndef MAIN_CPP_READCSV_H
 #define MAIN_CPP_READCSV_H
 #include "Algorithim//CSVStruct.h"
+#include "../src/Commands/ICommand.h"
 
 
 class ReadCSV {
@@ -44,6 +45,12 @@ public:
     * we assume that the data contain vector of 4 numbers.
     */
     void printCvs();
+
+    /**
+     * This function get a command object and execute each line.
+     * @param command
+     */
+    static void executeLines(ICommand* command, const std::string& fileName);
 };
 
 #endif //MAIN_CPP_READCSV_H
