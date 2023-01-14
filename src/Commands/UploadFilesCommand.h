@@ -7,16 +7,17 @@
 #include "ICommand.h"
 #include <string>
 #include "../IO/DefaultIO.h"
+#include "../../server/Server.h"
 
 class UploadFilesCommand :  private ICommand {
 private:
-
+    Server& server;
     bool uploadFile(std::string file);
 
 
 public:
 
-    UploadFilesCommand(std::string description, DefaultIO &io);
+    UploadFilesCommand(std::string description, DefaultIO &io, Server &server);
 
     ~UploadFilesCommand();
 

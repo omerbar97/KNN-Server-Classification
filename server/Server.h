@@ -1,7 +1,7 @@
 //
 // Created by omerb on 20/12/2022.
 //
-#include "../calculate/input.h"
+#include "../src/input.h"
 #include <sys/socket.h> // For socket functions
 #include <netinet/in.h> // For sockaddr_in
 #include <cstdlib> // For exit() and EXIT_FAILURE
@@ -14,10 +14,13 @@
 class Server {
 
 private:
+
     int port;
     int socketId;
+
     std::ostream& stream;
     sockaddr_in sockaddrIn;
+
 
     /**
      * initializing the sockaddr_in structure for TCP server setup.
@@ -32,6 +35,8 @@ public:
      * @param stream - std::ostream
      */
     Server(int port, std::ostream& stream);
+
+    Server(Server& server);
 
     /**
      * initializing the server, creating the socket and binding the port.

@@ -4,7 +4,7 @@
 
 #include "UploadFilesCommand.h"
 
-UploadFilesCommand::UploadFilesCommand(std::string description, DefaultIO &io) : ICommand(description, io) {
+UploadFilesCommand::UploadFilesCommand(std::string description, DefaultIO &io, Server &server) : ICommand(description, io) , server(server){
 
 }
 
@@ -45,4 +45,5 @@ bool UploadFilesCommand::uploadFile(std::string file) {
         }
     }
 }
+
 
