@@ -11,7 +11,7 @@ UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io) : ICommand(io)
 
 }
 
-void UploadFilesServerCommand::execute() const {
+void UploadFilesServerCommand::execute() {
     // all the logics to get user locally file for trainer and second file for classified.
     // getting the user first trained file locally on computer this function will be called from the server side.
     io.write("Please upload your local train CSV file.\n");
@@ -49,3 +49,7 @@ bool UploadFilesServerCommand::uploadFile(std::string file) {
     }
 }
 
+
+UploadFilesServerCommand::~UploadFilesServerCommand() {
+
+}

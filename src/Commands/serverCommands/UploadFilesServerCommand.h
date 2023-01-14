@@ -4,7 +4,7 @@
 
 #ifndef A_OUT_UPLOADFILESSERVERCOMMAND_H
 #define A_OUT_UPLOADFILESSERVERCOMMAND_H
-#include "../ICommand.cpp"
+#include "../ICommand.h"
 #include <string>
 #include "../../IO/DefaultIO.h"
 
@@ -18,11 +18,9 @@ public:
 
     UploadFilesServerCommand(DefaultIO &io);
 
-    ~UploadFilesServerCommand();
+    ~UploadFilesServerCommand() override;
 
-
-
-    void execute() = 0;
+    void execute() override;
 
 };
 

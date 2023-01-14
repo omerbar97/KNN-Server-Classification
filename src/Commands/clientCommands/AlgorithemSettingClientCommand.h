@@ -4,9 +4,10 @@
 
 #ifndef A_OUT_ALGORITHEMSETTINGCLIENTCOMMAND_H
 #define A_OUT_ALGORITHEMSETTINGCLIENTCOMMAND_H
-
-#include "../ICommand.h"
 #include "../../../client/Client.h"
+#include "../ICommand.h"
+#include <string>
+#include "../../IO/DefaultIO.h"
 
 class AlgorithemSettingClientCommand : public ICommand {
 public:

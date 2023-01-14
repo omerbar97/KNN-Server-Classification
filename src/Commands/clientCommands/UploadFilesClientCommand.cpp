@@ -15,7 +15,7 @@ void UploadFilesClientCommand::execute()  {
 
     //reading data from server to get instructions.
     dataRec = ICommand::io.read();
-    input::print(dataRec);
+    std::cout << dataRec;
 
     //getting file path from user of train CSV file.
     std::getline(std::cin, userInput);
@@ -31,7 +31,7 @@ void UploadFilesClientCommand::execute()  {
 
     //reading data from server to get more instructions.
     dataRec = ICommand::io.read();
-    input::print(dataRec);
+    std::cout << dataRec;
 
     //getting file path from user of train CSV file.
     std::getline(std::cin, userInput);
@@ -42,8 +42,6 @@ void UploadFilesClientCommand::execute()  {
         ICommand::io.write(data);
         return;
     }
-
-
 
 }
 void UploadFilesClientCommand::setFileName(std::string name) {

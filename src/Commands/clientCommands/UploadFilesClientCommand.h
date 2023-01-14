@@ -4,8 +4,9 @@
 
 #ifndef A_OUT_UPLOADFILESCLIENTCOMMAND_H
 #define A_OUT_UPLOADFILESCLIENTCOMMAND_H
-
 #include "../ICommand.h"
+#include <string>
+#include "../../IO/DefaultIO.h"
 
 class UploadFilesClientCommand : public ICommand {
 public:

@@ -3,7 +3,7 @@
 #include "Client.h"
 
 
-Client::Client(int port_no, const char* ip_address, std::ostream& stream) : stream(stream){
+Client::Client(int port_no, const char* ip_address) {
     this->port_no = port_no;
     this->ip_address = ip_address;
     this->valid = true;
@@ -19,7 +19,7 @@ bool Client::initSocket() {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     //if there is any fail.
     if (sock < 0){
-        perror("Failed creating the client socket");
+        perror("failed creating the client socket");
         return false;
     }
     this->socketNum = sock;
@@ -74,10 +74,6 @@ void Client::closeSock() {
 
 char *Client::getBuffer() {
     return this->buffer;
-}
-
-std::ostream& Client::getStream() {
-    return this->stream;
 }
 
 bool Client::getValid() {

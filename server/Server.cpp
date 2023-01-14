@@ -4,7 +4,7 @@
 
 #include "Server.h"
 
-Server::Server(int port, std::ostream &stream) : stream(stream) {
+Server::Server(int port){
     // setting port:
     this->port = port;
     // initializing sockaddr_in:
@@ -22,18 +22,17 @@ bool Server::initServer() {
     this->socketId = socket(AF_INET, SOCK_STREAM, 0);
     if(socketId < 0) {
         // printing error to the stream and returning false.
-        input::print("failed to create a socket!", stream);
+        perror("failed to create a socket");
         return false;
     }
-    input::print("-------------Success creating socket!", stream);
+    std::cout << "-------------Success creating socket!" << std::endl;
     // binding the port information:
     if(bind(socketId, (struct sockaddr *) &sockaddrIn, sizeof(sockaddrIn)) < 0) {
         // printing error to the stream and returning false.
-        input::print("failed binding the port to the socket!", stream);
+        perror("failed binding the port to the socket");
         return false;
     }
-    input::print("-------------Success binding the port to the socket!", stream);
-
+    std::cout << "-------------Success binding the port to the socket!" << std::endl;
     return true;
 }
 
@@ -51,13 +50,11 @@ sockaddr_in Server::getSockaddrIn() {
     return this->sockaddrIn;
 }
 
-std::ostream &Server::getStream() {
-    return this->stream;
-}
 
 bool Server::listenServer(int n) {
     int t = listen(socketId, n);
     return t >= 0;
 }
+
 
 

@@ -19,8 +19,7 @@ private:
 
     std::string fileName;
     std::vector<VectorCSV> data;
-    std::ostream& stream;
-    
+
     /**
     * This function move data from csv file to a vector of VectorCSV struct.
     * we assume in this function that each line in the data build with 5 word,
@@ -40,7 +39,7 @@ public:
     /**
      * @param fileName string, path to csv file.
      */
-    explicit ReadCSV(std::string fileName, std::ostream& stream);
+    explicit ReadCSV(std::string fileName);
     /**
      * print on the screen the data member.
     * we assume that the data contain vector of 4 numbers.

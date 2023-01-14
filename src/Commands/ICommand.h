@@ -9,8 +9,6 @@
 #include <sstream>
 #include <fstream>
 #include "../IO/DefaultIO.h"
-
-
 #include <utility>
 
 class ICommand {
@@ -19,7 +17,6 @@ public:
     DefaultIO& io;
 
     ICommand(DefaultIO &io) : io(io) {
-        //this->description = std::move(description);
 
     }
     virtual ~ICommand() {

@@ -4,12 +4,14 @@
 
 #ifndef A_OUT_CLASSIFYDATACLIENTCOMMAND_H
 #define A_OUT_CLASSIFYDATACLIENTCOMMAND_H
-
 #include "../ICommand.h"
+#include <string>
+#include "../../IO/DefaultIO.h"
 
 class ClassifyDataClientCommand : public ICommand {
 public:
-    explicit ClassifyDataClientCommand(DefaultIO &io);
+    ClassifyDataClientCommand(DefaultIO &io);
+    ~ClassifyDataClientCommand() override;
     void execute() override;
 private:
 };

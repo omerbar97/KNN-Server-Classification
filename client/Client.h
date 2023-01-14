@@ -19,7 +19,6 @@ class Client {
 private:
     bool valid;
     const char* ip_address;
-    std::ostream& stream;
     int port_no;
     int socketNum;
     sockaddr_in sin;
@@ -45,7 +44,7 @@ public:
     * @param ip_address const char*
     * @param stream std::ostream &.
     */
-    Client(int port_no, const char* ip_address, std::ostream &stream);
+    Client(int port_no, const char* ip_address);
 
 
     /**
