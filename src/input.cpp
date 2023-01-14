@@ -188,3 +188,12 @@ char* input::strToChrArray(std::string s) {
     }
     return data;
 }
+
+bool input::checkFilePath(std::string filePath) {
+    std::fstream file(filePath, std::ios::in);
+    if(file.is_open()) {
+        return true;
+    }
+    return false;
+
+}

@@ -1,10 +1,10 @@
 //
 // Created by omer on 12/21/22.
 //
-#include "../calculate/input.h"
+#include "../src/input.h"
 #include <fstream>
 #include "Server.h"
-#include "../calculate/Algorithim/Knn.h"
+#include "../src/Algorithim/Knn.h"
 
 #define BUFFER_SIZE 4096
 

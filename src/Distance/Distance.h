@@ -19,7 +19,7 @@ protected:
     bool checkVectors(std::vector<double> v1, std::vector<double> v2);
 
     /**
-     * this function takes two vectors and for each element in the vector it calculate |x1 - x2|
+     * this function takes two vectors and for each element in the vector it src |x1 - x2|
      * and assign it to the result vector.
      * @param v1
      * @param v2

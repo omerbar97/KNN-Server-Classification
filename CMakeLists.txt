@@ -5,62 +5,62 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_executable(client.out
-        calculate/input.h
-        calculate/input.cpp
+        src/input.h
+        src/input.cpp
         client/Client.h
         client/Client.cpp
-        calculate/Distance/Distance.cpp
-        calculate/Distance/Distance.h
-        calculate/Distance/Euclidean.h
-        calculate/Distance/Euclidean.cpp
-        calculate/Distance/Minkowski.h
-        calculate/Distance/Minkowski.cpp
-        calculate/Distance/Canberra.h
-        calculate/Distance/Canberra.cpp
-        calculate/Distance/Chebyshev.cpp
-        calculate/Distance/Chebyshev.h
-        calculate/Distance/Manhattan.cpp
-        calculate/Distance/Manhattan.h
+        src/Distance/Distance.cpp
+        src/Distance/Distance.h
+        src/Distance/Euclidean.h
+        src/Distance/Euclidean.cpp
+        src/Distance/Minkowski.h
+        src/Distance/Minkowski.cpp
+        src/Distance/Canberra.h
+        src/Distance/Canberra.cpp
+        src/Distance/Chebyshev.cpp
+        src/Distance/Chebyshev.h
+        src/Distance/Manhattan.cpp
+        src/Distance/Manhattan.h
         client/clientMain.cpp
-        calculate/IO/StandardIO.cpp
-        calculate/IO/StandardIO.h
-        calculate/IO/DefaultIO.cpp
-        calculate/IO/DefaultIO.h
-        calculate/IO/SocketIO.cpp
-        calculate/IO/SocketIO.h
-        calculate/ICommand.cpp
-        calculate/ICommand.h)
+        src/IO/StandardIO.cpp
+        src/IO/StandardIO.h
+        src/IO/DefaultIO.cpp
+        src/IO/DefaultIO.h
+        src/IO/SocketIO.cpp
+        src/IO/SocketIO.h
+        src/Commands/ICommand.cpp
+        src/Commands/ICommand.h src/IO/FileIO.cpp src/IO/FileIO.h src/Commands/UploadFilesCommand.cpp src/Commands/UploadFilesCommand.h)
 
 add_executable(server.out
-        calculate/Distance/Distance.cpp
-        calculate/Distance/Distance.h
-        calculate/Distance/Euclidean.h
-        calculate/Distance/Euclidean.cpp
-        calculate/Distance/Minkowski.h
-        calculate/Distance/Minkowski.cpp
-        calculate/Distance/Canberra.h
-        calculate/Distance/Canberra.cpp
-        calculate/Distance/Chebyshev.cpp
-        calculate/Distance/Chebyshev.h
-        calculate/Distance/Manhattan.cpp
-        calculate/Distance/Manhattan.h
-        calculate/ReadCSV.cpp
-        calculate/ReadCSV.h
-        calculate/Algorithim/Select.cpp
-        calculate/Algorithim/Select.h
-        calculate/Algorithim/Knn.h
-        calculate/Algorithim/Knn.cpp
-        calculate/Algorithim/CSVStruct.h
-        calculate/input.cpp
-        calculate/input.h
+        src/Distance/Distance.cpp
+        src/Distance/Distance.h
+        src/Distance/Euclidean.h
+        src/Distance/Euclidean.cpp
+        src/Distance/Minkowski.h
+        src/Distance/Minkowski.cpp
+        src/Distance/Canberra.h
+        src/Distance/Canberra.cpp
+        src/Distance/Chebyshev.cpp
+        src/Distance/Chebyshev.h
+        src/Distance/Manhattan.cpp
+        src/Distance/Manhattan.h
+        src/ReadCSV.cpp
+        src/ReadCSV.h
+        src/Algorithim/Select.cpp
+        src/Algorithim/Select.h
+        src/Algorithim/Knn.h
+        src/Algorithim/Knn.cpp
+        src/Algorithim/CSVStruct.h
+        src/input.cpp
+        src/input.h
         server/Server.cpp
         server/Server.h
         server/serverMain.cpp
-        calculate/IO/StandardIO.cpp
-        calculate/IO/StandardIO.h
-        calculate/IO/DefaultIO.cpp
-        calculate/IO/DefaultIO.h
-        calculate/IO/SocketIO.cpp
-        calculate/IO/SocketIO.h
-        calculate/ICommand.cpp
-        calculate/ICommand.h)
+        src/IO/StandardIO.cpp
+        src/IO/StandardIO.h
+        src/IO/DefaultIO.cpp
+        src/IO/DefaultIO.h
+        src/IO/SocketIO.cpp
+        src/IO/SocketIO.h
+        src/Commands/ICommand.cpp
+        src/Commands/ICommand.h src/IO/FileIO.cpp src/IO/FileIO.h src/Commands/UploadFilesCommand.cpp src/Commands/UploadFilesCommand.h)

@@ -27,7 +27,7 @@ private:
 public:
 
     /**
-    * Constructor getting all the information to calculate the Knn algorithm.
+    * Constructor getting all the information to src the Knn algorithm.
     * @param vInput - std::vector<double>
     * @param vectors - std::vector<Vector>
     * @param distance - Distance

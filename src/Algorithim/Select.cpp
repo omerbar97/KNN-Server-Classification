@@ -5,7 +5,7 @@
 #include "Select.h"
 
 /**
- * constructor for class Select to calculate the K-Element in a std::Vector data structure.
+ * constructor for class Select to src the K-Element in a std::Vector data structure.
  * @param dVector - std::vector<DistanceVec>
  * @param kElement - int
  */
@@ -71,7 +71,7 @@ void Select::calculatePartition(int lowIndex, int highIndex) {
 }
 
 /**
- * public method to call to calculate.
+ * public method to call to src.
  */
 void Select::calculate() {
     calculatePartition(0, distanceVector.size() - 1);

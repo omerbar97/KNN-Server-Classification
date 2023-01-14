@@ -19,9 +19,7 @@ void ReadCSV::csvToData() {
             std::stringstream str(line);
             // getting the number until string appears
             while (std::getline(str, word, ',')) { // 1.5 3 4 5
-//                if (flag == 0) {
                 counter++;
-//                }
                 try {
                     d = std::stod(word);
                     id.push_back(d);
