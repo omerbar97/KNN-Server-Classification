@@ -2,16 +2,16 @@
 // Created by omer on 1/13/23.
 //
 
-#include "UploadFilesCommand.h"
+#include "UploadFilesServerCommand.h"
 
 #include <utility>
 
-UploadFilesCommand::UploadFilesCommand(DefaultIO &io) : ICommand(io) {
+UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io) : ICommand(io) {
     this->description = "1. upload an unclassified csv data file\n";
 
 }
 
-void UploadFilesCommand::execute() const {
+void UploadFilesServerCommand::execute() const {
     // all the logics to get user locally file for trainer and second file for classified.
     // getting the user first trained file locally on computer this function will be called from the server side.
     io.write("Please upload your local train CSV file.\n");
@@ -36,7 +36,7 @@ void UploadFilesCommand::execute() const {
     // uploading to the server...
 }
 
-bool UploadFilesCommand::uploadFile(std::string file) {
+bool UploadFilesServerCommand::uploadFile(std::string file) {
     // return true if upload succeed.
     std::string line;
     int counter = 0;

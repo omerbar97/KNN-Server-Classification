@@ -2,13 +2,13 @@
 // Created by omer on 1/13/23.
 //
 
-#ifndef A_OUT_UPLOADFILESCOMMAND_H
-#define A_OUT_UPLOADFILESCOMMAND_H
+#ifndef A_OUT_UPLOADFILESSERVERCOMMAND_H
+#define A_OUT_UPLOADFILESSERVERCOMMAND_H
 #include "../ICommand.cpp"
 #include <string>
 #include "../../IO/DefaultIO.h"
 
-class UploadFilesCommand : public ICommand {
+class UploadFilesServerCommand : public ICommand {
 private:
 
     bool uploadFile(std::string file);
@@ -16,9 +16,9 @@ private:
 
 public:
 
-    UploadFilesCommand(DefaultIO &io);
+    UploadFilesServerCommand(DefaultIO &io);
 
-    ~UploadFilesCommand();
+    ~UploadFilesServerCommand();
 
 
 
@@ -27,4 +27,4 @@ public:
 };
 
 
-#endif //A_OUT_UPLOADFILESCOMMAND_H
+#endif //A_OUT_UPLOADFILESSERVERCOMMAND_H
