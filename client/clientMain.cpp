@@ -104,7 +104,7 @@ int main(int argc, char *args[]) {
     //initializing  Client.
     Client client(port_no, ip_address);
     if(!client.getValid()) {
-        input::print("failed to initializing the client.", client.getStream());
+        input::print("failed to initializing the client.");
         exit(1);
     }
     //init SocketIO
@@ -121,7 +121,7 @@ int main(int argc, char *args[]) {
 
     //starting the connection with the server.
     //printing the options.
-    input::print(client.getBuffer(), client.getStream());
+    input::print(client.getBuffer());
 
     // input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
     // "<vector> <distance algorithm> <integer k>", client.getStream());
@@ -129,7 +129,6 @@ int main(int argc, char *args[]) {
     while (true) {
         std::getline(std::cin, userInput);
         index = userAskToClose(userInput);
-
         if(index == -1) {
             continue;
         }

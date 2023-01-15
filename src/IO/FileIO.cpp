@@ -6,7 +6,7 @@
 
 #include <utility>
 
-FileIO::FileIO(std::string filePath, std::fstream &stream, bool newLine) : stream(stream), filePath(std::move(filePath)){
+FileIO::FileIO(std::fstream &stream, bool newLine) : stream(stream) {
     this->newLine = newLine;
 }
 
