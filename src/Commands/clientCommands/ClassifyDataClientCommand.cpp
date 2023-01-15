@@ -31,3 +31,6 @@ ClassifyDataClientCommand::~ClassifyDataClientCommand() {
 
 }
 
+void ClassifyDataClientCommand::execute() {
+
+}

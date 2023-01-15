@@ -26,6 +26,8 @@ struct ServerData{
     Server* server;
 };
 
+static int globalClientId = 0;
+
 /**
  * checking if the server arguments are valid.
  * @param args - program argument.
@@ -226,7 +228,6 @@ void* handleConnection(void* data) {
     std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
     SocketIO io(clientSocket);
     UploadFilesServerCommand uploadFiles(io, *d->clientId);
-    UploadFilesServerCommand uploadFiles(io);
 
     while(true) {
         // sending the client the menu choice
@@ -354,6 +355,7 @@ int main(int argc, char *args[]) {
         ServerData *args = (ServerData*)malloc(sizeof(ServerData));
         args->clientSocket = (int*)malloc(sizeof(int));
         args->clientId = (int*)malloc(sizeof(int));
+        *(args->clientId) = globalClientId++;
         *args->clientSocket = clientSocket;
         args->server = mainServer;
         pthread_t tid;

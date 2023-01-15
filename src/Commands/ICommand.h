@@ -10,10 +10,11 @@
 #include <fstream>
 #include "../IO/DefaultIO.h"
 #include <utility>
-#include <sys/stat.h>
 #include "../IO/DefaultIO.h"
 #include "../IO/FileIO.h"
 #include <sys/types.h>
+#include <unistd.h>
+#include <cstdlib>
 
 class ICommand {
 public:

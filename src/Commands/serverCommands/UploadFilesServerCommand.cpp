@@ -18,11 +18,17 @@ void UploadFilesServerCommand::execute() {
     io.write("Please upload your local train CSV file.\n");
     // creating new folder for the client locally files.
     int status;
-    std::string dirPath = &"mkdir -p ../../../temporaryFiles/client-" [this->clientId];
-    status = system(dirPath.c_str());
+    if(std::atoi(io.read().c_str()) == -1) {
+        // error from client
+        return;
+    }
+    std::stringstream  dirPath;
+    dirPath << "mkdir -p ../../../temporaryFiles/client-" << this->clientId;
+    status = system(dirPath.str().c_str());
     if(status == -1) {
-        std::string error = &"failed creating temporary files for client number " [ this->clientId];
-        perror(error.c_str());
+        std::stringstream error;
+        error << "failed creating temporary files for client number " << this->clientId;
+        perror(error.str().c_str());
         // sending error to socket.
         io.write("-1");
         return;
@@ -52,13 +58,13 @@ void UploadFilesServerCommand::execute() {
 }
 
 bool UploadFilesServerCommand::uploadFile(std::string filePath) {
-    std::fstream trainedFile(filePath, std::ios::out);
-    FileIO fileToWrite(trainedFile, false);
-    if(trainedFile.is_open()) {
+    std::fstream File(filePath, std::ios::out);
+    FileIO fileToWrite(File, false);
+    if(File.is_open()) {
         while(true) {
             // uploading the file.
             std::string temp(io.read());
-            if(strcmp(temp.c_str(), "#")) {
+            if(temp.c_str()[0] == '\0') {
                 // end file token
                 break;
             }
@@ -68,7 +74,7 @@ bool UploadFilesServerCommand::uploadFile(std::string filePath) {
     else {
         return false;
     }
-    trainedFile.close();
+    File.close();
     return true;
 }
 
