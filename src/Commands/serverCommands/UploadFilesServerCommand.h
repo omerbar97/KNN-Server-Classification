@@ -10,13 +10,13 @@
 
 class UploadFilesServerCommand : public ICommand {
 private:
-
-    bool uploadFile(std::string file);
+    int clientId;
+    bool uploadFile(std::string filePath);
 
 
 public:
 
-    UploadFilesServerCommand(DefaultIO &io);
+    UploadFilesServerCommand(DefaultIO &io, int clientId);
 
     ~UploadFilesServerCommand() override;
 

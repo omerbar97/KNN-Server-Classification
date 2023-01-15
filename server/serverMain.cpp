@@ -22,6 +22,7 @@
 
 struct ServerData{
     int* clientSocket;
+    int* clientId;
     Server* server;
 };
 
@@ -208,18 +209,39 @@ void deleteCommands(ICommand** pCommand, int size) {
 
 void* handleConnection(void* data) {
     // handle all the client connection with the server
+    int fails = 0;
     char buffer[BUFFER_SIZE];
+    std::string menu = "1. uploading files to the server\n"
+                       "2. change algorithm settings\n"
+                       "3. classifying the data\n"
+                       "4. display result\n"
+                       "5. writing result to file\n"
+                       "8. ending connection.\n";
     char bufferToSend[BUFFER_SIZE];
     ServerData* d = (ServerData*)data;
     int clientSocket = *((int*)d->clientSocket);
     Server* server = d->server;
-    int readBytes, choice;
+    int readBytes, sendBytes,choice;
     std::cout << "###-------------Connected to client-------------###" << std::endl;
     std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
     SocketIO io(clientSocket);
+    UploadFilesServerCommand uploadFiles(io, *d->clientId);
     UploadFilesServerCommand uploadFiles(io);
 
     while(true) {
+        // sending the client the menu choice
+        strcpy(buffer, menu.c_str());
+        sendBytes = send(clientSocket, buffer, BUFFER_SIZE, 0);
+        if(sendBytes < 0) {
+            perror("failed sending menu to client");
+            fails++;
+            if(fails > 10) {
+                // max fails connection
+                perror("failed sending to client to many times");
+                break;
+            }
+            continue;
+        }
         // waiting to client.
         readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
         if(readBytes == 0) {
@@ -269,8 +291,10 @@ void* handleConnection(void* data) {
 
                 break;
         }
+        fails = 0;
     }
     free(d->clientSocket);
+    free(d->clientId);
     free(d);
     return NULL;
 }
@@ -329,6 +353,7 @@ int main(int argc, char *args[]) {
         }
         ServerData *args = (ServerData*)malloc(sizeof(ServerData));
         args->clientSocket = (int*)malloc(sizeof(int));
+        args->clientId = (int*)malloc(sizeof(int));
         *args->clientSocket = clientSocket;
         args->server = mainServer;
         pthread_t tid;

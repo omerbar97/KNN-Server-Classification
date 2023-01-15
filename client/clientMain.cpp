@@ -104,6 +104,7 @@ int main(int argc, char *args[]) {
     //initializing  Client.
     Client client(port_no, ip_address);
     if(!client.getValid()) {
+        input::print("failed to initializing the client.");
         printf("failed to initializing the client.\n");
 //        input::print("failed to initializing the client.", client.getStream());
         exit(1);
@@ -120,6 +121,9 @@ int main(int argc, char *args[]) {
 //    std::vector<ICommand> commands{option1, option2, option3, option4, option5};
     std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
 
+    //starting the connection with the server.
+    //printing the options.
+    input::print(client.getBuffer());
 //    //starting the connection with the server.
 //    //printing the options.
 //    printf("%s\n",client.readData());
@@ -133,7 +137,6 @@ int main(int argc, char *args[]) {
 
         std::getline(std::cin, userInput);
         index = userAskToClose(userInput);
-
         if(index == -1) {
             continue;
         }
