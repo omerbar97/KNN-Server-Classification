@@ -104,24 +104,25 @@ int main(int argc, char *args[]) {
     //initializing  Client.
     Client client(port_no, ip_address);
     if(!client.getValid()) {
-        input::print("failed to initializing the client.", client.getStream());
+        printf("failed to initializing the client.\n");
+//        input::print("failed to initializing the client.", client.getStream());
         exit(1);
     }
     //init SocketIO
     SocketIO socketIo(client.getsocketNum());
     //init list of the commands.
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
-//    ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
-//    ICommand *option3 = new ClassifyDataClientCommand(socketIo);
-//    ICommand *option4 = new DisplayClientCommand(socketIo);
-//    ICommand *option5 = new DownloadClientCommand(socketIo);
+    ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
+    ICommand *option3 = new ClassifyDataClientCommand(socketIo);
+    ICommand *option4 = new DisplayClientCommand(socketIo);
+    ICommand *option5 = new DownloadClientCommand(socketIo);
 
 //    std::vector<ICommand> commands{option1, option2, option3, option4, option5};
-//    std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
+    std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
 
     //starting the connection with the server.
     //printing the options.
-    input::print(client.getBuffer(), client.getStream());
+    printf("%s\n",client.readData());
 
     // input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
     // "<vector> <distance algorithm> <integer k>", client.getStream());
@@ -140,18 +141,8 @@ int main(int argc, char *args[]) {
         }
 
         //otherwise execute the correct option.
-//        commandVec[index]->execute();
-        switch(index){
-            case 1:
-                option1->execute();
-                break;
-        }
+        commandVec[index]->execute();
 
-        //otherwise, send the data to server.
-//        data = input::strToChrArray(userInput);
-//        client.sendData(data, BUFFER_SIZE);
-//        client.readData();
-//        input::print(client.getBuffer(), client.getStream());
     }
     return 0;
 }

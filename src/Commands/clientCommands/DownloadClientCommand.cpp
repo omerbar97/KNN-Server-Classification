@@ -4,6 +4,9 @@
 
 #include "DownloadClientCommand.h"
 
+DownloadClientCommand::DownloadClientCommand(DefaultIO &io) : ICommand(io) {
+
+}
 DownloadClientCommand::~DownloadClientCommand() {
 
 }

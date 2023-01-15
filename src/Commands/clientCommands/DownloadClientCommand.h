@@ -11,7 +11,7 @@
 
 class DownloadClientCommand : public ICommand {
 public:
-    DownloadClientCommand(DefaultIO &io);
+    explicit DownloadClientCommand(DefaultIO &io);
     ~DownloadClientCommand() override;
     void execute() override;
 private:
