@@ -218,6 +218,7 @@ void* handleConnection(void* data) {
     std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
     SocketIO io(clientSocket);
     UploadFilesServerCommand uploadFiles(io);
+
     while(true) {
         // waiting to client.
         readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
