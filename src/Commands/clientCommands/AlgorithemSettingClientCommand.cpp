@@ -26,13 +26,24 @@ void AlgorithemSettingClientCommand::execute()  {
     receiveData = io.read();
 
     //printing the format above that server sent.
-    input::print(receiveData);
+    printf("%s\n",receiveData.c_str());
 
-    //user send his asking.
+    //user send his asking with format "6 CHB".
     std::getline(std::cin, userInput);
     io.write(userInput);
 
-    //receive Data from server and printing.
+    //check if data are not valid
     receiveData = io.read();
-    input::print(receiveData);
+    try {
+        //it's in valid, print and return to main
+        if (atoi(receiveData.c_str()) == -1) {
+            printf("%s\n", receiveData.c_str());
+        }
+    }catch (std::invalid_argument &argument) {
+        //if file is correct continue to the main loop
+    }
+
+}
+AlgorithemSettingClientCommand::~AlgorithemSettingClientCommand() {
+
 }

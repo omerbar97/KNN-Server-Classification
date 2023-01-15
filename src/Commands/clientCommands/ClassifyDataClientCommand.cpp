@@ -14,7 +14,7 @@ ClassifyDataClientCommand::ClassifyDataClientCommand(DefaultIO &io) : ICommand(i
 void ClassifyDataClientCommand::ICommand::execute()  {
     std::string receiveData;
 
-    //send "2" to server for option-2(algorithm setting).
+    //send "3" to server for option-2(algorithm setting).
     io.write("3");
 
     //receive Data from server
@@ -23,12 +23,11 @@ void ClassifyDataClientCommand::ICommand::execute()  {
     //printing the format above that server sent.
     input::print(receiveData);
 
+
+
 }
 
 ClassifyDataClientCommand::~ClassifyDataClientCommand() {
 
 }
 
-void ClassifyDataClientCommand::execute() {
-
-}
