@@ -120,14 +120,17 @@ int main(int argc, char *args[]) {
 //    std::vector<ICommand> commands{option1, option2, option3, option4, option5};
     std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
 
-    //starting the connection with the server.
-    //printing the options.
-    printf("%s\n",client.readData());
+//    //starting the connection with the server.
+//    //printing the options.
+//    printf("%s\n",client.readData());
 
     // input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
     // "<vector> <distance algorithm> <integer k>", client.getStream());
     // looping and sending message from client to server until client send -1.
     while (true) {
+        //receive Data from server and printing the optiond..
+        printf("%s\n", client.readData());
+
         std::getline(std::cin, userInput);
         index = userAskToClose(userInput);
 

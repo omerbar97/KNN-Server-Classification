@@ -13,6 +13,7 @@ class AlgorithemSettingClientCommand : public ICommand {
 public:
     AlgorithemSettingClientCommand(DefaultIO &io);
     void execute() override;
+    ~AlgorithemSettingClientCommand() override;
 private:
 
 };
