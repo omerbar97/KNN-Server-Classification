@@ -36,3 +36,6 @@ void ClassifyDataClientCommand::execute() {
 
 }
 
+void ClassifyDataClientCommand::execute() {
+
+}
