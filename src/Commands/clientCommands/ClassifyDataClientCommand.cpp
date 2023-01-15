@@ -29,5 +29,10 @@ void ClassifyDataClientCommand::ICommand::execute()  {
 
 ClassifyDataClientCommand::~ClassifyDataClientCommand() {
 
+
+}
+
+void ClassifyDataClientCommand::execute() {
+
 }
 

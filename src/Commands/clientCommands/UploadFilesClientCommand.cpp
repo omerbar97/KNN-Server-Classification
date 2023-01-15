@@ -25,12 +25,13 @@ void UploadFilesClientCommand::execute()  {
 
     // if the file is not valid.
     if (!input::checkFilePath(userInput)) {
-        data = "invalid input!\n";
-        ICommand::io.write(data);
+        printf("invalid input!\n");
+        ICommand::io.write("-1");
         return;
     }
     //else file train file is valid, read line by line and send the data
     ReadCSV::executeLines(this,userInput);
+
 
 
     // simbole for end file

@@ -226,7 +226,6 @@ void* handleConnection(void* data) {
     std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
     SocketIO io(clientSocket);
     UploadFilesServerCommand uploadFiles(io, *d->clientId);
-    UploadFilesServerCommand uploadFiles(io);
 
     while(true) {
         // sending the client the menu choice

@@ -123,7 +123,7 @@ int main(int argc, char *args[]) {
 
     //starting the connection with the server.
     //printing the options.
-    input::print(client.getBuffer());
+//    input::print(client.getBuffer());
 //    //starting the connection with the server.
 //    //printing the options.
 //    printf("%s\n",client.readData());

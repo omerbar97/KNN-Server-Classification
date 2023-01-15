@@ -10,6 +10,11 @@ DisplayClientCommand::DisplayClientCommand(DefaultIO &io) : ICommand(io) {
 }
 
 DisplayClientCommand::~DisplayClientCommand() {
+
+
+}
+
+void DisplayClientCommand::execute() {
     std::string receiveData;
 
     //send "3" to server for option-2(algorithm setting).
@@ -21,10 +26,4 @@ DisplayClientCommand::~DisplayClientCommand() {
         printf("%s\n", receiveData.c_str());
         receiveData = io.read();
     }
-
-}
-
-void DisplayClientCommand::execute() {
-
-
 }
