@@ -8,6 +8,7 @@
 #include "../input.h"
 #include <sstream>
 #include <fstream>
+#include <iostream>
 #include "../IO/DefaultIO.h"
 #include <utility>
 #include "../IO/DefaultIO.h"
