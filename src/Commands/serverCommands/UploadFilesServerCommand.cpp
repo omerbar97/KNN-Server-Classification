@@ -64,7 +64,7 @@ bool UploadFilesServerCommand::uploadFile(std::string filePath) {
         while(true) {
             // uploading the file.
             std::string temp(io.read());
-            if(temp.c_str()[0] == '\0') {
+            if(temp.c_str()[0] == '#') {
                 // end file token
                 break;
             }
