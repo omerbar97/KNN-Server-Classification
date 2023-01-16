@@ -76,6 +76,8 @@ add_executable(server.out
         src/IO/SocketIO.cpp
         src/IO/SocketIO.h
         src/Commands/ICommand.h
+        src/Commands/CLI.cpp
+        src/Commands/CLI.h
         src/IO/FileIO.cpp
         src/IO/FileIO.h
         src/Commands/serverCommands/AlgorithemSettingServerCommand.h
