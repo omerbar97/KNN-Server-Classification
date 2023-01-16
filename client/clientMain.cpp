@@ -83,7 +83,10 @@ int userAskToClose(std::string str) {
     }
     return false;
 }
-
+void* runOption5(void * arg) {
+    static_cast<DownloadClientCommand*>(arg)->execute();
+    return nullptr;
+}
 
 
 int main(int argc, char *args[]) {
@@ -112,8 +115,9 @@ int main(int argc, char *args[]) {
     //init SocketIO
     SocketIO socketIo(client.getsocketNum());
     //init list of the commands.
+    DownloadClientCommand* pDownloadClientCommand = new DownloadClientCommand(socketIo);
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
-    ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
+    ICommand *option2 = pDownloadClientCommand;
     ICommand *option3 = new ClassifyDataClientCommand(socketIo);
     ICommand *option4 = new DisplayClientCommand(socketIo);
     ICommand *option5 = new DownloadClientCommand(socketIo);
@@ -144,6 +148,12 @@ int main(int argc, char *args[]) {
             //exit from the loop and close socket.
             client.closeSock();
             break;
+        }
+        if (index == 5) {
+            pthread_t tid;
+            void*(*func)(void *);
+            pthread_create(&tid, NULL, runOption5,(void*)&pDownloadClientCommand);
+            continue;
         }
 
         //otherwise execute the correct option.
