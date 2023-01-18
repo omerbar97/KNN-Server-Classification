@@ -2,10 +2,11 @@
 // Created by omer on 1/18/23.
 //
 
-#include "Algorithim/Knn.h"
 #ifndef A_OUT_DATASTRUCTS_H
 #define A_OUT_DATASTRUCTS_H
 #include <string>
+#include "Algorithim/Knn.h"
+#include "Algorithim/Knn.h"
 #include <vector>
 
 /**
@@ -32,8 +33,10 @@ struct VectorCSV {
 struct clientData{
     std::vector<VectorCSV> trainData = {}; // empty vector
     std::vector<std::vector<double>> testData = {}; // empty vector
+    std::vector<std::string> classifiedResult = {};
     int k = 5; // default value
     std::string metric = "EUC"; // default value;
+
 };
 
 
