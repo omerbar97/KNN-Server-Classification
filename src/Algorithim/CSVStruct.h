@@ -4,7 +4,8 @@
 
 #ifndef RUNNABLE_CSVSTRUCT_H
 #define RUNNABLE_CSVSTRUCT_H
-
+#include <string>
+#include <vector>
 /**
  * DistanceVec struct
  * double vData - store the distance between some vector v1 to some inputVector.

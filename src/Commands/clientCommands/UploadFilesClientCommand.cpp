@@ -16,7 +16,7 @@ void UploadFilesClientCommand::execute()  {
     // simbole for end file
     ICommand::io.write("1");
 
-    //reading data from server to get instructions.(train)
+    //reading data from server to get instructions.
     dataRec = ICommand::io.read();
     std::cout << dataRec;
 
@@ -25,7 +25,7 @@ void UploadFilesClientCommand::execute()  {
 
     // if the file is not valid.
     if (!input::checkFilePath(userInput)) {
-        std::cout << "invalid input!"<<std::endl;
+        printf("invalid input!\n");
         ICommand::io.write("-1");
         return;
     }
@@ -37,10 +37,11 @@ void UploadFilesClientCommand::execute()  {
     // simbole for end file
     ICommand::io.write("#");
 
-    if(atoi(io.read().c_str()) == -1) {
-        std::cout << "invalid input!"<<std::endl;
-        return;
-    }
+    //reading succes
+    dataRec = ICommand::io.read();
+    std::cout << dataRec;
+
+
     //reading data from server to get more instructions.
     dataRec = ICommand::io.read();
     std::cout << dataRec;
@@ -48,11 +49,12 @@ void UploadFilesClientCommand::execute()  {
     //getting file path from user of train CSV file.
     std::getline(std::cin, userInput);
 
+    ///check if its really lodadded.
 
     // if the file is not valid.
     if (!input::checkFilePath(userInput)) {
-        std::cout << "invalid input!"<<std::endl;
-        ICommand::io.write("-1");
+        data = "invalid input!\n";
+        ICommand::io.write(data);
         return;
     }
     //else file test file is valid, read line by line and send the data
@@ -61,9 +63,8 @@ void UploadFilesClientCommand::execute()  {
     // simbole for end file
     ICommand::io.write("#");
 
-    if(atoi(io.read().c_str()) == -1) {
-        std::cout << "invalid input!"<<std::endl;
-    }
+    dataRec = ICommand::io.read();
+    std::cout << dataRec;
 
 }
 void UploadFilesClientCommand::setFileName(std::string name) {

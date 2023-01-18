@@ -17,6 +17,7 @@
 #include "../src/IO/FileIO.h"
 #include "../src/IO/StandardIO.h"
 #include "../src/Commands/serverCommands/UploadFilesServerCommand.h"
+#include "../src/Commands/serverCommands/AlgorithemSettingServerCommand.h"
 
 #define BUFFER_SIZE 4096
 
@@ -218,7 +219,7 @@ void* handleConnection(void* data) {
                        "3. classifying the data\n"
                        "4. display result\n"
                        "5. writing result to file\n"
-                       "8. ending connection.\n";
+                       "8. ending connection.";
     char bufferToSend[BUFFER_SIZE];
     ServerData* d = (ServerData*)data;
     int clientSocket = *((int*)d->clientSocket);
@@ -228,6 +229,7 @@ void* handleConnection(void* data) {
     std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
     SocketIO io(clientSocket);
     UploadFilesServerCommand uploadFiles(io, *d->clientId);
+    AlgorithemSettingServerCommand algoSetting(io);
 
     while(true) {
         // sending the client the menu choice
@@ -277,8 +279,8 @@ void* handleConnection(void* data) {
                 uploadFiles.execute();
                 break;
             case 2:
-
-
+                algoSetting.execute();
+                break;
             case 3:
 
 

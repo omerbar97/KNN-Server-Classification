@@ -117,9 +117,9 @@ int main(int argc, char *args[]) {
     //init list of the commands.
     DownloadClientCommand* pDownloadClientCommand = new DownloadClientCommand(socketIo);
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
-    ICommand *option2 = pDownloadClientCommand;
+    ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
     ICommand *option3 = new ClassifyDataClientCommand(socketIo);
-    ICommand *option4 = new DisplayClientCommand(socketIo);
+    ICommand *option4 = pDownloadClientCommand;
     ICommand *option5 = new DownloadClientCommand(socketIo);
 
 //    std::vector<ICommand> commands{option1, option2, option3, option4, option5};
