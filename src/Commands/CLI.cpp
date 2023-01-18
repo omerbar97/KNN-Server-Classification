@@ -4,7 +4,13 @@
 #include "CLI.h"
 
 CLI* CLI::instance = NULL;
-
+std::string CLI::menu = "Welcome to the KNN Classifier Server. Please choose an option:\n"
+                        "1. upload an unclassified csv data file\n"
+                        "2. algorithm settings\n"
+                        "3. classify data\n"
+                        "4. display results\n"
+                        "5. download results\n"
+                        "8. exit";;
 std::mutex mtx;
 CLI::CLI(){
     // init commands
@@ -34,15 +40,8 @@ void *CLI::start(void *data) {
     int clientSocket = (*(ServerData*)data).clientSocket;
     clientData* p_Data = (clientData*)malloc(sizeof(clientData));
     // check if malloc works
-//    std::cout << p_Data->metric << " " <<  p_Data->k;
+    std::cout << p_Data->metric << " " <<  p_Data->k;
     free(data);
-
-    std::string menu = "1. uploading files to the server\n"
-                       "2. change algorithm settings\n"
-                       "3. classifying the data\n"
-                       "4. display result\n"
-                       "5. writing result to file\n"
-                       "8. ending connection.";
 
     int readBytes, sendBytes,choice, fails = 0;
     char buffer[BUFFER_SIZE];
@@ -91,6 +90,10 @@ void *CLI::start(void *data) {
             perror("failed receiving data from the client");
             continue;
         }
+        else if(strcmp(buffer, "-1") == 0) {
+            //invalid input from client, send again menu
+            continue;
+        }
         else {
             // client has 6 options:
             /**
@@ -129,6 +132,8 @@ void *CLI::start(void *data) {
         }
         fails = 0;
     }
+    // free the client memory data.
+    free(p_Data);
     return NULL;
 }
 

@@ -10,6 +10,7 @@
 #include "../src/input.h"
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
+#include "../src/IO/StandardIO.h"
 
 /**
  * This function check if char* is in a correct pattern of ip.
@@ -89,6 +90,7 @@ void* runOption5(void * arg) {
 
 int main(int argc, char *args[]) {
     std::string userInput;
+    StandardIO standardIo;
     int index;
     if(argc != 3 || !isPort(args[2]) || !isIp(args[1])) {
         // invalid argument input.
@@ -140,6 +142,8 @@ int main(int argc, char *args[]) {
         std::getline(std::cin, userInput);
         index = userAskToClose(userInput);
         if(index == -1) {
+            standardIo.write("invalid input!\n");
+            socketIo.write("-1"); // error
             continue;
         }
         if (index == 8) {

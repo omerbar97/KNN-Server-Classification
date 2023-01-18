@@ -21,6 +21,7 @@
 class CLI {
 private:
     static CLI* instance;
+    static std::string menu;
     CLI();
 
 public:
