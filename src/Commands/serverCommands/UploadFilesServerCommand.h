@@ -9,8 +9,9 @@
 #include <string>
 #include "../../IO/DefaultIO.h"
 #include "../../../src/Algorithim/CSVStruct.h"
+#include "ServerCommands.h"
 
-class UploadFilesServerCommand : public ICommand , CLI{
+class UploadFilesServerCommand : public ICommand, CLI{
 private:
     int clientId;
     bool uploadFile(std::string filePath);

@@ -11,7 +11,7 @@
 #include <map>
 #include "../CLI.h"
 
-UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io, int clientId) : ICommand(io) {
+UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io, int clientId) : ICommand(io){
 
     this->description = "1. upload an unclassified csv data file\n";
     this->clientId = clientId;
@@ -136,7 +136,6 @@ void UploadFilesServerCommand::execute() {
         //pushing lines to vector
         trainData.push_back(lineToVectorCSV(dataRec));
         dataRec = io.read();
-
     }
 
     // sending to client Upload succeed.
@@ -152,7 +151,7 @@ void UploadFilesServerCommand::execute() {
     dataRec = io.read();
     while (dataRec.compare("#")) {
         //pushing lines to vector
-        trainData.push_back(lineToVectorCSV(dataRec));
+        testData.push_back(lineToVectorTest(dataRec));
         dataRec = io.read();
 
     }

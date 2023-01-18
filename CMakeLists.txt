@@ -82,6 +82,8 @@ add_executable(server.out
         src/IO/FileIO.h
         src/Commands/serverCommands/AlgorithemSettingServerCommand.h
         src/Commands/serverCommands/AlgorithemSettingServerCommand.cpp
+        src/Commands/serverCommands/ServerCommands.cpp
+        src/Commands/serverCommands/ServerCommands.h
         src/Commands/serverCommands/ClassifyDataServerCommand.cpp
         src/Commands/serverCommands/ClassifyDataServerCommand.h
         src/Commands/serverCommands/DisplayServerCommand.cpp
