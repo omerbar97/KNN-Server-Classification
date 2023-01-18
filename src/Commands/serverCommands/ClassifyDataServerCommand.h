@@ -8,14 +8,15 @@
 #include "../ICommand.h"
 #include "../CLI.h"
 #include "../../IO/DefaultIO.h"
-#include "../../../src/Algorithim/CSVStruct.h"
 #include "ServerCommands.h"
-class ClassifyDataServerCommand : public ICommand , ServerCommands{
+class ClassifyDataServerCommand : public ICommand{
 
 public:
+
+    std::map<int, clientData> serverData;
     int clientId;
 
-    ClassifyDataServerCommand(DefaultIO &io, int clientId);
+    ClassifyDataServerCommand(DefaultIO &io);
 
     ~ClassifyDataServerCommand() override;
 

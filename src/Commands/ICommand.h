@@ -4,7 +4,7 @@
 
 #ifndef A_OUT_ICOMMAND_H
 #define A_OUT_ICOMMAND_H
-#include <string>
+#include "../Algorithim/Knn.h"
 #include "../input.h"
 #include <sstream>
 #include <fstream>
@@ -17,10 +17,12 @@
 #include <unistd.h>
 #include <cstdlib>
 
+
 class ICommand {
 public:
     std::string description;
     DefaultIO& io;
+    clientData * p_Data;
 
     ICommand(DefaultIO &io) : io(io) {
 

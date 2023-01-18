@@ -6,7 +6,7 @@
 #define A_OUT_SERVERCOMMANDS_H
 
 #include "../CLI.h"
-class ServerCommands: public CLI {
+class ServerCommands {
 
 public:
 

@@ -21,12 +21,6 @@
 
 #define BUFFER_SIZE 4096
 
-struct ServerData{
-    int* clientSocket;
-    int* clientId;
-    Server* server;
-};
-
 static int globalClientId = 0;
 
 /**
@@ -210,97 +204,93 @@ void deleteCommands(ICommand** pCommand, int size) {
 }
 
 
-void* handleConnection(void* data) {
-    // handle all the client connection with the server
-    int fails = 0;
-    char buffer[BUFFER_SIZE];
-    std::string menu = "1. uploading files to the server\n"
-                       "2. change algorithm settings\n"
-                       "3. classifying the data\n"
-                       "4. display result\n"
-                       "5. writing result to file\n"
-                       "8. ending connection.";
-    char bufferToSend[BUFFER_SIZE];
-    ServerData* d = (ServerData*)data;
-    int clientSocket = *((int*)d->clientSocket);
-    Server* server = d->server;
-    int readBytes, sendBytes,choice;
-    std::cout << "###-------------Connected to client-------------###" << std::endl;
-    std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
-    SocketIO io(clientSocket);
-    UploadFilesServerCommand uploadFiles(io, *d->clientId);
-    AlgorithemSettingServerCommand algoSetting(io);
-
-    while(true) {
-        // sending the client the menu choice
-        strcpy(buffer, menu.c_str());
-        sendBytes = send(clientSocket, buffer, BUFFER_SIZE, 0);
-        if(sendBytes < 0) {
-            perror("failed sending menu to client");
-            fails++;
-            if(fails > 10) {
-                // max fails connection
-                perror("failed sending to client to many times");
-                break;
-            }
-            continue;
-        }
-        // waiting to client.
-        readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-        if(readBytes == 0) {
-            // the socket with client was closed.
-            std::cout << "the connection with client_socket_number: " << clientSocket << "was closed" << std::endl;
-            break;
-        }
-        else if(readBytes < 0) {
-            perror("failed receiving data from the client");
-            continue;
-        }
-        else {
-            // client has 6 options:
-            /**
-             * 1. uploading files to the server
-             * 2. change algorithm settings
-             * 3. classifying the data
-             * 4. display result
-             * 5. writing result to file
-             * 8. ending connection.
-             */
-             std::cout << "Message from client: " << buffer << std::endl;
-            // calling the call command.
-        }
-        choice = std::atoi(&buffer[0]);
-        if(choice == 0) {
-            // invalid input.. print message and return to loop
-            continue;
-        }
-        switch (choice) {
-            case 1:
-                uploadFiles.execute();
-                break;
-            case 2:
-                algoSetting.execute();
-                break;
-            case 3:
-
-
-            case 4:
-
-
-            case 5:
-
-
-            case 8:
-
-                break;
-        }
-        fails = 0;
-    }
-    free(d->clientSocket);
-    free(d->clientId);
-    free(d);
-    return NULL;
-}
+//void* handleConnection(void* data) {
+//    // handle all the client connection with the server
+//    int fails = 0;
+//    char buffer[BUFFER_SIZE];
+//    std::string menu = "1. uploading files to the server\n"
+//                       "2. change algorithm settings\n"
+//                       "3. classifying the data\n"
+//                       "4. display result\n"
+//                       "5. writing result to file\n"
+//                       "8. ending connection.";
+//    char bufferToSend[BUFFER_SIZE];
+//    ServerData* d = (ServerData*)data;
+//    int clientSocket = *((int*)d->clientSocket);
+//    int readBytes, sendBytes,choice;
+//    std::cout << "###-------------Connected to client-------------###" << std::endl;
+//    std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
+//    SocketIO io(clientSocket);
+//    UploadFilesServerCommand uploadFiles(io, *d->clientId);
+//    AlgorithemSettingServerCommand algoSetting(io);
+//
+//    while(true) {
+//        // sending the client the menu choice
+//        strcpy(buffer, menu.c_str());
+//        sendBytes = send(clientSocket, buffer, BUFFER_SIZE, 0);
+//        if(sendBytes < 0) {
+//            perror("failed sending menu to client");
+//            fails++;
+//            if(fails > 10) {
+//                // max fails connection
+//                perror("failed sending to client to many times");
+//                break;
+//            }
+//            continue;
+//        }
+//        // waiting to client.
+//        readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
+//        if(readBytes == 0) {
+//            // the socket with client was closed.
+//            std::cout << "the connection with client_socket_number: " << clientSocket << "was closed" << std::endl;
+//            break;
+//        }
+//        else if(readBytes < 0) {
+//            perror("failed receiving data from the client");
+//            continue;
+//        }
+//        else {
+//            // client has 6 options:
+//            /**
+//             * 1. uploading files to the server
+//             * 2. change algorithm settings
+//             * 3. classifying the data
+//             * 4. display result
+//             * 5. writing result to file
+//             * 8. ending connection.
+//             */
+//             std::cout << "Message from client: " << buffer << std::endl;
+//            // calling the call command.
+//        }
+//        choice = std::atoi(&buffer[0]);
+//        if(choice == 0) {
+//            // invalid input.. print message and return to loop
+//            continue;
+//        }
+//        switch (choice) {
+//            case 1:
+//                uploadFiles.execute();
+//                break;
+//            case 2:
+//                algoSetting.execute();
+//                break;
+//            case 3:
+//
+//
+//            case 4:
+//
+//
+//            case 5:
+//
+//
+//            case 8:
+//
+//                break;
+//        }
+//        fails = 0;
+//    }
+//    return NULL;
+//}
 
 int main(int argc, char *args[]) {
 
@@ -324,7 +314,6 @@ int main(int argc, char *args[]) {
     int port = std::atoi(args[2]);
 
     // creating the server instance:
-    Server tcpServer(port);
     // ICommand[] *commands = {AlgorithemSettingCommand() , ClassifyDataCommand(SocketIO())} ;
     Server* mainServer = new Server(port);
 
@@ -347,6 +336,9 @@ int main(int argc, char *args[]) {
         perror("failed listening to the socket");
         exit(1);
     }
+
+    // creating CLI class
+    CLI cli = CLI::getInstance(); // getting the singltone instance. allocated in the heap.
     while(true) {
         clientSocket = accept(mainServer->getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
         if(clientSocket < 0) {
@@ -355,14 +347,18 @@ int main(int argc, char *args[]) {
             continue;
         }
         ServerData *args = (ServerData*)malloc(sizeof(ServerData));
-        args->clientSocket = (int*)malloc(sizeof(int));
-        args->clientId = (int*)malloc(sizeof(int));
-        *(args->clientId) = globalClientId++;
-        *args->clientSocket = clientSocket;
-        args->server = mainServer;
+        // need to check mallocs
+
+        args->clientId = globalClientId++;
+        args->clientSocket = clientSocket;
+        args->data;
+
         pthread_t tid;
-        pthread_create(&tid, NULL, handleConnection, (void*)args);
+        pthread_create(&tid, NULL, CLI::start, (void*)args);
     }
+    // deleting resources:
+    delete(mainServer);
+    CLI::CliDelete();
     mainServer->closeServer();
     return 0;
 }

@@ -1,10 +1,9 @@
 //
 // Created by omerb on 02/12/2022.
 //
-#include "Knn.h"
 #ifndef RUNNABLE_SELECT_H
 #define RUNNABLE_SELECT_H
-
+#include "../DataStructs.h"
 
 class Select {
 

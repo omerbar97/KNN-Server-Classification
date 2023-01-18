@@ -18,6 +18,12 @@ Knn::Knn(std::vector<double> vInput,std::vector<VectorCSV> vectors, Distance* di
     calculate();
 }
 
+Knn::Knn() {
+    // default constructor with default values
+    setK(5);
+    setDistance(new Euclidean());
+}
+
 /**
  * Getting only the vectorCSV format, won't initializing anything else.
  * @param vectors - std::vector<VectorCSV>
@@ -146,5 +152,7 @@ void Knn::calculate() {
         knnClassified = itMax->first;
     }
 }
+
+
 
 

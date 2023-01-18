@@ -1,16 +1,15 @@
 //
 // Created by oem on 1/14/23.
 //
-#include <string>
-#include <sstream>
-#include <sstream>
-#include "AlgorithemSettingServerCommand.h"
-AlgorithemSettingServerCommand::AlgorithemSettingServerCommand(DefaultIO &io): ICommand(io), ServerCommands(){
-    this->description = "2. algorithm setting\n";
-}
 
-AlgorithemSettingServerCommand::~AlgorithemSettingServerCommand() {
-    
+#include "AlgorithemSettingServerCommand.h"
+
+
+
+AlgorithemSettingServerCommand::AlgorithemSettingServerCommand(DefaultIO &io, int k) : ICommand(io){
+    this->description = "2. algorithm setting\n";
+    this->k = k;
+    this->metric = "EUC";
 }
 
 
@@ -106,3 +105,8 @@ void AlgorithemSettingServerCommand::execute() {
     // close the program
 
 }
+
+AlgorithemSettingServerCommand::~AlgorithemSettingServerCommand() {
+
+}
+

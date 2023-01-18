@@ -1,11 +1,13 @@
 //
-// Created by omerb on 02/12/2022.
+// Created by omer on 1/18/23.
 //
 
-#ifndef RUNNABLE_CSVSTRUCT_H
-#define RUNNABLE_CSVSTRUCT_H
+#include "Algorithim/Knn.h"
+#ifndef A_OUT_DATASTRUCTS_H
+#define A_OUT_DATASTRUCTS_H
 #include <string>
 #include <vector>
+
 /**
  * DistanceVec struct
  * double vData - store the distance between some vector v1 to some inputVector.
@@ -27,4 +29,19 @@ struct VectorCSV {
 };
 
 
-#endif //RUNNABLE_CSVSTRUCT_H
+struct clientData{
+    std::vector<VectorCSV> trainData = {}; // empty vector
+    std::vector<std::vector<double>> testData = {}; // empty vector
+    int k = 5; // default value
+    std::string metric = "EUC"; // default value;
+};
+
+
+struct ServerData{
+    int clientSocket;
+    int clientId;
+    clientData data;
+};
+
+#endif //A_OUT_DATASTRUCTS_H
+

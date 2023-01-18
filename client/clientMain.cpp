@@ -1,7 +1,5 @@
 #include "Client.h"
-#include <fstream>
 #include <iostream>
-//#include "../calculate/input.h"
 #include "../src/input.h"
 #include "../src/Commands/clientCommands/AlgorithemSettingClientCommand.h"
 #include "../src/Commands/clientCommands/ClassifyDataClientCommand.h"

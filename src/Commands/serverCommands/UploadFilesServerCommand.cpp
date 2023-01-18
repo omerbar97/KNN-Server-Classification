@@ -4,17 +4,11 @@
 
 #include "UploadFilesServerCommand.h"
 
-#include <sstream>
-#include <string>
-#include <utility>
-#include <iostream>
-#include <map>
-#include "../CLI.h"
 
-UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io, int clientId) : ICommand(io){
+
+UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io) : ICommand(io){
 
     this->description = "1. upload an unclassified csv data file\n";
-    this->clientId = clientId;
     //init this client in the map
 //    std::pair<int, clientData> c;
 //    clientData client;
@@ -159,39 +153,33 @@ void UploadFilesServerCommand::execute() {
     std::pair<int, clientData> c;
     clientData client;
 
-    client.testData = testData;
-    client.trainData = trainData;
-    c.first = clientId;
-    c.second = client;
-    this->data.insert(c);
+    this->p_Data->testData = testData;
+    this->p_Data->trainData = trainData;
 
     io.write("Upload Succeed\n");
 
-
-
-
 }
 
-bool UploadFilesServerCommand::uploadFile(std::string filePath) {
-    std::fstream File(filePath, std::ios::out);
-    FileIO fileToWrite(File, false);
-    if(File.is_open()) {
-        while(true) {
-            // uploading the file.
-            std::string temp(io.read());
-            if(temp.c_str()[0] == '\0') {
-                // end file token
-                break;
-            }
-            fileToWrite.write(temp);
-        }
-    }
-    else {
-        return false;
-    }
-    File.close();
-    return true;
-}
+//bool UploadFilesServerCommand::uploadFile(std::string filePath) {
+//    std::fstream File(filePath, std::ios::out);
+//    FileIO fileToWrite(File, false);
+//    if(File.is_open()) {
+//        while(true) {
+//            // uploading the file.
+//            std::string temp(io.read());
+//            if(temp.c_str()[0] == '\0') {
+//                // end file token
+//                break;
+//            }
+//            fileToWrite.write(temp);
+//        }
+//    }
+//    else {
+//        return false;
+//    }
+//    File.close();
+//    return true;
+//}
 
 
 UploadFilesServerCommand::~UploadFilesServerCommand() {

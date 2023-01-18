@@ -8,18 +8,21 @@
 #include "../CLI.h"
 #include <string>
 #include "../../IO/DefaultIO.h"
-#include "../../../src/Algorithim/CSVStruct.h"
 #include "ServerCommands.h"
+#include <sstream>
+#include <string>
+#include <utility>
+#include <iostream>
+#include <map>
+#include "../CLI.h"
 
-class UploadFilesServerCommand : public ICommand, CLI{
+class UploadFilesServerCommand : public ICommand{
 private:
-    int clientId;
-    bool uploadFile(std::string filePath);
 
 
 public:
 
-    UploadFilesServerCommand(DefaultIO &io, int clientId);
+    UploadFilesServerCommand(DefaultIO &io);
 
     ~UploadFilesServerCommand() override;
 
