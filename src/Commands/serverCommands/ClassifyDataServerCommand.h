@@ -8,7 +8,8 @@
 #include "../ICommand.h"
 #include "../CLI.h"
 #include "../../IO/DefaultIO.h"
-#include "ServerCommands.h"
+#include <map>
+
 class ClassifyDataServerCommand : public ICommand{
 
 public:

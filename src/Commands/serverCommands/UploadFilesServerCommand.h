@@ -5,7 +5,6 @@
 #ifndef A_OUT_UPLOADFILESSERVERCOMMAND_H
 #define A_OUT_UPLOADFILESSERVERCOMMAND_H
 #include "../ICommand.h"
-#include "../CLI.h"
 #include <string>
 #include "../../IO/DefaultIO.h"
 #include "ServerCommands.h"
@@ -14,7 +13,7 @@
 #include <utility>
 #include <iostream>
 #include <map>
-#include "../CLI.h"
+
 
 class UploadFilesServerCommand : public ICommand{
 private:

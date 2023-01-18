@@ -4,8 +4,8 @@
 
 #ifndef A_OUT_ICOMMAND_H
 #define A_OUT_ICOMMAND_H
-#include "../Algorithim/Knn.h"
 #include "../input.h"
+#include "../DataStructs.h"
 #include <sstream>
 #include <fstream>
 #include <iostream>

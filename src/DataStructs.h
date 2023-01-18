@@ -5,8 +5,6 @@
 #ifndef A_OUT_DATASTRUCTS_H
 #define A_OUT_DATASTRUCTS_H
 #include <string>
-#include "Algorithim/Knn.h"
-#include "Algorithim/Knn.h"
 #include <vector>
 
 /**

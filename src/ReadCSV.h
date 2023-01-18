@@ -45,7 +45,7 @@ public:
      * This function get a command object and execute each line.
      * @param command
      */
-    void executeLines(ICommand *command, const std::string &name);
+    static void executeLines(ICommand *command, const std::string &name);
 
 };
 
