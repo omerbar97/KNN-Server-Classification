@@ -34,7 +34,7 @@ void *CLI::start(void *data) {
     int clientSocket = (*(ServerData*)data).clientSocket;
     clientData* p_Data = (clientData*)malloc(sizeof(clientData));
     // check if malloc works
-    std::cout << p_Data->metric << " " <<  p_Data->k;
+//    std::cout << p_Data->metric << " " <<  p_Data->k;
     free(data);
 
     std::string menu = "1. uploading files to the server\n"
@@ -62,6 +62,7 @@ void *CLI::start(void *data) {
     std::vector<ICommand*> iCommandsVec;
     iCommandsVec.push_back(&uploadFiles);
     iCommandsVec.push_back(&algoSetting);
+    iCommandsVec.push_back(&classify);
 
     instance->serverData.insert({clientId, p_Data});
 

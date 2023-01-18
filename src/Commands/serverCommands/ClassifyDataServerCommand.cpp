@@ -20,7 +20,7 @@ void ClassifyDataServerCommand::execute() {
 //        return;
 //    }
     //we found in data;
-    if(iterator->second.testData.empty() || iterator->second.trainData.empty()) {
+    if(this->p_Data->testData.empty() || this->p_Data->trainData.empty()) {
         io.write("please upload data\n");
         return;
     }
