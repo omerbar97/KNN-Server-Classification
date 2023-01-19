@@ -34,14 +34,9 @@ void AlgorithemSettingClientCommand::execute()  {
 
     //check if data are not valid
     receiveData = io.read();
-    try {
-        //it's in valid, print and return to main
-        if (atoi(receiveData.c_str()) == -1) {
-            printf("%s\n", receiveData.c_str());
-        }
-    }catch (std::invalid_argument &argument) {
-        //if file is correct continue to the main loop
-    }
+    std::cout << receiveData;
+
+
 
 }
 AlgorithemSettingClientCommand::~AlgorithemSettingClientCommand() {

@@ -16,8 +16,6 @@ private:
     int tokenize(std::string const &str, const char delim,std::vector<std::string> &out);
 
 public:
-    int k;
-    std::string metric;
     AlgorithemSettingServerCommand(DefaultIO &io, int k);
 
     ~AlgorithemSettingServerCommand() override;
