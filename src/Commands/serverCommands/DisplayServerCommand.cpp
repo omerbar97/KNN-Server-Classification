@@ -30,12 +30,13 @@ void DisplayServerCommand::execute() {
         io.write(message.str());
         return;
     }
+    io.write("1");
 
     //otherwise send data to print by cline line by line
     size_t classifiedDataSize = this->p_Data->classifiedResult.size();
     for (int i = 0; i < classifiedDataSize; ++i) {
         message.str("");
-        message << i + 1 << this->p_Data->classifiedResult[i] << std::endl;
+        message << i + 1 << " " << this->p_Data->classifiedResult[i].c_str() << std::endl;
         io.write(message.str());
     }
     //symbol of end text

@@ -58,3 +58,8 @@ void DownloadClientCommand::execute() {
     }
 }
 
+void* DownloadClientCommand::executePath(void *arg) {
+    execute();
+}
+
+

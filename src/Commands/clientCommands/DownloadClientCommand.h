@@ -14,6 +14,7 @@ public:
     explicit DownloadClientCommand(DefaultIO &io);
     ~DownloadClientCommand() override;
     void execute() override;
+    void*executePath(void * arg);
 private:
 
 };
