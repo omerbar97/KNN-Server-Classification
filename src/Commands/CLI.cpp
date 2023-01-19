@@ -38,14 +38,16 @@ void *CLI::start(void *data) {
     // 3.clientData strcuture
 
     // cast the data to serverData type
-    int clientId = (*(ServerData*)data).clientId;
-    int clientSocket = (*(ServerData*)data).clientSocket;
-    clientData* p_Data = (clientData*)malloc(sizeof(clientData));
+    int clientId = *(*(ServerData*)data).clientId;
+    int clientSocket = *(*(ServerData*)data).clientSocket;
+    auto* p_Data = (clientData*)malloc(sizeof(clientData));
     //init p_Data
     initClientData(p_Data, clientId);
 
 
     // check if malloc works
+    free((*(ServerData*)data).clientId);
+    free((*(ServerData*)data).clientSocket);
     free(data);
 
     int readBytes, sendBytes,choice, fails = 0;
@@ -54,28 +56,28 @@ void *CLI::start(void *data) {
 
     // init io and commands:
     SocketIO io(clientSocket);
-    UploadFilesServerCommand uploadFiles(io);
-    AlgorithemSettingServerCommand algoSetting(io, 5);
-    ClassifyDataServerCommand classify(io);
-    DisplayServerCommand display(io);
-    DownloadServerCommand download(io);
-    EndingConnection exit(io);
+    UploadFilesServerCommand* uploadFiles = new UploadFilesServerCommand(io);
+    AlgorithemSettingServerCommand* algoSetting = new AlgorithemSettingServerCommand(io, 5);
+    ClassifyDataServerCommand* classify = new ClassifyDataServerCommand(io);
+    DisplayServerCommand* display = new DisplayServerCommand(io);
+    DownloadServerCommand* download = new DownloadServerCommand(io);
+    EndingConnection* exit = new EndingConnection(io);
 
     // binding the client data with the current thread that handle the client.
-    uploadFiles.p_Data = p_Data;
-    algoSetting.p_Data = p_Data;
-    classify.p_Data = p_Data;
-    display.p_Data = p_Data;
-    download.p_Data = p_Data;
-    exit.p_Data = p_Data;
+    (*(uploadFiles)).p_Data = p_Data;
+    (*(algoSetting)).p_Data = p_Data;
+    (*(classify)).p_Data = p_Data;
+    (*(display)).p_Data = p_Data;
+    (*(download)).p_Data = p_Data;
+    (*(exit)).p_Data = p_Data;
 
     std::vector<ICommand*> iCommandsVec;
-    iCommandsVec.push_back(&uploadFiles); // 0
-    iCommandsVec.push_back(&algoSetting); // 1
-    iCommandsVec.push_back(&classify); // 2
-    iCommandsVec.push_back(&display); // 3
-    iCommandsVec.push_back(&download); // 4
-    iCommandsVec.push_back(&exit); // 5
+    iCommandsVec.push_back(uploadFiles); // 0
+    iCommandsVec.push_back(algoSetting); // 1
+    iCommandsVec.push_back(classify); // 2
+    iCommandsVec.push_back(display); // 3
+    iCommandsVec.push_back(download); // 4
+    iCommandsVec.push_back(exit); // 5
 
     std::stringstream menu;
     menu << welcomeMessage;
@@ -137,6 +139,9 @@ void *CLI::start(void *data) {
     }
     // free the client memory data.
     free(p_Data);
+    for(auto & i : iCommandsVec) {
+        delete(i);
+    }
     return NULL;
 }
 

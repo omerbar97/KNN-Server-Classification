@@ -18,7 +18,8 @@ void DownloadClientCommand::execute() {
     io.write("5");
 
     //if ithere is problem with passsing the data
-    if (strcmp(io.read().c_str(), "-1") == 0) {
+    std::string clientId = io.read();
+    if (strcmp(clientId.c_str(), "-1") == 0) {
         std::cout << io.read(); // reading the error message.
         return;
     }
@@ -31,7 +32,7 @@ void DownloadClientCommand::execute() {
         if(s.st_mode & S_IFDIR)
         {
             //it's a directory
-            fileName << userInput << "classifyResultsClientNumber-" << this->p_Data->clientId <<".txt";
+            fileName << userInput << "classifyResultsClientNumber-" << clientId << ".txt";
         }
         else if(s.st_mode & S_IFREG)
         {
@@ -45,6 +46,7 @@ void DownloadClientCommand::execute() {
         return;
     }
     // opening new thread to download the file.
+    io.write("1"); // able to download.
     pthread_t tid;
     DownloadFile args = {this->io, NULL, fileName.str()};
     pthread_create(&tid, NULL, newThreadDownload, (void*)&args);
@@ -60,10 +62,13 @@ void *DownloadClientCommand::newThreadDownload(void *args) {
 
     //loop over the file until got the sign #
     receiveData = temp->io.read();
-    while(!receiveData.compare("#")) {
-        fileResult.write(receiveData);
-        receiveData = temp->io.read();
+    if(file.is_open()) {
+        while(!receiveData.compare("#")) {
+            fileResult.write(receiveData);
+            receiveData = temp->io.read();
+        }
     }
+    file.close();
 }
 
 

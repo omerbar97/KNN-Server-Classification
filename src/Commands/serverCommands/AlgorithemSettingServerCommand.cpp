@@ -28,11 +28,6 @@ int AlgorithemSettingServerCommand::tokenize(std::string const &str, const char 
             if (k == 0) {
                 result = 1;
             }
-//            try {
-//                k = std::stoi(s.c_str());
-//            }catch (std::invalid_argument a) {
-//                result = 1;
-//            }
         }
         if (counter == 2) {
             if(s == "MIN") {
@@ -69,16 +64,17 @@ void AlgorithemSettingServerCommand::execute() {
     //server send the current parameters
     std::string message;
     std::stringstream mess;
-    mess << "The current KNN parameters are: K = "<< this->p_Data->k << ", distance metric = " << this->p_Data->metric;
+    mess << "The current KNN parameters are: K = " << this->p_Data->k << ", distance metric = " << this->p_Data->metric;
     io.write(mess.str());
 
+    std::string enter;
     std::string parameters;
-    parameters = io.read();
-
-    //if user want the same parameters return
-    if (parameters == "\n") {
+    enter = io.read();
+    if(enter.compare("#") == 0) {
+        // no need to change settings
         return;
     }
+    parameters = io.read();
 
     //if user want to change parameters
 
@@ -102,12 +98,10 @@ void AlgorithemSettingServerCommand::execute() {
             io.write("Invalid value for metric\n");
             return;
         }
-        if(check == 4 ) {
-            io.write("Incorrect format![k metric].\n");
-            return;
-        }
+        io.write("Incorrect format![k metric].\n");
+        return;
     }
-    //now we sure that the parameters are valid so here we after updaiting the parameter.
+    //now we sure that the parameters are valid so here we after update the parameter.
     mess.str("");
     mess << "Algorithm setting changed: K = "<< this->p_Data->k << ", distance metric = " << this->p_Data->metric<<std::endl;
     io.write(mess.str());

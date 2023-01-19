@@ -151,7 +151,7 @@ int main(int argc, char *args[]) {
             //exit from the loop and close socket.
             socketIo.write("8");
             client.closeSock();
-            return 1;
+            break;
         }
 //        if (index == 5) {
 //            pthread_t tid;

@@ -31,6 +31,9 @@ void DownloadServerCommand::execute(){
         io.write(message.str());
         return;
     }
+    std::stringstream temp;
+    temp << this->p_Data->clientId;
+    io.write(temp.str()); // able to download
 
     std::string localPath = "please specify locally file path to download result:\n";
     io.write(localPath);
@@ -41,6 +44,7 @@ void DownloadServerCommand::execute(){
         return;
     }
     // else opening new thread and downloading the file
+
     pthread_t tid;
     DownloadFile args = {this->io, this->p_Data};
     pthread_create(&tid, NULL, newThreadDownload, (void*)&args);

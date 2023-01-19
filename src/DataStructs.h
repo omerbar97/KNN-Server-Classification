@@ -41,9 +41,9 @@ struct clientData{
 
 
 struct ServerData{
-    int clientSocket;
-    int clientId;
-    clientData data;
+    int* clientSocket;
+    int* clientId;
+    clientData* data;
 };
 
 struct DownloadFile {

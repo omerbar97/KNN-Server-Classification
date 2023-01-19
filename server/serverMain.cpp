@@ -330,7 +330,7 @@ int main(int argc, char *args[]) {
     std::cout << "-------------Server Socket number: " << mainServer->getSocketId() << std::endl;
     std::cout << "-------------Server Port number: " << mainServer->getSockaddrIn().sin_port << std::endl;
 
-    if(!mainServer->listenServer(5)){
+    if(!mainServer->listenServer(10)){
         perror("failed listening to the socket");
         exit(1);
     }
@@ -344,14 +344,17 @@ int main(int argc, char *args[]) {
             // connecting to other clients.
             continue;
         }
-        ServerData *args = (ServerData*)malloc(sizeof(ServerData));
-        // need to check mallocs
-
-        args->clientId = globalClientId++;
-        args->clientSocket = clientSocket;
+        auto *arguments = (ServerData*)malloc(sizeof(ServerData));
+        if(args == nullptr) {
+            continue;
+        }
+        arguments->clientId = (int*)malloc(sizeof(int));
+        arguments->clientSocket = (int*)malloc(sizeof(int));
+        *(arguments->clientId) = globalClientId++;
+        *(arguments->clientSocket) = clientSocket;
 
         pthread_t tid;
-        pthread_create(&tid, NULL, CLI::start, (void*)args);
+        pthread_create(&tid, NULL, CLI::start, (void*)arguments);
     }
     // deleting resources:
     delete(mainServer);

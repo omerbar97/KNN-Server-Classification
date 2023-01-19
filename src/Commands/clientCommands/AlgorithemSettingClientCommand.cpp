@@ -26,10 +26,15 @@ void AlgorithemSettingClientCommand::execute()  {
     receiveData = io.read();
 
     //printing the format above that server sent.
-    printf("%s\n",receiveData.c_str());
+    std::cout << receiveData << std::endl;
 
     //user send his asking with format "6 CHB".
     std::getline(std::cin, userInput);
+    if(userInput.compare("\n")) {
+        io.write("#"); // no need to replace
+        return;
+    }
+    io.write("$"); // need to replace
     io.write(userInput);
 
     //check if data are not valid
