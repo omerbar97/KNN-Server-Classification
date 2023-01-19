@@ -326,8 +326,6 @@ int main(int argc, char *args[]) {
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
     int clientSocket;
-    int readBytes;
-    int sendBytes;
 
     std::cout << "-------------Server Socket number: " << mainServer->getSocketId() << std::endl;
     std::cout << "-------------Server Port number: " << mainServer->getSockaddrIn().sin_port << std::endl;

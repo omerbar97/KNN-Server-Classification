@@ -121,7 +121,6 @@ int main(int argc, char *args[]) {
     ICommand *option4 = pDownloadClientCommand;
     ICommand *option5 = new DownloadClientCommand(socketIo);
 
-//    std::vector<ICommand> commands{option1, option2, option3, option4, option5};
     std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
 
     //starting the connection with the server.
