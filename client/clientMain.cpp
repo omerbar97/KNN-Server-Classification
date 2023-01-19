@@ -81,9 +81,11 @@ int userAskToClose(std::string str) {
         return false;
     }
 }
-void* runOption5(void * arg) {
-    static_cast<DownloadClientCommand*>(arg)->execute();
-    return nullptr;
+void* runOption5(void *arg) {
+    auto* temp = (DownloadFile*)arg;
+    auto* pDownload = new DownloadClientCommand(temp->io);
+    pDownload->execute();
+    return NULL;
 }
 
 
@@ -154,8 +156,8 @@ int main(int argc, char *args[]) {
         }
         if (index == 5) {
             pthread_t tid;
-            void*(*func)(void *);
-            pthread_create(&tid, NULL, runOption5,(void*)&pDownloadClientCommand);
+            DownloadFile temp = {socketIo};
+            pthread_create(&tid, NULL, runOption5,(void*)&temp);
             continue;
         }
         //otherwise execute the correct option.

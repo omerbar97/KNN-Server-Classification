@@ -46,13 +46,11 @@ void *CLI::start(void *data) {
 
 
     // check if malloc works
-    std::cout << p_Data->metric << " " <<  p_Data->k;
     free(data);
 
     int readBytes, sendBytes,choice, fails = 0;
     char buffer[BUFFER_SIZE];
-    std::cout << "###-------------Connected to client-------------###" << std::endl;
-    std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
+    std::cout << "############ Connected to client Socket Number: " << clientSocket <<  " ############" << std::endl;
 
     // init io and commands:
     SocketIO io(clientSocket);
@@ -131,7 +129,7 @@ void *CLI::start(void *data) {
         choice = std::atoi(&buffer[0]);
 
         //going to the correct position in the vector
-        if(choice >= 1 && choice <= 4) {
+        if(choice >= 1 && choice <= 5) {
             iCommandsVec[choice - 1]->execute();
         }
         fails = 0;

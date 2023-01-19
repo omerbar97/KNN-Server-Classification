@@ -6,6 +6,7 @@
 #define A_OUT_DATASTRUCTS_H
 #include <string>
 #include <vector>
+#include "IO/SocketIO.h"
 
 /**
  * DistanceVec struct
@@ -43,6 +44,10 @@ struct ServerData{
     int clientSocket;
     int clientId;
     clientData data;
+};
+
+struct DownloadFile {
+    SocketIO &io;
 };
 
 #endif //A_OUT_DATASTRUCTS_H

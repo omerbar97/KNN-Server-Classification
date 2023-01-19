@@ -14,12 +14,11 @@ DownloadClientCommand::~DownloadClientCommand() {
 
 void DownloadClientCommand::execute() {
     std::string receiveData, userInput;
-    bool isValid = true;
     //send "5" to server for option-2(algorithm setting).
     io.write("5");
 
     //if ithere is problem with passsing the data
-    if ((io.read()).compare("-1")) {
+    if (strcmp(io.read().c_str(), "-1") == 0) {
         std::cout << io.read(); // reading the error message.
         return;
     }
