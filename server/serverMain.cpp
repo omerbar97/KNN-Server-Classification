@@ -351,7 +351,6 @@ int main(int argc, char *args[]) {
 
         args->clientId = globalClientId++;
         args->clientSocket = clientSocket;
-        args->data;
 
         pthread_t tid;
         pthread_create(&tid, NULL, CLI::start, (void*)args);

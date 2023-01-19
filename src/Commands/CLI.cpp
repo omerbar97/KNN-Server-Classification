@@ -4,13 +4,8 @@
 #include "CLI.h"
 
 CLI* CLI::instance = NULL;
-std::string CLI::menu = "Welcome to the KNN Classifier Server. Please choose an option:\n"
-                        "1. upload an unclassified csv data file\n"
-                        "2. algorithm settings\n"
-                        "3. classify data\n"
-                        "4. display results\n"
-                        "5. download results\n"
-                        "8. exit";;
+std::string CLI::welcomeMessage = "Welcome to the KNN Classifier Server. Please choose an option:\n";
+
 std::mutex mtx;
 CLI::CLI(){
     // init commands
@@ -28,11 +23,12 @@ CLI &CLI::getInstance() {
     mtx.unlock();
     return *instance;
 }
-void initClientData(clientData * data) {
+void initClientData(clientData * data, int clientId) {
     data->metric = "EUC";
     data->k = 5;
     data->testData = {};
     data->trainData = {};
+    data->clientId = clientId;
 }
 
 void *CLI::start(void *data) {
@@ -46,16 +42,13 @@ void *CLI::start(void *data) {
     int clientSocket = (*(ServerData*)data).clientSocket;
     clientData* p_Data = (clientData*)malloc(sizeof(clientData));
     //init p_Data
-    initClientData(p_Data);
+    initClientData(p_Data, clientId);
+
 
     // check if malloc works
     std::cout << p_Data->metric << " " <<  p_Data->k;
     free(data);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fa18f4bf7798c9f8dbb6af1d68de00da52154ac7
     int readBytes, sendBytes,choice, fails = 0;
     char buffer[BUFFER_SIZE];
     std::cout << "###-------------Connected to client-------------###" << std::endl;
@@ -78,18 +71,16 @@ void *CLI::start(void *data) {
     exit.p_Data = p_Data;
 
     std::vector<ICommand*> iCommandsVec;
-    iCommandsVec.push_back(&uploadFiles);
-    iCommandsVec.push_back(&uploadFiles);
-    iCommandsVec.push_back(&algoSetting);
-    iCommandsVec.push_back(&classify);
-    iCommandsVec.push_back(&display);
-    iCommandsVec.push_back(&download);
-    iCommandsVec.push_back(&exit);
-    iCommandsVec.push_back(&exit);
-    iCommandsVec.push_back(&exit);
+    iCommandsVec.push_back(&uploadFiles); // 0
+    iCommandsVec.push_back(&algoSetting); // 1
+    iCommandsVec.push_back(&classify); // 2
+    iCommandsVec.push_back(&display); // 3
+    iCommandsVec.push_back(&download); // 4
+    iCommandsVec.push_back(&exit); // 5
 
     std::stringstream menu;
-    for (int i = 1; i < 7; ++i) {
+    menu << welcomeMessage;
+    for (int i = 0; i < 6; ++i) {
         menu << iCommandsVec[i]->description;
     }
 
@@ -113,7 +104,7 @@ void *CLI::start(void *data) {
         readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
         if(readBytes == 0) {
             // the socket with client was closed.
-            std::cout << "the connection with client_socket_number: " << clientSocket << "was closed" << std::endl;
+            std::cout << "the connection with client_socket_number: " << clientSocket << " was closed." << std::endl;
             break;
         }
         else if(readBytes < 0) {
@@ -134,16 +125,15 @@ void *CLI::start(void *data) {
              * 5. writing result to file
              * 8. ending connection.
              */
-            std::cout << "Message from client: " << buffer << std::endl;
+            std::cout << "Message from client-Socket-Number-" << clientSocket << ": " << buffer << std::endl;
             // calling the call command.
         }
         choice = std::atoi(&buffer[0]);
 
         //going to the correct position in the vector
-        if((choice >= 0 && choice <= 5) || choice == 8) {
-            iCommandsVec[choice]->execute();
+        if(choice >= 1 && choice <= 4) {
+            iCommandsVec[choice - 1]->execute();
         }
-
         fails = 0;
     }
     // free the client memory data.

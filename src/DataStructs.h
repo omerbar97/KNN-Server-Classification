@@ -33,6 +33,7 @@ struct clientData{
     std::vector<std::vector<double>> testData = {}; // empty vector
     std::vector<std::string> classifiedResult = {};
     int k = 5; // default value
+    int clientId;
     std::string metric = "EUC"; // default value;
 
 };

@@ -6,7 +6,7 @@
 
 
 DownloadServerCommand::DownloadServerCommand(DefaultIO &io) : ICommand(io){
-    this->description = "5. download result\n";
+    this->description = "5. download results\n";
 
 }
 
@@ -17,17 +17,26 @@ DownloadServerCommand::~DownloadServerCommand() {
 void DownloadServerCommand::execute(){
     std::stringstream message;
     //if not update files yet
-    if (this->p_Data->testData.empty()) {
+    if (this->p_Data->testData.empty() || this->p_Data->trainData.empty()) {
         message << "Please upload data\n";
     }
         //if not classified data yet
-    else if ( this->p_Data->classifiedResult.empty()) {
+    else if (this->p_Data->classifiedResult.empty()) {
         message << "Please classify the data\n";
     }
     //if we have one of the above problem, send the message and return.
     if (message.rdbuf()->in_avail() != 0) {
+        // metoraf
         io.write("-1");
         io.write(message.str());
+        return;
+    }
+
+    std::string localPath = "please specify locally file path to download result:\n";
+    io.write(localPath);
+
+    if((io.read()).compare("-1")) {
+        // error in locally path
         return;
     }
 

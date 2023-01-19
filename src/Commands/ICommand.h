@@ -16,6 +16,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <cstdlib>
+#include <sys/stat.h>
 
 
 class ICommand {

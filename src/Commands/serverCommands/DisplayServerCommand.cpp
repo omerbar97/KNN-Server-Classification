@@ -6,7 +6,7 @@
 
 
 DisplayServerCommand::DisplayServerCommand(DefaultIO &io) : ICommand(io){
-    this->description =  "4. display result\n";
+    this->description =  "4. display results\n";
 
 }
 
@@ -17,7 +17,7 @@ DisplayServerCommand::~DisplayServerCommand() {
 void DisplayServerCommand::execute() {
     std::stringstream message;
     //if not update files yet
-    if (this->p_Data->testData.empty()) {
+    if (this->p_Data->testData.empty() || this->p_Data->trainData.empty()) {
         message << "Please upload data\n";
     }
     //if not classified data yet

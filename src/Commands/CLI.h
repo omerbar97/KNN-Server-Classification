@@ -26,7 +26,7 @@
 class CLI {
 private:
     static CLI* instance;
-    static std::string menu;
+    static std::string welcomeMessage;
     CLI();
 
 public:
