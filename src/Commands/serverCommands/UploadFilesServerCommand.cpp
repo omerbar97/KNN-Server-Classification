@@ -106,7 +106,6 @@ std::vector<double> lineToVectorTest(std::string line) {
             return {};
 
         }
-        return vector;
     }
     return vector;
 }
