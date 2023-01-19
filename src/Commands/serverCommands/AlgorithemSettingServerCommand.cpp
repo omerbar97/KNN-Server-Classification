@@ -58,7 +58,7 @@ int AlgorithemSettingServerCommand::tokenize(std::string const &str, const char 
     if (counter != 2) {
         return 4;
     }
-    if ( result == 0) {
+    if (result == 0) {
         this->p_Data->k = k;
         this->p_Data->metric = newMetric;
     }

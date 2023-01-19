@@ -134,11 +134,11 @@ bool input::checkVectorInput(std::string v) {
 
 /**
  * getting the An distance algorithm from string.
- * @param input - string: AUC or MAN or CHB or CAN or MIN
+ * @param input - string: EUC or MAN or CHB or CAN or MIN
  * @return Pointer to the distance algorithm.
  */
 Distance* input::getDistance(std::string input) {
-    if(input.compare("AUC") == 0) {
+    if(input.compare("EUC") == 0) {
         return new Euclidean();
     }
     if(input.compare("MAN") == 0) {
