@@ -80,7 +80,6 @@ int userAskToClose(std::string str) {
     catch (std::exception d) {
         return false;
     }
-    return false;
 }
 void* runOption5(void * arg) {
     static_cast<DownloadClientCommand*>(arg)->execute();
@@ -135,9 +134,11 @@ int main(int argc, char *args[]) {
     // input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
     // "<vector> <distance algorithm> <integer k>", client.getStream());
     // looping and sending message from client to server until client send -1.
+    std::string message;
     while (true) {
+        message = (client.readData());
+        std::cout << message << std::endl;
         //receive Data from server and printing the optiond..
-        printf("%s\n", client.readData());
 
         std::getline(std::cin, userInput);
         index = userAskToClose(userInput);
@@ -148,8 +149,9 @@ int main(int argc, char *args[]) {
         }
         if (index == 8) {
             //exit from the loop and close socket.
+            socketIo.write("8");
             client.closeSock();
-            break;
+            return 1;
         }
         if (index == 5) {
             pthread_t tid;
@@ -157,7 +159,6 @@ int main(int argc, char *args[]) {
             pthread_create(&tid, NULL, runOption5,(void*)&pDownloadClientCommand);
             continue;
         }
-
         //otherwise execute the correct option.
         commandVec[index]->execute();
 

@@ -16,14 +16,26 @@ DisplayClientCommand::~DisplayClientCommand() {
 
 void DisplayClientCommand::execute() {
     std::string receiveData;
+    std::stringstream message;
 
-    //send "3" to server for option-2(algorithm setting).
+    //send "4" to server for option-4(display result).
     io.write("4");
 
+    receiveData = io.read();
+    //check if server have the asked data
+    if (std::atoi(receiveData.c_str()) == -1) {
+        //data aren't available
+        receiveData = io.read();
+        std::cout << receiveData;
+    }
+
+
+    //otherwise data are available,
     //read each line and print, when done the server will send "#"
     receiveData = io.read();
     while (receiveData != "#"){
-        printf("%s\n", receiveData.c_str());
+        std::cout << receiveData;
         receiveData = io.read();
     }
+
 }

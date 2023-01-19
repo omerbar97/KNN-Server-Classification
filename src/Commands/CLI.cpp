@@ -28,6 +28,12 @@ CLI &CLI::getInstance() {
     mtx.unlock();
     return *instance;
 }
+void initClientData(clientData * data) {
+    data->metric = "EUC";
+    data->k = 5;
+    data->testData = {};
+    data->trainData = {};
+}
 
 void *CLI::start(void *data) {
     // data is struct that have:
@@ -39,10 +45,17 @@ void *CLI::start(void *data) {
     int clientId = (*(ServerData*)data).clientId;
     int clientSocket = (*(ServerData*)data).clientSocket;
     clientData* p_Data = (clientData*)malloc(sizeof(clientData));
+    //init p_Data
+    initClientData(p_Data);
+
     // check if malloc works
     std::cout << p_Data->metric << " " <<  p_Data->k;
     free(data);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa18f4bf7798c9f8dbb6af1d68de00da52154ac7
     int readBytes, sendBytes,choice, fails = 0;
     char buffer[BUFFER_SIZE];
     std::cout << "###-------------Connected to client-------------###" << std::endl;
@@ -53,21 +66,38 @@ void *CLI::start(void *data) {
     UploadFilesServerCommand uploadFiles(io);
     AlgorithemSettingServerCommand algoSetting(io, 5);
     ClassifyDataServerCommand classify(io);
+    DisplayServerCommand display(io);
+    DownloadServerCommand download(io);
+    EndingConnection exit(io);
+
 
     uploadFiles.p_Data = p_Data;
     algoSetting.p_Data = p_Data;
     classify.p_Data = p_Data;
+    display.p_Data = p_Data;
+    exit.p_Data = p_Data;
 
     std::vector<ICommand*> iCommandsVec;
     iCommandsVec.push_back(&uploadFiles);
+    iCommandsVec.push_back(&uploadFiles);
     iCommandsVec.push_back(&algoSetting);
     iCommandsVec.push_back(&classify);
+    iCommandsVec.push_back(&display);
+    iCommandsVec.push_back(&download);
+    iCommandsVec.push_back(&exit);
+    iCommandsVec.push_back(&exit);
+    iCommandsVec.push_back(&exit);
+
+    std::stringstream menu;
+    for (int i = 1; i < 7; ++i) {
+        menu << iCommandsVec[i]->description;
+    }
 
     instance->serverData.insert({clientId, p_Data});
 
     while(true) {
         // sending the client the menu choice
-        strcpy(buffer, menu.c_str());
+        strcpy(buffer, menu.str().c_str());
         sendBytes = send(clientSocket, buffer, BUFFER_SIZE, 0);
         if(sendBytes < 0) {
             perror("failed sending menu to client");
@@ -108,28 +138,12 @@ void *CLI::start(void *data) {
             // calling the call command.
         }
         choice = std::atoi(&buffer[0]);
-        if(choice == 0) {
-            // invalid input.. print message and return to loop
-            continue;
+
+        //going to the correct position in the vector
+        if((choice >= 0 && choice <= 5) || choice == 8) {
+            iCommandsVec[choice]->execute();
         }
-        switch (choice) {
-            case 1:
-                uploadFiles.execute();
-                break;
-            case 2:
-                algoSetting.execute();
-                break;
-            case 3:
 
-            case 4:
-
-
-            case 5:
-
-            case 8:
-
-                break;
-        }
         fails = 0;
     }
     // free the client memory data.
