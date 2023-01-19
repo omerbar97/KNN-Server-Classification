@@ -61,11 +61,12 @@ void *CLI::start(void *data) {
     DownloadServerCommand download(io);
     EndingConnection exit(io);
 
-
+    // binding the client data with the current thread that handle the client.
     uploadFiles.p_Data = p_Data;
     algoSetting.p_Data = p_Data;
     classify.p_Data = p_Data;
     display.p_Data = p_Data;
+    download.p_Data = p_Data;
     exit.p_Data = p_Data;
 
     std::vector<ICommand*> iCommandsVec;
@@ -142,4 +143,5 @@ void *CLI::start(void *data) {
 void CLI::CliDelete() {
     delete(instance);
 }
+
 

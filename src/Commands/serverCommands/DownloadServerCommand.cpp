@@ -15,12 +15,12 @@ DownloadServerCommand::~DownloadServerCommand() {
 }
 
 void DownloadServerCommand::execute(){
-    std::stringstream message;
+    std::stringstream message, check;
     //if not update files yet
     if (this->p_Data->testData.empty() || this->p_Data->trainData.empty()) {
         message << "Please upload data\n";
     }
-        //if not classified data yet
+    //if not classified data yet
     else if (this->p_Data->classifiedResult.empty()) {
         message << "Please classify the data\n";
     }
@@ -35,19 +35,28 @@ void DownloadServerCommand::execute(){
     std::string localPath = "please specify locally file path to download result:\n";
     io.write(localPath);
 
-    if((io.read()).compare("-1")) {
+    check << io.read();
+    if((check.str()).compare("-1")) {
         // error in locally path
         return;
     }
-
+    // else opening new thread and downloading the file
+    pthread_t tid;
+    DownloadFile args = {this->io, this->p_Data};
+    pthread_create(&tid, NULL, newThreadDownload, (void*)&args);
     //otherwise send data to print by cline line by line
-    size_t classifiedDataSize = this->p_Data->classifiedResult.size();
+}
+
+void *DownloadServerCommand::newThreadDownload(void *args) {
+    auto* temp = (DownloadFile*)args;
+    std::stringstream message;
+    size_t classifiedDataSize = temp->p_Data->classifiedResult.size();
     for (int i = 0; i < classifiedDataSize; ++i) {
         message.str("");
-        message << i + 1 << this->p_Data->classifiedResult[i] << std::endl;
-        io.write(message.str());
+        message << i + 1 << temp->p_Data->classifiedResult[i] << std::endl;
+        temp->io.write(message.str());
     }
     //symbol of end text
-    io.write("#");
-
+    temp->io.write("#");
+    return NULL;
 }

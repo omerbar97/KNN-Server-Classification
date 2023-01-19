@@ -120,10 +120,9 @@ int main(int argc, char *args[]) {
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
     ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
     ICommand *option3 = new ClassifyDataClientCommand(socketIo);
-    ICommand *option4 = pDownloadClientCommand;
     ICommand *option5 = new DownloadClientCommand(socketIo);
 
-    std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
+    std::vector<ICommand*> commandVec{option1, option1, option2, option3, pDownloadClientCommand, option5};
 
     //starting the connection with the server.
     //printing the options.
@@ -154,12 +153,12 @@ int main(int argc, char *args[]) {
             client.closeSock();
             return 1;
         }
-        if (index == 5) {
-            pthread_t tid;
-            DownloadFile temp = {socketIo};
-            pthread_create(&tid, NULL, runOption5,(void*)&temp);
-            continue;
-        }
+//        if (index == 5) {
+//            pthread_t tid;
+//            DownloadFile temp = {socketIo};
+//            pthread_create(&tid, NULL, runOption5,(void*)&temp);
+//            continue;
+//        }
         //otherwise execute the correct option.
         commandVec[index]->execute();
 

@@ -47,7 +47,9 @@ struct ServerData{
 };
 
 struct DownloadFile {
-    SocketIO &io;
+    DefaultIO &io;
+    clientData* p_Data;
+    std::string filePath;
 };
 
 #endif //A_OUT_DATASTRUCTS_H
