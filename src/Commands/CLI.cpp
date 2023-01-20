@@ -23,12 +23,13 @@ CLI &CLI::getInstance() {
     mtx.unlock();
     return *instance;
 }
-void initClientData(clientData * data, int clientId) {
+void initClientData(clientData * data, int clientId, std::string* serverIp) {
     data->metric = "EUC";
     data->k = 5;
     data->testData = {};
     data->trainData = {};
     data->clientId = clientId;
+    data->serverMainIp = serverIp;
 }
 
 void *CLI::start(void *data) {
@@ -42,7 +43,7 @@ void *CLI::start(void *data) {
     int clientSocket = *(*(ServerData*)data).clientSocket;
     auto* p_Data = (clientData*)malloc(sizeof(clientData));
     //init p_Data
-    initClientData(p_Data, clientId);
+    initClientData(p_Data, clientId, (*(ServerData*)data).mainServerIp);
 
 
     // check if malloc works

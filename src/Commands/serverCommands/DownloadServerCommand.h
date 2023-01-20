@@ -6,6 +6,7 @@
 #define A_OUT_DOWNLOADSERVERCOMMAND_H
 
 #include <pthread.h>
+#include <sys/socket.h>
 #include "../ICommand.h"
 
 class DownloadServerCommand : public ICommand{

@@ -81,13 +81,6 @@ int userAskToClose(std::string str) {
         return false;
     }
 }
-void* runOption5(void *arg) {
-    auto* temp = (DownloadFile*)arg;
-    auto* pDownload = new DownloadClientCommand(temp->io);
-    pDownload->execute();
-    return NULL;
-}
-
 
 int main(int argc, char *args[]) {
     std::string userInput;
@@ -106,15 +99,14 @@ int main(int argc, char *args[]) {
     int port_no = atoi(args[2]);
 
     //initializing  Client.
-    Client client(port_no, ip_address);
-    if(!client.getValid()) {
+    Client* client = new Client(port_no, ip_address);
+    if(!client->getValid()) {
         input::print("failed to initializing the client.");
-        printf("failed to initializing the client.\n");
-//        input::print("failed to initializing the client.", client.getStream());
+        delete(client);
         exit(1);
     }
     //init SocketIO
-    SocketIO socketIo(client.getsocketNum());
+    SocketIO socketIo(client->getsocketNum());
     //init list of the commands.
     DownloadClientCommand* pDownloadClientCommand = new DownloadClientCommand(socketIo);
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
@@ -136,7 +128,7 @@ int main(int argc, char *args[]) {
     // looping and sending message from client to server until client send -1.
     std::string message;
     while (true) {
-        message = (client.readData());
+        message = socketIo.read();
         std::cout << message << std::endl;
         //receive Data from server and printing the optiond..
 
@@ -150,7 +142,7 @@ int main(int argc, char *args[]) {
         if (index == 8) {
             //exit from the loop and close socket.
             socketIo.write("8");
-            client.closeSock();
+            client->closeSock();
             break;
         }
 //        if (index == 5) {

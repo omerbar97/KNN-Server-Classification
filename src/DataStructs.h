@@ -6,6 +6,8 @@
 #define A_OUT_DATASTRUCTS_H
 #include <string>
 #include <vector>
+#include "../server/Server.h"
+#include "../client/Client.h"
 #include "IO/SocketIO.h"
 
 /**
@@ -36,7 +38,7 @@ struct clientData{
     int k = 5; // default value
     int clientId;
     std::string metric = "EUC"; // default value;
-
+    std::string* serverMainIp;
 };
 
 
@@ -44,12 +46,15 @@ struct ServerData{
     int* clientSocket;
     int* clientId;
     clientData* data;
+    std::string* mainServerIp;
 };
 
 struct DownloadFile {
-    DefaultIO &io;
+    DefaultIO* io;
     clientData* p_Data;
     std::string filePath;
+    Server* server;
+    Client* client;
 };
 
 #endif //A_OUT_DATASTRUCTS_H

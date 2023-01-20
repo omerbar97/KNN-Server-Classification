@@ -8,18 +8,19 @@ Client::Client(int port_no, const char* ip_address) {
     this->ip_address = ip_address;
     this->valid = true;
     //in the condition initialize socket and sin.
-    if(!initSocket() ||  !initSin()) {
+    if(!initSocket()) {
         this->valid = false;
     }
-
-
+    if(!initSin()) {
+        this->valid = false;
+    }
 }
 bool Client::initSocket() {
     //creating socket
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     //if there is any fail.
     if (sock < 0){
-        perror("failed creating the client socket");
+        //perror("failed creating the client socket");
         return false;
     }
     this->socketNum = sock;
@@ -33,7 +34,7 @@ bool Client::initSin() {
     this->sin.sin_addr.s_addr = inet_addr(this->ip_address);
     this->sin.sin_port = htons(port_no);
     if (connect(this->socketNum,(struct sockaddr*)&sin, sizeof(sin)) < 0){
-        perror("Failed connection to server");
+        //perror("Failed connection to server");
         return false;
     }
     return true;

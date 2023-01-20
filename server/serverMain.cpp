@@ -334,7 +334,7 @@ int main(int argc, char *args[]) {
         perror("failed listening to the socket");
         exit(1);
     }
-
+    std::string* serverIp = new std::string("127.0.0.1");
     // creating CLI class
     CLI cli = CLI::getInstance(); // getting the singltone instance. allocated in the heap.
     while(true) {
@@ -352,11 +352,13 @@ int main(int argc, char *args[]) {
         arguments->clientSocket = (int*)malloc(sizeof(int));
         *(arguments->clientId) = globalClientId++;
         *(arguments->clientSocket) = clientSocket;
+        arguments->mainServerIp = serverIp;
 
         pthread_t tid;
         pthread_create(&tid, NULL, CLI::start, (void*)arguments);
     }
     // deleting resources:
+    free(serverIp);
     delete(mainServer);
     CLI::CliDelete();
     mainServer->closeServer();

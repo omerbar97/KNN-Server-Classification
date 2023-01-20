@@ -7,6 +7,7 @@
 #include "../ICommand.h"
 #include <string>
 #include "../../IO/DefaultIO.h"
+#include <thread>
 
 
 class DownloadClientCommand : public ICommand {

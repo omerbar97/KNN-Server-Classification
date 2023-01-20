@@ -9,7 +9,6 @@
 #include <arpa/inet.h>
 #ifndef A_OUT_SERVER_H
 #define A_OUT_SERVER_H
-#include "../src/DataStructs.h"
 
 class Server {
 

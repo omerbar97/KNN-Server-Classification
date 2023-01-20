@@ -13,7 +13,7 @@ DownloadClientCommand::~DownloadClientCommand() {
 }
 
 void DownloadClientCommand::execute() {
-    std::string receiveData, userInput;
+    std::string receiveData, userInput, serverIp, temp;
     //send "5" to server for option-2(algorithm setting).
     io.write("5");
 
@@ -23,7 +23,7 @@ void DownloadClientCommand::execute() {
         std::cout << io.read(); // reading the error message.
         return;
     }
-    std::cout << io.read();
+    std::cout << io.read(); // please upload file
     std::stringstream fileName;
     std::getline(std::cin, userInput);
     struct stat s;
@@ -39,16 +39,47 @@ void DownloadClientCommand::execute() {
             //it's a file
             fileName << userInput;
         }
+        else {
+            io.write("-1");
+            return;
+        }
     }
     else {
         // error
         io.write("-1");
         return;
     }
-    // opening new thread to download the file.
     io.write("1"); // able to download.
+    // opening new thread to download the file.
+    int check;
+    int port = atoi(io.read().c_str());
+
+    temp = io.read();
+    if(temp == "-1") { // initSocket from server failed
+        // error
+
+        return;
+    }
+    temp = io.read();
+    if(temp == "-1") { // listen server socket failed
+        // error
+
+        return;
+    }
+    serverIp = io.read();
+    Client *downloadClient = new Client(port, serverIp.c_str());
+    temp = io.read();
+    if(temp == "-1") {
+        // error
+        std::cout << "failed downloading file: thread connection exception" << std::endl;
+        delete(downloadClient);
+        io.read(); // reading "-1"
+        return;
+    }
+
+    SocketIO* tempIo = new SocketIO(downloadClient->getsocketNum());
     pthread_t tid;
-    DownloadFile args = {this->io, NULL, fileName.str()};
+    DownloadFile args = {tempIo, NULL, fileName.str(), NULL, downloadClient};
     pthread_create(&tid, NULL, newThreadDownload, (void*)&args);
 }
 
@@ -59,16 +90,19 @@ void *DownloadClientCommand::newThreadDownload(void *args) {
     DownloadFile* temp = (DownloadFile*)args;
     std::fstream file(temp->filePath, std::ios::out);
     FileIO fileResult(file, true);
-
     //loop over the file until got the sign #
-    receiveData = temp->io.read();
+    receiveData = temp->io->read();
     if(file.is_open()) {
         while(!receiveData.compare("#")) {
             fileResult.write(receiveData);
-            receiveData = temp->io.read();
+            receiveData = temp->io->read();
         }
     }
     file.close();
+
+    // deleting resources
+    delete(temp->io);
+    delete(temp->client);
 }
 
 
