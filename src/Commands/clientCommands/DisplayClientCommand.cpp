@@ -27,6 +27,7 @@ void DisplayClientCommand::execute() {
         //data aren't available
         receiveData = io.read();
         std::cout << receiveData;
+        return;
     }
 
 

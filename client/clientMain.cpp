@@ -112,9 +112,10 @@ int main(int argc, char *args[]) {
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
     ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
     ICommand *option3 = new ClassifyDataClientCommand(socketIo);
+    ICommand *option4 = new DisplayClientCommand(socketIo);
     ICommand *option5 = new DownloadClientCommand(socketIo);
 
-    std::vector<ICommand*> commandVec{option1, option1, option2, option3, pDownloadClientCommand, option5};
+    std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
 
     //starting the connection with the server.
     //printing the options.
