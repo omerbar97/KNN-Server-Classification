@@ -21,6 +21,7 @@ void ClassifyDataServerCommand::execute() {
     }
     // everything okay with the setting
     io.write("1");
+    std::vector<std::string> newClassify;
 
     // setting Knn:
     Knn* knn = new Knn(this->p_Data->trainData);
@@ -33,8 +34,10 @@ void ClassifyDataServerCommand::execute() {
     for(int i = 0; i < size; i++){
         KNN.setVector(this->p_Data->testData[i]);
         KNN.calculate();
-        this->p_Data->classifiedResult.push_back(KNN.getClassified());
+        newClassify.push_back(KNN.getClassified());
+//        this->p_Data->classifiedResult.push_back(KNN.getClassified());
     }
+    this->p_Data->classifiedResult = newClassify;
 
     io.write("complete data classifying\n");
     //we will classified the data

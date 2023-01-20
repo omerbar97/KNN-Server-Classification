@@ -30,7 +30,7 @@ void AlgorithemSettingClientCommand::execute()  {
 
     //user send his asking with format "6 CHB".
     std::getline(std::cin, userInput);
-    if(userInput.compare("\n")) {
+    if(userInput == "") {
         io.write("#"); // no need to replace
         return;
     }
