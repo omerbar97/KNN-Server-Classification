@@ -99,7 +99,7 @@ int main(int argc, char *args[]) {
     int port_no = atoi(args[2]);
 
     //initializing  Client.
-    Client* client = new Client(port_no, ip_address);
+    auto* client = new Client(port_no, ip_address);
     if(!client->getValid()) {
         input::print("failed to initializing the client.");
         delete(client);
@@ -108,7 +108,6 @@ int main(int argc, char *args[]) {
     //init SocketIO
     SocketIO socketIo(client->getsocketNum());
     //init list of the commands.
-    DownloadClientCommand* pDownloadClientCommand = new DownloadClientCommand(socketIo);
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
     ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
     ICommand *option3 = new ClassifyDataClientCommand(socketIo);
@@ -128,11 +127,11 @@ int main(int argc, char *args[]) {
     // "<vector> <distance algorithm> <integer k>", client.getStream());
     // looping and sending message from client to server until client send -1.
     std::string message;
+    std::stringstream send;
     while (true) {
         message = socketIo.read();
         std::cout << message << std::endl;
         //receive Data from server and printing the optiond..
-
         std::getline(std::cin, userInput);
         index = userAskToClose(userInput);
         if(index == -1) {
@@ -143,7 +142,6 @@ int main(int argc, char *args[]) {
         if (index == 8) {
             //exit from the loop and close socket.
             socketIo.write("8");
-            client->closeSock();
             break;
         }
 //        if (index == 5) {
@@ -153,8 +151,16 @@ int main(int argc, char *args[]) {
 //            continue;
 //        }
         //otherwise execute the correct option.
+        send.str("");
+        send << index;
+        socketIo.write(send.str());
         commandVec[index]->execute();
-
     }
+    // freeing memory
+    for(ICommand* i : commandVec) {
+        delete(i);
+    }
+    client->closeSock();
+    free(client);
     return 0;
 }

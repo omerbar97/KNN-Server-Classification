@@ -12,8 +12,6 @@
 #include "serverCommands/DisplayServerCommand.h"
 #include "serverCommands/DownloadServerCommand.h"
 #include "serverCommands/EndingConnection.h"
-
-
 #include <map>
 #include <mutex>
 #include "ICommand.h"

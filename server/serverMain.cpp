@@ -355,7 +355,7 @@ int main(int argc, char *args[]) {
         arguments->mainServerIp = serverIp;
 
         pthread_t tid;
-        pthread_create(&tid, NULL, CLI::start, (void*)arguments);
+        pthread_create(&tid, nullptr, CLI::start, (void*)arguments);
     }
     // deleting resources:
     free(serverIp);

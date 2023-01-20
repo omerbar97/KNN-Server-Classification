@@ -3,7 +3,7 @@
 //
 #include "CLI.h"
 
-CLI* CLI::instance = NULL;
+CLI* CLI::instance = nullptr;
 std::string CLI::welcomeMessage = "Welcome to the KNN Classifier Server. Please choose an option:\n";
 
 std::mutex mtx;
@@ -17,7 +17,7 @@ CLI::~CLI(){
 
 CLI &CLI::getInstance() {
     mtx.lock();
-    if(instance == NULL) {
+    if(instance == nullptr) {
         instance = new CLI();
     }
     mtx.unlock();
@@ -43,6 +43,9 @@ void *CLI::start(void *data) {
     int clientSocket = *(*(ServerData*)data).clientSocket;
     auto* p_Data = (clientData*)malloc(sizeof(clientData));
     //init p_Data
+    if(clientId == 1) {
+        std::cout <<"test";
+    }
     initClientData(p_Data, clientId, (*(ServerData*)data).mainServerIp);
 
 
@@ -51,7 +54,7 @@ void *CLI::start(void *data) {
     free((*(ServerData*)data).clientSocket);
     free(data);
 
-    int readBytes, sendBytes,choice, fails = 0;
+    int choice, fails = 0;
     char buffer[BUFFER_SIZE];
     std::cout << "############ Connected to client Socket Number: " << clientSocket <<  " ############" << std::endl;
 
@@ -87,12 +90,11 @@ void *CLI::start(void *data) {
     }
 
     instance->serverData.insert({clientId, p_Data});
-
+    std::string userInput;
     while(true) {
         // sending the client the menu choice
-        strcpy(buffer, menu.str().c_str());
-        sendBytes = send(clientSocket, buffer, BUFFER_SIZE, 0);
-        if(sendBytes < 0) {
+        io.write(menu.str());
+        if(!io.isValid()) {
             perror("failed sending menu to client");
             fails++;
             if(fails > 10) {
@@ -103,17 +105,17 @@ void *CLI::start(void *data) {
             continue;
         }
         // waiting to client.
-        readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-        if(readBytes == 0) {
+        userInput = io.read();
+        if(!io.isValid()) {
+            perror("failed receiving data from the client");
+            continue;
+        }
+        else if(userInput == "8") {
             // the socket with client was closed.
             std::cout << "the connection with client_socket_number: " << clientSocket << " was closed." << std::endl;
             break;
         }
-        else if(readBytes < 0) {
-            perror("failed receiving data from the client");
-            continue;
-        }
-        else if(strcmp(buffer, "-1") == 0) {
+        else if(userInput == "-1") {
             //invalid input from client, send again menu
             continue;
         }
@@ -127,10 +129,10 @@ void *CLI::start(void *data) {
              * 5. writing result to file
              * 8. ending connection.
              */
-            std::cout << "Message from client-Socket-Number-" << clientSocket << ": " << buffer << std::endl;
+            std::cout << "Message from client-Socket-Number-" << clientSocket << ": " << userInput << std::endl;
             // calling the call command.
         }
-        choice = std::atoi(&buffer[0]);
+        choice = std::atoi(userInput.c_str());
 
         //going to the correct position in the vector
         if(choice >= 1 && choice <= 5) {
@@ -139,11 +141,12 @@ void *CLI::start(void *data) {
         fails = 0;
     }
     // free the client memory data.
+    instance->serverData.erase(clientId);
     free(p_Data);
     for(auto & i : iCommandsVec) {
         delete(i);
     }
-    return NULL;
+    return nullptr;
 }
 
 void CLI::CliDelete() {

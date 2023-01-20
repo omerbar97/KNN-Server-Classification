@@ -32,12 +32,12 @@ struct VectorCSV {
 
 
 struct clientData{
-    std::vector<VectorCSV> trainData = {}; // empty vector
-    std::vector<std::vector<double>> testData = {}; // empty vector
-    std::vector<std::string> classifiedResult = {};
-    int k = 5; // default value
+    std::vector<VectorCSV> trainData;
+    std::vector<std::vector<double>> testData;
+    std::vector<std::string> classifiedResult;
+    int k;
     int clientId;
-    std::string metric = "EUC"; // default value;
+    std::string metric;
     std::string* serverMainIp;
 };
 
