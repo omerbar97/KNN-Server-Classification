@@ -54,7 +54,6 @@ void UploadFilesClientCommand::execute()  {
     //getting file path from user of train CSV file.
     std::getline(std::cin, userInput);
 
-    ///check if its really lodadded.
 
     // if the file is not valid.
     if (!input::checkFilePath(userInput)) {
@@ -77,7 +76,7 @@ void UploadFilesClientCommand::execute()  {
 
     check = io.read();
     if(check == "-1") {
-        //incompattible files
+        //incompatible files
         std::cout << io.read();
         return;
     }
