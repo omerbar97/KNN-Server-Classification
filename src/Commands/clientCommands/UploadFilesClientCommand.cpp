@@ -17,7 +17,7 @@ void UploadFilesClientCommand::execute()  {
     ICommand::io.write("1");
 
     //reading data from server to get instructions.
-    dataRec = ICommand::io.read();
+    dataRec = io.read();
     std::cout << dataRec;
 
     //getting file path from user of train CSV file.
@@ -25,7 +25,7 @@ void UploadFilesClientCommand::execute()  {
 
     // if the file is not valid.
     if (!input::checkFilePath(userInput)) {
-        printf("invalid input!\n");
+        printf("Incorrect file path.\n");
         ICommand::io.write("-1");
         return;
     }
@@ -57,7 +57,7 @@ void UploadFilesClientCommand::execute()  {
 
     // if the file is not valid.
     if (!input::checkFilePath(userInput)) {
-        data = "invalid input!\n";
+        data = "Incorrect file path.\n";
         ICommand::io.write(data);
         return;
     }
@@ -65,7 +65,7 @@ void UploadFilesClientCommand::execute()  {
     ReadCSV::executeLines(this,userInput);
 
     // simbole for end file
-    ICommand::io.write("#");
+    io.write("#");
 
     check = io.read(); // if 1 the file valid -1 file not valid
     if(check == "-1") {
@@ -81,12 +81,10 @@ void UploadFilesClientCommand::execute()  {
         return;
     }
 
-    dataRec = ICommand::io.read();
+    dataRec = io.read();
     std::cout << dataRec;
 
 }
-void UploadFilesClientCommand::setFileName(std::string name) {
-    this->fileName = std::move(name);
-}
+
 
 
