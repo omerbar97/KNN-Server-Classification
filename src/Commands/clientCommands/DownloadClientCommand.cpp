@@ -92,7 +92,6 @@ void DownloadClientCommand::execute() {
 
 void *DownloadClientCommand::newThreadDownloadClient(void *args) {
     //create new file
-    std::cout << "in client new thread";
     std::string receiveData;
     DownloadFile* temp = (DownloadFile*)args;
     std::fstream file(*temp->filePath, std::ios::out);

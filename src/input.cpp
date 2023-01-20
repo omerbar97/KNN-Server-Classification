@@ -138,19 +138,19 @@ bool input::checkVectorInput(std::string v) {
  * @return Pointer to the distance algorithm.
  */
 Distance* input::getDistance(std::string input) {
-    if(input.compare("EUC") == 0) {
+    if(input == "EUC") {
         return new Euclidean();
     }
-    if(input.compare("MAN") == 0) {
+    if(input == "MAN") {
         return new Manhattan();
     }
-    if(input.compare("CHB") == 0) {
+    if(input == "CHB") {
         return new Chebyshev();
     }
-    if(input.compare("CAN") == 0) {
+    if(input == "CAN") {
         return new Canberra();
     }
-    if(input.compare("MIN") == 0) {
+    if(input == "MIN") {
         return new Minkowski();
     }
     return nullptr;

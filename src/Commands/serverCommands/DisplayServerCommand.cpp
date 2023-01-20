@@ -36,7 +36,7 @@ void DisplayServerCommand::execute() {
     size_t classifiedDataSize = this->p_Data->classifiedResult.size();
     for (int i = 0; i < classifiedDataSize; ++i) {
         message.str("");
-        message << i + 1 << " " << this->p_Data->classifiedResult[i].c_str() << std::endl;
+        message << i + 1 << "\t" << this->p_Data->classifiedResult[i].c_str() << std::endl;
         io.write(message.str());
     }
     //symbol of end text
