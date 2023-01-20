@@ -8,6 +8,7 @@
 #include <pthread.h>
 #include <sys/socket.h>
 #include "../ICommand.h"
+#include <thread>
 
 class DownloadServerCommand : public ICommand{
 private:

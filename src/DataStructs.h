@@ -57,5 +57,6 @@ struct DownloadFile {
     Client* client;
 };
 
+
 #endif //A_OUT_DATASTRUCTS_H
 

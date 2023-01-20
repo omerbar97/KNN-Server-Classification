@@ -47,7 +47,6 @@ void DownloadServerCommand::execute(){
     // creating new socket for the thread.
 
     std::stringstream portString;
-    pthread_t tid;
     int port = 60000 + this->p_Data->clientId; // creating port for new server
     portString << port;
     // sending client port
@@ -94,12 +93,15 @@ void DownloadServerCommand::execute(){
 
     // sending arguments to thread function.
     DownloadFile args = {tempIo, this->p_Data, "", downloadServer};
-    pthread_create(&tid, NULL, newThreadDownload, (void*)&args);
+    std::thread t(newThreadDownload, (void*)&args);
+    t.detach();
+    //pthread_create(&tid, nullptr, newThreadDownload, (void*)&args);
     //otherwise send data to print by cline line by line
 }
 
 void *DownloadServerCommand::newThreadDownload(void *args) {
     auto* temp = (DownloadFile*)args;
+    std::cout << "in server new thread";
     std::stringstream message;
     size_t classifiedDataSize = temp->p_Data->classifiedResult.size();
     for (int i = 0; i < classifiedDataSize; ++i) {
@@ -110,5 +112,5 @@ void *DownloadServerCommand::newThreadDownload(void *args) {
     //symbol of end text
     temp->io->write("#");
     delete(temp->io);
-    return NULL;
+    return nullptr;
 }

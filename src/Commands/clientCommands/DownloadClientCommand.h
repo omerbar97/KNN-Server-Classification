@@ -13,7 +13,7 @@
 class DownloadClientCommand : public ICommand {
 private:
 
-    static void* newThreadDownload(void* args);
+    static void* newThreadDownloadClient(void* args);
 
 
 public:

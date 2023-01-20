@@ -32,7 +32,7 @@ void DownloadClientCommand::execute() {
         if(s.st_mode & S_IFDIR)
         {
             //it's a directory
-            fileName << userInput << "classifyResultsClientNumber-" << clientId << ".txt";
+            fileName << userInput << "/classifyResultsClientNumber-" << clientId << ".txt";
         }
         else if(s.st_mode & S_IFREG)
         {
@@ -76,16 +76,17 @@ void DownloadClientCommand::execute() {
         io.read(); // reading "-1"
         return;
     }
-
     SocketIO* tempIo = new SocketIO(downloadClient->getsocketNum());
-    pthread_t tid;
-    DownloadFile args = {tempIo, NULL, fileName.str(), NULL, downloadClient};
-    pthread_create(&tid, NULL, newThreadDownload, (void*)&args);
+    DownloadFile args = {tempIo, nullptr, fileName.str(), nullptr, downloadClient};
+    std::thread t(newThreadDownloadClient, (void*)&args);
+    t.detach();
+    //pthread_create(&tid, nullptr, newThreadDownload, (void*)&args);
 }
 
 
-void *DownloadClientCommand::newThreadDownload(void *args) {
+void *DownloadClientCommand::newThreadDownloadClient(void *args) {
     //create new file
+    std::cout << "in client new thread";
     std::string receiveData;
     DownloadFile* temp = (DownloadFile*)args;
     std::fstream file(temp->filePath, std::ios::out);
@@ -103,6 +104,7 @@ void *DownloadClientCommand::newThreadDownload(void *args) {
     // deleting resources
     delete(temp->io);
     delete(temp->client);
+    return nullptr;
 }
 
 

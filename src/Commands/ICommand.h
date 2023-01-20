@@ -24,6 +24,7 @@ public:
     std::string description;
     DefaultIO& io;
     clientData * p_Data;
+    pthread_t tid;
 
     ICommand(DefaultIO &io) : io(io) {
 
