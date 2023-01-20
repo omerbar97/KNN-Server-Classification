@@ -52,7 +52,7 @@ struct ServerData{
 struct DownloadFile {
     DefaultIO* io;
     clientData* p_Data;
-    std::string filePath;
+    std::string* filePath;
     Server* server;
     Client* client;
 };

@@ -76,9 +76,15 @@ void DownloadClientCommand::execute() {
         io.read(); // reading "-1"
         return;
     }
+
     SocketIO* tempIo = new SocketIO(downloadClient->getsocketNum());
-    DownloadFile args = {tempIo, nullptr, fileName.str(), nullptr, downloadClient};
-    std::thread t(newThreadDownloadClient, (void*)&args);
+    auto args = (DownloadFile*)malloc(sizeof(DownloadFile));
+    args->io = tempIo;
+    args->filePath = new std::string(fileName.str());
+    args->client = downloadClient;
+    args->p_Data = nullptr;
+    args->server = nullptr;
+    std::thread t(newThreadDownloadClient, (void*)args);
     t.detach();
     //pthread_create(&tid, nullptr, newThreadDownload, (void*)&args);
 }
@@ -89,12 +95,12 @@ void *DownloadClientCommand::newThreadDownloadClient(void *args) {
     std::cout << "in client new thread";
     std::string receiveData;
     DownloadFile* temp = (DownloadFile*)args;
-    std::fstream file(temp->filePath, std::ios::out);
+    std::fstream file(*temp->filePath, std::ios::out);
     FileIO fileResult(file, true);
     //loop over the file until got the sign #
     receiveData = temp->io->read();
     if(file.is_open()) {
-        while(!receiveData.compare("#")) {
+        while(receiveData != "#") {
             fileResult.write(receiveData);
             receiveData = temp->io->read();
         }
@@ -104,6 +110,7 @@ void *DownloadClientCommand::newThreadDownloadClient(void *args) {
     // deleting resources
     delete(temp->io);
     delete(temp->client);
+    delete(temp->filePath);
     return nullptr;
 }
 
