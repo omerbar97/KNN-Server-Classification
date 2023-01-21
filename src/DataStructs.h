@@ -32,9 +32,9 @@ struct VectorCSV {
 
 
 struct clientData{
-    std::vector<VectorCSV> trainData;
-    std::vector<std::vector<double>> testData;
-    std::vector<std::string> classifiedResult;
+    std::vector<VectorCSV>* trainData;
+    std::vector<std::vector<double>>* testData;
+    std::vector<std::string>* classifiedResult;
     int k;
     int clientId;
     std::string metric;

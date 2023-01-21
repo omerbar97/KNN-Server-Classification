@@ -83,8 +83,6 @@ add_executable(server.out
         src/Commands/serverCommands/AlgorithemSettingServerCommand.cpp
         src/Commands/serverCommands/EndingConnection.cpp
         src/Commands/serverCommands/EndingConnection.h
-        src/Commands/serverCommands/ServerCommands.cpp
-        src/Commands/serverCommands/ServerCommands.h
         src/Commands/serverCommands/ClassifyDataServerCommand.cpp
         src/Commands/serverCommands/ClassifyDataServerCommand.h
         src/Commands/serverCommands/DisplayServerCommand.cpp

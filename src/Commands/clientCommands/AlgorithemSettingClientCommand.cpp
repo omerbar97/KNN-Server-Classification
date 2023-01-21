@@ -41,8 +41,6 @@ void AlgorithemSettingClientCommand::execute()  {
     receiveData = io.read();
     std::cout << receiveData;
 
-
-
 }
 AlgorithemSettingClientCommand::~AlgorithemSettingClientCommand() {
 

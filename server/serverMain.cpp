@@ -3,21 +3,13 @@
 //
 #include "../src/input.h"
 #include "stdlib.h"
-#include <fstream>
 #include "Server.h"
 #include "../src/Algorithim/Knn.h"
 #include "../src/Commands/clientCommands/AlgorithemSettingClientCommand.h"
 #include "../src/Commands/clientCommands/ClassifyDataClientCommand.h"
-#include "../src/Commands/ICommand.h"
-#include "../src/IO/SocketIO.h"
+#include "../src/Commands/CLI.h"
 #include <pthread.h>
-#include "../src/Commands/ICommand.h"
-#include "../src/IO/DefaultIO.h"
-#include "../src/IO/SocketIO.h"
-#include "../src/IO/FileIO.h"
 #include "../src/IO/StandardIO.h"
-#include "../src/Commands/serverCommands/UploadFilesServerCommand.h"
-#include "../src/Commands/serverCommands/AlgorithemSettingServerCommand.h"
 
 #define BUFFER_SIZE 4096
 
@@ -343,6 +335,9 @@ int main(int argc, char *args[]) {
             perror("failed connecting the client");
             // connecting to other clients.
             continue;
+        }
+        if(globalClientId == 1) {
+            std::cout << "Test";
         }
         auto *arguments = (ServerData*)malloc(sizeof(ServerData));
         if(args == nullptr) {

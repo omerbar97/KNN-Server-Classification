@@ -26,8 +26,9 @@ CLI &CLI::getInstance() {
 void initClientData(clientData * data, int clientId, std::string* serverIp) {
     data->metric = "EUC";
     data->k = 5;
-    data->testData = {};
-    data->trainData = {};
+    data->trainData = nullptr;
+    data->testData = nullptr;
+    data->classifiedResult = nullptr;
     data->clientId = clientId;
     data->serverMainIp = serverIp;
 }
@@ -92,13 +93,13 @@ void *CLI::start(void *data) {
     instance->serverData.insert({clientId, p_Data});
     std::string userInput;
     while(true) {
-        // sending the client the menu choice
+        // sending to the client the menu choice
         io.write(menu.str());
         if(!io.isValid()) {
             perror("failed sending menu to client");
             fails++;
             if(fails > 10) {
-                // max fails connection
+                // max fails when sending data.
                 perror("failed sending to client to many times");
                 break;
             }
@@ -142,7 +143,7 @@ void *CLI::start(void *data) {
     }
     // free the client memory data.
     instance->serverData.erase(clientId);
-    free(p_Data);
+    deleteP_Data(p_Data);
     for(auto & i : iCommandsVec) {
         delete(i);
     }
@@ -150,7 +151,19 @@ void *CLI::start(void *data) {
 }
 
 void CLI::CliDelete() {
-    delete(instance);
+
 }
 
+void CLI::deleteP_Data(clientData *data) {
+    if(data->trainData != nullptr) {
+        delete(data->trainData);
+    }
+    if(data->testData != nullptr) {
+        delete(data->testData);
+    }
+    if(data->classifiedResult != nullptr) {
+        delete(data->classifiedResult);
+    }
+    free(data);
+}
 

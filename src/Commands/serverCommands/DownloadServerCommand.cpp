@@ -17,11 +17,11 @@ DownloadServerCommand::~DownloadServerCommand() {
 void DownloadServerCommand::execute(){
     std::stringstream message, check, error;
     //if not update files yet
-    if (this->p_Data->testData.empty() || this->p_Data->trainData.empty()) {
+    if (this->p_Data->testData == nullptr || this->p_Data->trainData == nullptr) {
         error << "Please upload data\n";
     }
     //if not classified data yet
-    else if (this->p_Data->classifiedResult.empty()) {
+    else if (this->p_Data->classifiedResult == nullptr) {
         error << "Please classify the data\n";
     }
     //if we have one of the above problem, send the message and return.
@@ -108,10 +108,10 @@ void DownloadServerCommand::execute(){
 void *DownloadServerCommand::newThreadDownload(void *args) {
     auto* temp = (DownloadFile*)args;
     std::stringstream message;
-    size_t classifiedDataSize = temp->p_Data->classifiedResult.size();
+    size_t classifiedDataSize = temp->p_Data->classifiedResult->size();
     for (int i = 0; i < classifiedDataSize; ++i) {
         message.str("");
-        message << i + 1 << "\t" <<temp->p_Data->classifiedResult[i] << std::endl;
+        message << i + 1 << "\t" << temp->p_Data->classifiedResult->at(i);
         temp->io->write(message.str());
     }
     //symbol of end text

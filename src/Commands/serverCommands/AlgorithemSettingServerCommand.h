@@ -7,7 +7,6 @@
 #include <string>
 #include <sstream>
 #include <sstream>
-#include "ServerCommands.h"
 #include "../ICommand.h"
 
 class AlgorithemSettingServerCommand : public ICommand{

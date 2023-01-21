@@ -6,7 +6,6 @@
 #include "../src/Commands/clientCommands/DisplayClientCommand.h"
 #include "../src/Commands/clientCommands/DownloadClientCommand.h"
 #include "../src/Commands/clientCommands/UploadFilesClientCommand.h"
-#include "../src/IO/SocketIO.h"
 #include "../src/input.h"
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
@@ -114,18 +113,8 @@ int main(int argc, char *args[]) {
     ICommand *option4 = new DisplayClientCommand(socketIo);
     ICommand *option5 = new DownloadClientCommand(socketIo);
 
-    std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
+    std::vector<ICommand*> commandVec{option1, option2, option3, option4, option5};
 
-    //starting the connection with the server.
-    //printing the options.
-//    input::print(client.getBuffer());
-//    //starting the connection with the server.
-//    //printing the options.
-//    printf("%s\n",client.readData());
-
-    // input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
-    // "<vector> <distance algorithm> <integer k>", client.getStream());
-    // looping and sending message from client to server until client send -1.
     std::string message;
     std::stringstream send;
     while (true) {
@@ -144,23 +133,14 @@ int main(int argc, char *args[]) {
             socketIo.write("8");
             break;
         }
-//        if (index == 5) {
-//            pthread_t tid;
-//            DownloadFile temp = {socketIo};
-//            pthread_create(&tid, NULL, runOption5,(void*)&temp);
-//            continue;
-//        }
         //otherwise execute the correct option.
-        send.str("");
-        send << index;
-        socketIo.write(send.str());
-        commandVec[index]->execute();
+        commandVec[index - 1]->execute();
     }
     // freeing memory
     for(ICommand* i : commandVec) {
         delete(i);
     }
     client->closeSock();
-    free(client);
+    delete(client);
     return 0;
 }

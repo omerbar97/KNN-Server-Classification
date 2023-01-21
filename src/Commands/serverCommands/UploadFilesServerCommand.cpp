@@ -126,7 +126,7 @@ void UploadFilesServerCommand::execute() {
         // error from client
         return;
     }
-    std::vector<VectorCSV> trainData;
+    std::vector<VectorCSV>* trainData = new std::vector<VectorCSV>;
 
     //read all lines from client
     dataRec = io.read();
@@ -137,13 +137,14 @@ void UploadFilesServerCommand::execute() {
             // error not in the exact format
             isValid = false;
         }
-        trainData.push_back(v);
+        trainData->push_back(v);
         dataRec = io.read();
     }
 
     if(!isValid) {
         io.write("-1"); // not valid
         io.write("Incorrect train file format.\n");
+        delete(trainData);
         return;
     }
     io.write("1"); // valid
@@ -155,7 +156,7 @@ void UploadFilesServerCommand::execute() {
     // uploading test file.
     io.write("Please upload your local test CSV file.\n");
 
-    std::vector<std::vector<double>> testData;
+    std::vector<std::vector<double>>* testData = new std::vector<std::vector<double>>;
 
     //read all lines from client
     dataRec = io.read();
@@ -165,27 +166,39 @@ void UploadFilesServerCommand::execute() {
         if(v.empty()) {
             isValid = false;
         }
-        testData.push_back(v);
+        testData->push_back(v);
         dataRec = io.read();
     }
 
     if(!isValid) {
         io.write("-1"); // not valid
         io.write("Incorrect test file format.\n");
+        delete(testData);
+        delete(trainData);
         return;
     }
     io.write("1"); // valid
 
 
     //checking if the test file and train file in the same size.
-    if(testData[0].size() != trainData[0].id.size()) {
+    if(testData->at(0).size() != trainData->at(0).id.size()) {
         // incompatible files
         io.write("-1");
         io.write("Incompatible file, please check that the files contains vector in the same length.\n");
+        delete(testData);
+        delete(trainData);
         return;
     }
 
     io.write("1"); // file okay
+
+    // deleteing old files.
+    if(this->p_Data->testData != nullptr) {
+        delete(this->p_Data->testData);
+    }
+    if(this->p_Data->trainData != nullptr) {
+        delete(this->p_Data->trainData);
+    }
 
     this->p_Data->testData = testData;
     this->p_Data->trainData = trainData;

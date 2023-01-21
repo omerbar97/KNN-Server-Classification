@@ -70,7 +70,7 @@ void AlgorithemSettingServerCommand::execute() {
     std::string enter;
     std::string parameters;
     enter = io.read();
-    if(enter.compare("#") == 0) {
+    if(enter == "#") {
         // no need to change settings
         return;
     }

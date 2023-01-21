@@ -37,6 +37,8 @@ public:
     static void* start(void * data);
 
     static void CliDelete();
+
+    static void deleteP_Data(clientData* data);
 };
 
 #endif //A_OUT_CLI_H
