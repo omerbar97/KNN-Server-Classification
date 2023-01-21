@@ -4,17 +4,18 @@
 
 #ifndef A_OUT_ALGORITHEMSETTINGSERVERCOMMAND_H
 #define A_OUT_ALGORITHEMSETTINGSERVERCOMMAND_H
-
-#include "ServerCommands.h"
+#include <string>
+#include <sstream>
+#include <sstream>
 #include "../ICommand.h"
 
-class AlgorithemSettingServerCommand : public ICommand , ServerCommands{
+class AlgorithemSettingServerCommand : public ICommand{
+
 private:
     int tokenize(std::string const &str, const char delim,std::vector<std::string> &out);
-public:
-    int clientId;
 
-    AlgorithemSettingServerCommand(DefaultIO &io);
+public:
+    AlgorithemSettingServerCommand(DefaultIO &io, int k);
 
     ~AlgorithemSettingServerCommand() override;
 

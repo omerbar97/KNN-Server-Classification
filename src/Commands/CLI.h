@@ -4,22 +4,41 @@
 
 #ifndef A_OUT_CLI_H
 #define A_OUT_CLI_H
-#include "../../src/Algorithim/CSVStruct.h"
-#include <vector>
 #include <iostream>
+#include "../IO/SocketIO.h"
+#include "serverCommands/UploadFilesServerCommand.h"
+#include "serverCommands/AlgorithemSettingServerCommand.h"
+#include "serverCommands/ClassifyDataServerCommand.h"
+#include "serverCommands/DisplayServerCommand.h"
+#include "serverCommands/DownloadServerCommand.h"
+#include "serverCommands/EndingConnection.h"
 #include <map>
-struct clientData{
-    std::vector<VectorCSV> trainData;
-    std::vector<std::vector<double>> testData;
-};
+#include <mutex>
+#include "ICommand.h"
+#include "../Algorithim/Knn.h"
+#include "../../server/Server.h"
+#define BUFFER_SIZE 4096
+
+
 
 class CLI {
+private:
+    static CLI* instance;
+    static std::string welcomeMessage;
+    CLI();
 
 public:
-    std::map<int, clientData> data;
-    CLI();
-    ~CLI() ;
-    void start(void);
+    ~CLI();
+
+    std::map<int, clientData*> serverData;
+
+    static CLI& getInstance();
+
+    static void* start(void * data);
+
+    static void CliDelete();
+
+    static void deleteP_Data(clientData* data);
 };
 
 #endif //A_OUT_CLI_H

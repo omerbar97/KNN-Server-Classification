@@ -1,15 +1,10 @@
 //
 // Created by shilo on 02/12/2022.
 //
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
-#include "input.h"
+
 #ifndef MAIN_CPP_READCSV_H
 #define MAIN_CPP_READCSV_H
-#include "Algorithim//CSVStruct.h"
+#include "../src/DataStructs.h"
 #include "../src/Commands/ICommand.h"
 
 
@@ -50,7 +45,8 @@ public:
      * This function get a command object and execute each line.
      * @param command
      */
-    static void executeLines(ICommand* command, const std::string& fileName);
+    static void executeLines(ICommand *command, const std::string &name);
+
 };
 
 #endif //MAIN_CPP_READCSV_H

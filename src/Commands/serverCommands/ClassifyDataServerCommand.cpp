@@ -4,26 +4,51 @@
 
 #include "ClassifyDataServerCommand.h"
 
-ClassifyDataServerCommand::ClassifyDataServerCommand(DefaultIO &io, int clientId) : ICommand(io),clientId(clientId), ServerCommands() {
+#include <utility>
+
+
+ClassifyDataServerCommand::ClassifyDataServerCommand(DefaultIO &io) : ICommand(io) {
     this->description = "3. classify data\n";
 }
 
 void ClassifyDataServerCommand::execute() {
     std::string sendData;
-    //if we there data isn't in map
-    auto iterator = this->data.find(this->clientId);
-    if(iterator == (this->data).end()) {
-        io.write("please upload data\n");
+
+    if(this->p_Data->testData == nullptr || this->p_Data->trainData == nullptr) {
+        io.write("-1");
+        io.write("Please upload data\n");
         return;
     }
-    //we found in data;
-    clientData lineData = iterator->second;
+    // everything okay with the setting
+    io.write("1");
+    std::vector<std::string>* newClassify = new std::vector<std::string>;
 
+    // setting Knn:
+    Knn* knn = new Knn(*this->p_Data->trainData);
+    Knn& KNN = *knn;
+    KNN.setK(this->p_Data->k);
+    Distance* metric = input::getDistance(p_Data->metric);
+    KNN.setDistance(metric);
+
+    size_t size = this->p_Data->testData->size();
+    for(int i = 0; i < size; i++){
+        KNN.setVector(this->p_Data->testData->at(i));
+        KNN.calculate();
+        newClassify->push_back(KNN.getClassified());
+//        this->p_Data->classifiedResult.push_back(KNN.getClassified());
+    }
+    this->p_Data->classifiedResult = newClassify;
+
+    io.write("complete data classifying\n");
     //we will classified the data
 
-
-
+    delete(metric);
+    delete(knn);
 }
 ClassifyDataServerCommand::~ClassifyDataServerCommand() noexcept {
 
 }
+
+
+
+

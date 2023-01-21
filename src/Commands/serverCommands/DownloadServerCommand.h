@@ -5,4 +5,22 @@
 #ifndef A_OUT_DOWNLOADSERVERCOMMAND_H
 #define A_OUT_DOWNLOADSERVERCOMMAND_H
 
+#include <pthread.h>
+#include <sys/socket.h>
+#include "../ICommand.h"
+#include <thread>
+
+class DownloadServerCommand : public ICommand{
+private:
+
+    static void* newThreadDownload(void* args);
+
+public:
+    DownloadServerCommand(DefaultIO &io);
+
+    ~DownloadServerCommand() override;
+
+    void execute() override;
+
+};
 #endif //A_OUT_DOWNLOADSERVERCOMMAND_H

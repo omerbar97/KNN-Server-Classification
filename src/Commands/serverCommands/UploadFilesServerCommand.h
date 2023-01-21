@@ -5,21 +5,22 @@
 #ifndef A_OUT_UPLOADFILESSERVERCOMMAND_H
 #define A_OUT_UPLOADFILESSERVERCOMMAND_H
 #include "../ICommand.h"
-#include "../CLI.h"
 #include <string>
 #include "../../IO/DefaultIO.h"
-#include "../../../src/Algorithim/CSVStruct.h"
-#include "ServerCommands.h"
+#include <sstream>
+#include <string>
+#include <utility>
+#include <iostream>
+#include <map>
 
-class UploadFilesServerCommand : public ICommand, CLI{
+
+class UploadFilesServerCommand : public ICommand{
 private:
-    int clientId;
-    bool uploadFile(std::string filePath);
 
 
 public:
 
-    UploadFilesServerCommand(DefaultIO &io, int clientId);
+    UploadFilesServerCommand(DefaultIO &io);
 
     ~UploadFilesServerCommand() override;
 

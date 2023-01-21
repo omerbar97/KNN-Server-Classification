@@ -4,8 +4,8 @@
 
 #ifndef A_OUT_ICOMMAND_H
 #define A_OUT_ICOMMAND_H
-#include <string>
 #include "../input.h"
+#include "../DataStructs.h"
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -16,11 +16,15 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <cstdlib>
+#include <sys/stat.h>
+
 
 class ICommand {
 public:
     std::string description;
     DefaultIO& io;
+    clientData * p_Data;
+    pthread_t tid;
 
     ICommand(DefaultIO &io) : io(io) {
 

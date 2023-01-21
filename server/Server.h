@@ -10,7 +10,6 @@
 #ifndef A_OUT_SERVER_H
 #define A_OUT_SERVER_H
 
-
 class Server {
 
 private:

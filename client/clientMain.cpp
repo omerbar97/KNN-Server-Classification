@@ -1,17 +1,15 @@
 #include "Client.h"
-#include <fstream>
 #include <iostream>
-//#include "../calculate/input.h"
 #include "../src/input.h"
 #include "../src/Commands/clientCommands/AlgorithemSettingClientCommand.h"
 #include "../src/Commands/clientCommands/ClassifyDataClientCommand.h"
 #include "../src/Commands/clientCommands/DisplayClientCommand.h"
 #include "../src/Commands/clientCommands/DownloadClientCommand.h"
 #include "../src/Commands/clientCommands/UploadFilesClientCommand.h"
-#include "../src/IO/SocketIO.h"
 #include "../src/input.h"
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
+#include "../src/IO/StandardIO.h"
 
 /**
  * This function check if char* is in a correct pattern of ip.
@@ -81,16 +79,11 @@ int userAskToClose(std::string str) {
     catch (std::exception d) {
         return false;
     }
-    return false;
 }
-void* runOption5(void * arg) {
-    static_cast<DownloadClientCommand*>(arg)->execute();
-    return nullptr;
-}
-
 
 int main(int argc, char *args[]) {
     std::string userInput;
+    StandardIO standardIo;
     int index;
     if(argc != 3 || !isPort(args[2]) || !isIp(args[1])) {
         // invalid argument input.
@@ -105,60 +98,49 @@ int main(int argc, char *args[]) {
     int port_no = atoi(args[2]);
 
     //initializing  Client.
-    Client client(port_no, ip_address);
-    if(!client.getValid()) {
+    auto* client = new Client(port_no, ip_address);
+    if(!client->getValid()) {
         input::print("failed to initializing the client.");
-        printf("failed to initializing the client.\n");
-//        input::print("failed to initializing the client.", client.getStream());
+        delete(client);
         exit(1);
     }
     //init SocketIO
-    SocketIO socketIo(client.getsocketNum());
+    SocketIO socketIo(client->getsocketNum());
     //init list of the commands.
-    DownloadClientCommand* pDownloadClientCommand = new DownloadClientCommand(socketIo);
     ICommand *option1 = new UploadFilesClientCommand(socketIo);
     ICommand *option2 = new AlgorithemSettingClientCommand(socketIo);
     ICommand *option3 = new ClassifyDataClientCommand(socketIo);
-    ICommand *option4 = pDownloadClientCommand;
+    ICommand *option4 = new DisplayClientCommand(socketIo);
     ICommand *option5 = new DownloadClientCommand(socketIo);
 
-//    std::vector<ICommand> commands{option1, option2, option3, option4, option5};
-    std::vector<ICommand*> commandVec{option1, option1, option2, option3, option4, option5};
+    std::vector<ICommand*> commandVec{option1, option2, option3, option4, option5};
 
-    //starting the connection with the server.
-    //printing the options.
-//    input::print(client.getBuffer());
-//    //starting the connection with the server.
-//    //printing the options.
-//    printf("%s\n",client.readData());
-
-    // input::print("Connected to the server successfully.\nSend the server the following to classified vectors\n"
-    // "<vector> <distance algorithm> <integer k>", client.getStream());
-    // looping and sending message from client to server until client send -1.
+    std::string message;
+    std::stringstream send;
     while (true) {
+        message = socketIo.read();
+        std::cout << message << std::endl;
         //receive Data from server and printing the optiond..
-        printf("%s\n", client.readData());
-
         std::getline(std::cin, userInput);
         index = userAskToClose(userInput);
         if(index == -1) {
+            standardIo.write("invalid input!\n");
+            socketIo.write("-1"); // error
             continue;
         }
         if (index == 8) {
             //exit from the loop and close socket.
-            client.closeSock();
+            socketIo.write("8");
             break;
         }
-        if (index == 5) {
-            pthread_t tid;
-            void*(*func)(void *);
-            pthread_create(&tid, NULL, runOption5,(void*)&pDownloadClientCommand);
-            continue;
-        }
-
         //otherwise execute the correct option.
-        commandVec[index]->execute();
-
+        commandVec[index - 1]->execute();
     }
+    // freeing memory
+    for(ICommand* i : commandVec) {
+        delete(i);
+    }
+    client->closeSock();
+    delete(client);
     return 0;
 }

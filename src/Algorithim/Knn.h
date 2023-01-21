@@ -8,7 +8,6 @@
 #ifndef RUNNABLE_KNN_H
 #define RUNNABLE_KNN_H
 #include "../ReadCSV.h"
-#include "CSVStruct.h"
 #include "Select.h"
 #include <map>
 
@@ -36,6 +35,8 @@ public:
     Knn(std::vector<double> v1, std::vector<VectorCSV> vectors, Distance *distance, int k);
 
     Knn(std::vector<VectorCSV> vectors);
+
+    Knn();
 
     /**
     * getter for the distances result structure vector.
