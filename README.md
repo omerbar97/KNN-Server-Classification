@@ -12,9 +12,38 @@
 <pre><code>$ cd build-for-linux                       // Moving to the desired folder.
 $ make                                     // Compiling the project.</code></pre>
 <h5>Running the server: (make sure you inside the folder build-for-linux)</h5>
-<pre><code>$ ./server.out &#60file&#62 &#60port&#62                // For example: ./server.out iris_classified.csv 12345</code></pre>
+<pre><code>$ ./server.out &#60port&#62                // For example: ./server.out 12345</code></pre>
 <h5>Running the client: (make sure you inside the folder build-for-linux)</h5>
 <pre><code>$ ./client.out &#60ip address&#62 &#60server port&#62   // For example: ./client.out 127.0.0.1 12345</code></pre>
+
+<h2><i>------------------------------Milestone 3 - 22.1.2023------------------------------</i></h2>
+<p>This part of the project we made multithreading server side, that handle connection simultaneously with alot of clients. The idea behind that is to make 
+the server side more like a real server just like browsing the internet. Each client that connects to the server get an unique socket number that the server communicate through that socket. when a client connects to the server the menu below will appear:</p>
+<pre><code>Welcome to the KNN Classifier Server. Please choose an option:
+1. upload an unclassified csv data file
+2. algorithm settings
+3. classify data
+4. display results
+5. download results
+8. exit</code></pre>
+
+<p>lets explain each part:</p>
+<h3>1. Uploading an unclassified csv data file</h3>
+<p>In this section you would upload the trained vector csv file to the server, what is a trained vector data file? well it is a CSV file that in each row
+contains numbers (potential not limited) and at the end of the row CLASSIFY to that vector. for example:
+<pre><code>1.2 3.1 4.4 0.1 10.02 iris_setosa</code></pre> more examples are in the directory called resources.
+After that the server will ask the client to upload an untrained vector called "test vector" that are look like that:
+<pre><code>5.7 2.3 4.8 9.81 1.3</code></pre> more examples are in the directory called resources.
+Some crucial information: </p>
+<ol>
+  <li>All the trained vector size must be in the same length.</li>
+  <li>All test vector size must be in the same length and equal to the trained vector size.</li>
+  <li>At first you need to enter the Trained vector file and only after that the Test vector file. if not an error will occur</li>
+</ol>
+<p>We made some assumptions when you enter a file (train/test) all the vectors in that file are in the same length, we didn't check for that, so we "accept" it but the 
+classify function won't work in that case. So don't expect anything.</p>
+
+
 
 <h2><i>------------------------------Milestone 2 - 1.1.2023------------------------------</i></h2>
 <p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas both client and server creating a socket to communicate.  When creating the server, we bind it to a specifc port given in the program arguments. When creating the client we give ip address and server port in the program argument.</p>
