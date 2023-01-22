@@ -9,7 +9,6 @@ void StandardIO::write(std::string string) {
 }
 
 std::string StandardIO::read() {
-    char buffer[BUFFER];
     std::getline(std::cin, this->input);
     return getInput();
 }

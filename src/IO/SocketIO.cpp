@@ -43,6 +43,6 @@ std::string SocketIO::read(){
     return {};
 }
 
-bool SocketIO::isValid() {
+bool SocketIO::isValid() const {
     return this->valid;
 }

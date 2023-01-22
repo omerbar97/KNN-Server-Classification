@@ -7,6 +7,7 @@
 #include "../ICommand.h"
 #include <string>
 #include "../../IO/DefaultIO.h"
+#include "../../ReadCSV.h"
 
 class UploadFilesClientCommand : public ICommand {
 public:

@@ -4,7 +4,6 @@
 
 #include "FileIO.h"
 
-#include <utility>
 
 FileIO::FileIO(std::fstream &stream, bool newLine) : stream(stream) {
     this->newLine = newLine;
@@ -27,6 +26,7 @@ std::string FileIO::read() {
             return line;
         }
     }
+    // returning empty string if file is not open.
     return {};
 }
 
