@@ -38,10 +38,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/u/students/baromer4/second year/advenced programming"
+CMAKE_SOURCE_DIR = /u/students/baromer4/test
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/u/students/baromer4/second year/advenced programming/build-for-linux"
+CMAKE_BINARY_DIR = /u/students/baromer4/test/build-for-linux
 
 # Include any dependencies generated for this target.
 include CMakeFiles/client.out.dir/depend.make
@@ -52,42 +52,65 @@ include CMakeFiles/client.out.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/client.out.dir/flags.make
 
-CMakeFiles/client.out.dir/calculate/input.cpp.o: CMakeFiles/client.out.dir/flags.make
-CMakeFiles/client.out.dir/calculate/input.cpp.o: ../calculate/input.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/calculate/input.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/calculate/input.cpp.o -c "/u/students/baromer4/second year/advenced programming/calculate/input.cpp"
+CMakeFiles/client.out.dir/src/ReadCSV.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/ReadCSV.cpp.o: ../src/ReadCSV.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/ReadCSV.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/ReadCSV.cpp.o -c /u/students/baromer4/test/src/ReadCSV.cpp
 
-CMakeFiles/client.out.dir/calculate/input.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/calculate/input.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/calculate/input.cpp" > CMakeFiles/client.out.dir/calculate/input.cpp.i
+CMakeFiles/client.out.dir/src/ReadCSV.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/ReadCSV.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/ReadCSV.cpp > CMakeFiles/client.out.dir/src/ReadCSV.cpp.i
 
-CMakeFiles/client.out.dir/calculate/input.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/calculate/input.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/calculate/input.cpp" -o CMakeFiles/client.out.dir/calculate/input.cpp.s
+CMakeFiles/client.out.dir/src/ReadCSV.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/ReadCSV.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/ReadCSV.cpp -o CMakeFiles/client.out.dir/src/ReadCSV.cpp.s
 
-CMakeFiles/client.out.dir/calculate/input.cpp.o.requires:
-.PHONY : CMakeFiles/client.out.dir/calculate/input.cpp.o.requires
+CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.requires
 
-CMakeFiles/client.out.dir/calculate/input.cpp.o.provides: CMakeFiles/client.out.dir/calculate/input.cpp.o.requires
-	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/input.cpp.o.provides.build
-.PHONY : CMakeFiles/client.out.dir/calculate/input.cpp.o.provides
+CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.provides: CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.provides
 
-CMakeFiles/client.out.dir/calculate/input.cpp.o.provides.build: CMakeFiles/client.out.dir/calculate/input.cpp.o
+CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.provides.build: CMakeFiles/client.out.dir/src/ReadCSV.cpp.o
+
+CMakeFiles/client.out.dir/src/input.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/input.cpp.o: ../src/input.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/input.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/input.cpp.o -c /u/students/baromer4/test/src/input.cpp
+
+CMakeFiles/client.out.dir/src/input.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/input.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/input.cpp > CMakeFiles/client.out.dir/src/input.cpp.i
+
+CMakeFiles/client.out.dir/src/input.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/input.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/input.cpp -o CMakeFiles/client.out.dir/src/input.cpp.s
+
+CMakeFiles/client.out.dir/src/input.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/input.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/input.cpp.o.provides: CMakeFiles/client.out.dir/src/input.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/input.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/input.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/input.cpp.o.provides.build: CMakeFiles/client.out.dir/src/input.cpp.o
 
 CMakeFiles/client.out.dir/client/Client.cpp.o: CMakeFiles/client.out.dir/flags.make
 CMakeFiles/client.out.dir/client/Client.cpp.o: ../client/Client.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/client/Client.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/client/Client.cpp.o -c "/u/students/baromer4/second year/advenced programming/client/Client.cpp"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/client/Client.cpp.o -c /u/students/baromer4/test/client/Client.cpp
 
 CMakeFiles/client.out.dir/client/Client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/client/Client.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/client/Client.cpp" > CMakeFiles/client.out.dir/client/Client.cpp.i
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/client/Client.cpp > CMakeFiles/client.out.dir/client/Client.cpp.i
 
 CMakeFiles/client.out.dir/client/Client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/client/Client.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/client/Client.cpp" -o CMakeFiles/client.out.dir/client/Client.cpp.s
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/client/Client.cpp -o CMakeFiles/client.out.dir/client/Client.cpp.s
 
 CMakeFiles/client.out.dir/client/Client.cpp.o.requires:
 .PHONY : CMakeFiles/client.out.dir/client/Client.cpp.o.requires
@@ -98,157 +121,157 @@ CMakeFiles/client.out.dir/client/Client.cpp.o.provides: CMakeFiles/client.out.di
 
 CMakeFiles/client.out.dir/client/Client.cpp.o.provides.build: CMakeFiles/client.out.dir/client/Client.cpp.o
 
-CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o: CMakeFiles/client.out.dir/flags.make
-CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o: ../calculate/Distance/Distance.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o -c "/u/students/baromer4/second year/advenced programming/calculate/Distance/Distance.cpp"
+CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o: ../src/Distance/Distance.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o -c /u/students/baromer4/test/src/Distance/Distance.cpp
 
-CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/calculate/Distance/Distance.cpp" > CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.i
+CMakeFiles/client.out.dir/src/Distance/Distance.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Distance/Distance.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Distance/Distance.cpp > CMakeFiles/client.out.dir/src/Distance/Distance.cpp.i
 
-CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/calculate/Distance/Distance.cpp" -o CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.s
+CMakeFiles/client.out.dir/src/Distance/Distance.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Distance/Distance.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Distance/Distance.cpp -o CMakeFiles/client.out.dir/src/Distance/Distance.cpp.s
 
-CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.requires:
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.requires
+CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.requires
 
-CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.provides: CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.requires
-	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.provides.build
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.provides
+CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.provides: CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.provides
 
-CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.provides.build: CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o
+CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o
 
-CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o: CMakeFiles/client.out.dir/flags.make
-CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o: ../calculate/Distance/Euclidean.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_4)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o -c "/u/students/baromer4/second year/advenced programming/calculate/Distance/Euclidean.cpp"
+CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o: ../src/Distance/Euclidean.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o -c /u/students/baromer4/test/src/Distance/Euclidean.cpp
 
-CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/calculate/Distance/Euclidean.cpp" > CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.i
+CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Distance/Euclidean.cpp > CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.i
 
-CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/calculate/Distance/Euclidean.cpp" -o CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.s
+CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Distance/Euclidean.cpp -o CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.s
 
-CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.requires:
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.requires
+CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.requires
 
-CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.provides: CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.requires
-	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.provides.build
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.provides
+CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.provides: CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.provides
 
-CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.provides.build: CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o
+CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o
 
-CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o: CMakeFiles/client.out.dir/flags.make
-CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o: ../calculate/Distance/Minkowski.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_5)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o -c "/u/students/baromer4/second year/advenced programming/calculate/Distance/Minkowski.cpp"
+CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o: ../src/Distance/Minkowski.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_6)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o -c /u/students/baromer4/test/src/Distance/Minkowski.cpp
 
-CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/calculate/Distance/Minkowski.cpp" > CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.i
+CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Distance/Minkowski.cpp > CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.i
 
-CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/calculate/Distance/Minkowski.cpp" -o CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.s
+CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Distance/Minkowski.cpp -o CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.s
 
-CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.requires:
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.requires
+CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.requires
 
-CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.provides: CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.requires
-	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.provides.build
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.provides
+CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.provides: CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.provides
 
-CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.provides.build: CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o
+CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o
 
-CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o: CMakeFiles/client.out.dir/flags.make
-CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o: ../calculate/Distance/Canberra.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o -c "/u/students/baromer4/second year/advenced programming/calculate/Distance/Canberra.cpp"
+CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o: ../src/Distance/Canberra.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o -c /u/students/baromer4/test/src/Distance/Canberra.cpp
 
-CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/calculate/Distance/Canberra.cpp" > CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.i
+CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Distance/Canberra.cpp > CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.i
 
-CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/calculate/Distance/Canberra.cpp" -o CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.s
+CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Distance/Canberra.cpp -o CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.s
 
-CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.requires:
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.requires
+CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.requires
 
-CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.provides: CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.requires
-	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.provides.build
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.provides
+CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.provides: CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.provides
 
-CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.provides.build: CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o
+CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o
 
-CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o: CMakeFiles/client.out.dir/flags.make
-CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o: ../calculate/Distance/Chebyshev.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_7)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o -c "/u/students/baromer4/second year/advenced programming/calculate/Distance/Chebyshev.cpp"
+CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o: ../src/Distance/Chebyshev.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o -c /u/students/baromer4/test/src/Distance/Chebyshev.cpp
 
-CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/calculate/Distance/Chebyshev.cpp" > CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.i
+CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Distance/Chebyshev.cpp > CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.i
 
-CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/calculate/Distance/Chebyshev.cpp" -o CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.s
+CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Distance/Chebyshev.cpp -o CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.s
 
-CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.requires:
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.requires
+CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.requires
 
-CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.provides: CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.requires
-	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.provides.build
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.provides
+CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.provides: CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.provides
 
-CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.provides.build: CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o
+CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o
 
-CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o: CMakeFiles/client.out.dir/flags.make
-CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o: ../calculate/Distance/Manhattan.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_8)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o -c "/u/students/baromer4/second year/advenced programming/calculate/Distance/Manhattan.cpp"
+CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o: ../src/Distance/Manhattan.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o -c /u/students/baromer4/test/src/Distance/Manhattan.cpp
 
-CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/calculate/Distance/Manhattan.cpp" > CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.i
+CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Distance/Manhattan.cpp > CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.i
 
-CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/calculate/Distance/Manhattan.cpp" -o CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.s
+CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Distance/Manhattan.cpp -o CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.s
 
-CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.requires:
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.requires
+CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.requires
 
-CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.provides: CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.requires
-	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.provides.build
-.PHONY : CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.provides
+CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.provides: CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.provides
 
-CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.provides.build: CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o
+CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o
 
 CMakeFiles/client.out.dir/client/clientMain.cpp.o: CMakeFiles/client.out.dir/flags.make
 CMakeFiles/client.out.dir/client/clientMain.cpp.o: ../client/clientMain.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles" $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/client/clientMain.cpp.o"
-	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/client/clientMain.cpp.o -c "/u/students/baromer4/second year/advenced programming/client/clientMain.cpp"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/client/clientMain.cpp.o -c /u/students/baromer4/test/client/clientMain.cpp
 
 CMakeFiles/client.out.dir/client/clientMain.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/client/clientMain.cpp.i"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E "/u/students/baromer4/second year/advenced programming/client/clientMain.cpp" > CMakeFiles/client.out.dir/client/clientMain.cpp.i
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/client/clientMain.cpp > CMakeFiles/client.out.dir/client/clientMain.cpp.i
 
 CMakeFiles/client.out.dir/client/clientMain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/client/clientMain.cpp.s"
-	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S "/u/students/baromer4/second year/advenced programming/client/clientMain.cpp" -o CMakeFiles/client.out.dir/client/clientMain.cpp.s
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/client/clientMain.cpp -o CMakeFiles/client.out.dir/client/clientMain.cpp.s
 
 CMakeFiles/client.out.dir/client/clientMain.cpp.o.requires:
 .PHONY : CMakeFiles/client.out.dir/client/clientMain.cpp.o.requires
@@ -259,30 +282,257 @@ CMakeFiles/client.out.dir/client/clientMain.cpp.o.provides: CMakeFiles/client.ou
 
 CMakeFiles/client.out.dir/client/clientMain.cpp.o.provides.build: CMakeFiles/client.out.dir/client/clientMain.cpp.o
 
+CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o: ../src/IO/StandardIO.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_11)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o -c /u/students/baromer4/test/src/IO/StandardIO.cpp
+
+CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/IO/StandardIO.cpp > CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.i
+
+CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/IO/StandardIO.cpp -o CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.s
+
+CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.provides: CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.provides.build: CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o
+
+CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o: ../src/IO/DefaultIO.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_12)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o -c /u/students/baromer4/test/src/IO/DefaultIO.cpp
+
+CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/IO/DefaultIO.cpp > CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.i
+
+CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/IO/DefaultIO.cpp -o CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.s
+
+CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.provides: CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.provides.build: CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o
+
+CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o: ../src/IO/SocketIO.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_13)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o -c /u/students/baromer4/test/src/IO/SocketIO.cpp
+
+CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/IO/SocketIO.cpp > CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.i
+
+CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/IO/SocketIO.cpp -o CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.s
+
+CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.provides: CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.provides.build: CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o
+
+CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o: ../src/IO/FileIO.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_14)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o -c /u/students/baromer4/test/src/IO/FileIO.cpp
+
+CMakeFiles/client.out.dir/src/IO/FileIO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/IO/FileIO.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/IO/FileIO.cpp > CMakeFiles/client.out.dir/src/IO/FileIO.cpp.i
+
+CMakeFiles/client.out.dir/src/IO/FileIO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/IO/FileIO.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/IO/FileIO.cpp -o CMakeFiles/client.out.dir/src/IO/FileIO.cpp.s
+
+CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.provides: CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.provides.build: CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o: ../src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_15)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o -c /u/students/baromer4/test/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp > CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.i
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp -o CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.s
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.provides: CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o: ../src/Commands/clientCommands/ClassifyDataClientCommand.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_16)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o -c /u/students/baromer4/test/src/Commands/clientCommands/ClassifyDataClientCommand.cpp
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Commands/clientCommands/ClassifyDataClientCommand.cpp > CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.i
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Commands/clientCommands/ClassifyDataClientCommand.cpp -o CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.s
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.provides: CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o: ../src/Commands/clientCommands/DisplayClientCommand.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_17)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o -c /u/students/baromer4/test/src/Commands/clientCommands/DisplayClientCommand.cpp
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Commands/clientCommands/DisplayClientCommand.cpp > CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.i
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Commands/clientCommands/DisplayClientCommand.cpp -o CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.s
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.provides: CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o: ../src/Commands/clientCommands/DownloadClientCommand.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_18)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o -c /u/students/baromer4/test/src/Commands/clientCommands/DownloadClientCommand.cpp
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Commands/clientCommands/DownloadClientCommand.cpp > CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.i
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Commands/clientCommands/DownloadClientCommand.cpp -o CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.s
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.provides: CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o: CMakeFiles/client.out.dir/flags.make
+CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o: ../src/Commands/clientCommands/UploadFilesClientCommand.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /u/students/baromer4/test/build-for-linux/CMakeFiles $(CMAKE_PROGRESS_19)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o"
+	/opt/rh/devtoolset-11/root/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o -c /u/students/baromer4/test/src/Commands/clientCommands/UploadFilesClientCommand.cpp
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.i"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /u/students/baromer4/test/src/Commands/clientCommands/UploadFilesClientCommand.cpp > CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.i
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.s"
+	/opt/rh/devtoolset-11/root/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /u/students/baromer4/test/src/Commands/clientCommands/UploadFilesClientCommand.cpp -o CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.s
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.requires:
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.requires
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.provides: CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.requires
+	$(MAKE) -f CMakeFiles/client.out.dir/build.make CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.provides.build
+.PHONY : CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.provides
+
+CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.provides.build: CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o
+
 # Object files for target client.out
 client_out_OBJECTS = \
-"CMakeFiles/client.out.dir/calculate/input.cpp.o" \
+"CMakeFiles/client.out.dir/src/ReadCSV.cpp.o" \
+"CMakeFiles/client.out.dir/src/input.cpp.o" \
 "CMakeFiles/client.out.dir/client/Client.cpp.o" \
-"CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o" \
-"CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o" \
-"CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o" \
-"CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o" \
-"CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o" \
-"CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o" \
-"CMakeFiles/client.out.dir/client/clientMain.cpp.o"
+"CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o" \
+"CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o" \
+"CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o" \
+"CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o" \
+"CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o" \
+"CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o" \
+"CMakeFiles/client.out.dir/client/clientMain.cpp.o" \
+"CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o" \
+"CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o" \
+"CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o" \
+"CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o" \
+"CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o" \
+"CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o" \
+"CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o" \
+"CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o" \
+"CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o"
 
 # External object files for target client.out
 client_out_EXTERNAL_OBJECTS =
 
-client.out: CMakeFiles/client.out.dir/calculate/input.cpp.o
+client.out: CMakeFiles/client.out.dir/src/ReadCSV.cpp.o
+client.out: CMakeFiles/client.out.dir/src/input.cpp.o
 client.out: CMakeFiles/client.out.dir/client/Client.cpp.o
-client.out: CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o
-client.out: CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o
-client.out: CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o
-client.out: CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o
-client.out: CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o
-client.out: CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o
 client.out: CMakeFiles/client.out.dir/client/clientMain.cpp.o
+client.out: CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o
+client.out: CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o
+client.out: CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o
+client.out: CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o
+client.out: CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o
 client.out: CMakeFiles/client.out.dir/build.make
 client.out: CMakeFiles/client.out.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable client.out"
@@ -292,15 +542,25 @@ client.out: CMakeFiles/client.out.dir/link.txt
 CMakeFiles/client.out.dir/build: client.out
 .PHONY : CMakeFiles/client.out.dir/build
 
-CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/calculate/input.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/ReadCSV.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/input.cpp.o.requires
 CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/client/Client.cpp.o.requires
-CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/calculate/Distance/Distance.cpp.o.requires
-CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/calculate/Distance/Euclidean.cpp.o.requires
-CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/calculate/Distance/Minkowski.cpp.o.requires
-CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/calculate/Distance/Canberra.cpp.o.requires
-CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/calculate/Distance/Chebyshev.cpp.o.requires
-CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/calculate/Distance/Manhattan.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Distance/Distance.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Distance/Euclidean.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Distance/Minkowski.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Distance/Canberra.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Distance/Chebyshev.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Distance/Manhattan.cpp.o.requires
 CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/client/clientMain.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/IO/StandardIO.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/IO/DefaultIO.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/IO/SocketIO.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/IO/FileIO.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Commands/clientCommands/ClassifyDataClientCommand.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Commands/clientCommands/DisplayClientCommand.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Commands/clientCommands/DownloadClientCommand.cpp.o.requires
+CMakeFiles/client.out.dir/requires: CMakeFiles/client.out.dir/src/Commands/clientCommands/UploadFilesClientCommand.cpp.o.requires
 .PHONY : CMakeFiles/client.out.dir/requires
 
 CMakeFiles/client.out.dir/clean:
@@ -308,6 +568,6 @@ CMakeFiles/client.out.dir/clean:
 .PHONY : CMakeFiles/client.out.dir/clean
 
 CMakeFiles/client.out.dir/depend:
-	cd "/u/students/baromer4/second year/advenced programming/build-for-linux" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/u/students/baromer4/second year/advenced programming" "/u/students/baromer4/second year/advenced programming" "/u/students/baromer4/second year/advenced programming/build-for-linux" "/u/students/baromer4/second year/advenced programming/build-for-linux" "/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/client.out.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /u/students/baromer4/test/build-for-linux && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /u/students/baromer4/test /u/students/baromer4/test /u/students/baromer4/test/build-for-linux /u/students/baromer4/test/build-for-linux /u/students/baromer4/test/build-for-linux/CMakeFiles/client.out.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/client.out.dir/depend
 

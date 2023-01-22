@@ -1,2 +1,2 @@
-/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/client.out.dir
-/u/students/baromer4/second year/advenced programming/build-for-linux/CMakeFiles/server.out.dir
+/u/students/baromer4/test/build-for-linux/CMakeFiles/client.out.dir
+/u/students/baromer4/test/build-for-linux/CMakeFiles/server.out.dir
