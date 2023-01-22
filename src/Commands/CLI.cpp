@@ -24,7 +24,7 @@ CLI &CLI::getInstance() {
     return *instance;
 }
 void initClientData(clientData * data, int clientId, std::string* serverIp) {
-    data->metric = "EUC";
+    data->metric = "AUC";
     data->k = 5;
     data->trainData = nullptr;
     data->testData = nullptr;
