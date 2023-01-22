@@ -12,7 +12,7 @@
 <pre><code>$ cd build-for-linux                       // Moving to the desired folder.
 $ make                                     // Compiling the project.</code></pre>
 <h5>Running the server: (make sure you inside the folder build-for-linux)</h5>
-<pre><code>$ ./server.out &#60port&#62                // For example: ./server.out 12345</code></pre>
+<pre><code>$ ./server.out &#60port&#62                       // For example: ./server.out 12345</code></pre>
 <h5>Running the client: (make sure you inside the folder build-for-linux)</h5>
 <pre><code>$ ./client.out &#60ip address&#62 &#60server port&#62   // For example: ./client.out 127.0.0.1 12345</code></pre>
 
@@ -28,7 +28,7 @@ the server side more like a real server just like browsing the internet. Each cl
 8. exit</code></pre>
 
 <p>lets explain each part:</p>
-<h3>1. Uploading an unclassified csv data file</h3>
+<h3>1. Uploading Files</h3>
 <p>In this section you would upload the trained vector csv file to the server, what is a trained vector data file? well it is a CSV file that in each row
 contains numbers (potential not limited) and at the end of the row CLASSIFY to that vector. for example:
 <pre><code>1.2 3.1 4.4 0.1 10.02 iris_setosa</code></pre> more examples are in the directory called resources.
@@ -63,15 +63,24 @@ Be aware that this part could take a few seconds and perhaps even a few minutes 
 
 <h3>4. Displaing The Results</h3>
 <p>In this section we display the result that was calculate In the latest Classify section, every untrained vector in the file are listed, the first row Is vector number 1 the second row is vector number 2 and so on.. the display format Is as follow:
-<pre><code>1    Iris-setosa
+<pre><code>1      Iris-setosa
 ...
 ...
-37   Iris-virginica
+37     Iris-virginica
 ...
 ...
 </code></pre>
-Few thing you might want to consider, before classifying any data the server will send to the client "Please classify data." when the client already classify the vectors this section will display the results of the Latest classification that was made, doesn't matter if there is files or correct Metric\K or both of them.</p>
+Few thing you might want to consider, before classifying any data the server will send to the client "Please classify the data." when the client already classify the vectors this section will display the results of the Latest classification that was made, doesn't matter if there is files or correct Metric\K or both of them.</p>
 
+<h3>5. Downloading The Results</h3>
+<p>In this section the client would download the result to his computer, at first if the data was not classify the server will send "Please classify the data." afterward it will server the client the latest classification that was made. the client will enter a file path / file directory to the server, if the path is valid the server will start sending the client the result in the same format as in Display Results section. Few thing about the file path:</p>
+<ul>
+  <li>If the file path is directory then default file named: "classifyResultsClientNumber-N.txt will be created where N is the client unique id number.</li>
+  <li>If the file path is an txt file, the client will rewrite it with the newly trained vector results.</li>
+  <li>If the file does not exist, then creating a new file by the name was given.</li>
+</ul>
+
+<p>This section is different from the other, it happens in a new thread for the client and server together. the new thread opens after the client enter the file path and that everything was valid, Because of this happening in a new thread this section opens for many error that may occur while trying to connect to a new client or while opening a new thread. when error will occur the client will know, the new thread will print an error.</p>
 
 <h2><i>------------------------------Milestone 2 - 1.1.2023------------------------------</i></h2>
 <p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas both client and server creating a socket to communicate.  When creating the server, we bind it to a specifc port given in the program arguments. When creating the client we give ip address and server port in the program argument.</p>
