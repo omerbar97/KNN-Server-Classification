@@ -32,7 +32,6 @@ bool Server::initServer() {
         perror("failed binding the port to the socket");
         return false;
     }
-    std::cout << "-------------Success binding the port to the socket!" << std::endl;
     return true;
 }
 

@@ -4,11 +4,12 @@
 
 #ifndef A_OUT_DOWNLOADSERVERCOMMAND_H
 #define A_OUT_DOWNLOADSERVERCOMMAND_H
-
 #include <pthread.h>
 #include <sys/socket.h>
 #include "../ICommand.h"
 #include <thread>
+#define START_PORT_THREAD 60000
+#define PORT_MODULO 500
 
 class DownloadServerCommand : public ICommand{
 private:

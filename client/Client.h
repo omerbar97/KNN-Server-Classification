@@ -6,14 +6,10 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <string.h>
-
+#include <cstring>
+#define BUFFER_SIZE 4096
 #ifndef A_OUT_CLIENT_H
 #define A_OUT_CLIENT_H
-struct Data {
-    int data_len;
-    char data_addr[];
-};
 
 class Client {
 private:
@@ -22,7 +18,7 @@ private:
     int port_no;
     int socketNum;
     sockaddr_in sin;
-    char buffer[4096];
+    char buffer[BUFFER_SIZE];
     /**
      * Function to initialize Sin correspond to the socket client, return false if there any fail.
      * true otherwise.
@@ -74,11 +70,6 @@ public:
      */
     char* getBuffer();
 
-    /**
-     * Getter fot stream.
-     * @return std::ostream&
-     */
-    std::ostream& getStream();
 
     /**
      * Getter for valid.

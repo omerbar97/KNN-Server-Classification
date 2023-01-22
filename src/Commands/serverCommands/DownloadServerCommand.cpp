@@ -24,13 +24,14 @@ void DownloadServerCommand::execute(){
     else if (this->p_Data->classifiedResult == nullptr) {
         error << "Please classify the data\n";
     }
+
     //if we have one of the above problem, send the message and return.
     if (error.rdbuf()->in_avail() != 0) {
-        // metoraf
-        io.write("-1");
-        io.write(error.str());
+        io.write("-1"); // error
+        io.write(error.str()); // error message
         return;
     }
+
     std::stringstream temp;
     temp << this->p_Data->clientId;
     io.write(temp.str()); // able to download
@@ -47,13 +48,13 @@ void DownloadServerCommand::execute(){
     // creating new socket for the thread.
 
     std::stringstream portString;
-    int port = 60000 + this->p_Data->clientId; // creating port for new server
+    int port = START_PORT_THREAD + (this->p_Data->clientId % PORT_MODULO); // creating port for new server
     portString << port;
     // sending client port
     io.write(portString.str());
 
     // initializing server
-    Server* downloadServer = new Server(port);
+    auto* downloadServer = new Server(port);
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
     int clientSocket;
@@ -65,7 +66,8 @@ void DownloadServerCommand::execute(){
         io.write("-1");
         return;
     }
-    io.write("1");
+    io.write("1"); // able to continue.
+
     // listen to port
     if(!downloadServer->listenServer(1)) {
         delete(downloadServer);
@@ -79,7 +81,7 @@ void DownloadServerCommand::execute(){
     // waiting for new client to connect the server
     clientSocket = accept(downloadServer->getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
     if(clientSocket < 0) {
-        io.write("-1");
+        io.write("-1"); // error to client
         error.str("");
         error << "failed connecting the client-" << p_Data->clientId << " while trying to download files";
         perror(error.str().c_str());
@@ -89,33 +91,43 @@ void DownloadServerCommand::execute(){
     //succeeds connecting with thread client.
     io.write("1");
 
-    SocketIO* tempIo = new SocketIO(clientSocket);
+    auto* tempIo = new SocketIO(clientSocket);
 
     // sending arguments to thread function.
-    DownloadFile* args = (DownloadFile*)malloc(sizeof(DownloadFile));
+    auto* args = new DownloadFile();
     args->io = tempIo;
     args->server = downloadServer;
     args->filePath = nullptr;
     args->client = nullptr;
     args->p_Data = p_Data;
-//    DownloadFile args = {tempIo, this->p_Data, nullptr, downloadServer};
+
     std::thread t(newThreadDownload, (void*)args);
+    // separating the thread from this function.
     t.detach();
-    //pthread_create(&tid, nullptr, newThreadDownload, (void*)&args);
-    //otherwise send data to print by cline line by line
 }
 
 void *DownloadServerCommand::newThreadDownload(void *args) {
     auto* temp = (DownloadFile*)args;
     std::stringstream message;
     size_t classifiedDataSize = temp->p_Data->classifiedResult->size();
-    for (int i = 0; i < classifiedDataSize; ++i) {
-        message.str("");
-        message << i + 1 << "\t" << temp->p_Data->classifiedResult->at(i);
-        temp->io->write(message.str());
+    std::string check = temp->io->read(); // getting information on file
+    if(check == "-1") {
+        // error..
+        std::cout << "client couldn't open the file to download\n";
     }
-    //symbol of end text
-    temp->io->write("#");
+    else {
+        for (int i = 0; i < classifiedDataSize; ++i) {
+            message.str("");
+            message << i + 1 << "\t" << temp->p_Data->classifiedResult->at(i);
+            temp->io->write(message.str());
+        }
+        //symbol of end text
+        temp->io->write("#");
+    }
+
+    // releasing memory
+    delete(temp->server);
     delete(temp->io);
+    delete(temp);
     return nullptr;
 }

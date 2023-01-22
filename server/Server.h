@@ -31,9 +31,8 @@ public:
      * @param port - int
      * @param stream - std::ostream
      */
-    Server(int port);
+    explicit Server(int port);
 
-    Server(Server& server);
 
     /**
      * initializing the server, creating the socket and binding the port.

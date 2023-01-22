@@ -9,6 +9,8 @@
 #include "../src/input.h"
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
+#define START_PORT 1024
+#define END_PORT 65536
 #include "../src/IO/StandardIO.h"
 
 /**
@@ -20,7 +22,7 @@ bool isPort(const char *port) {
 
     int x;
     x = atoi(port);
-    if(x >= 1024 && x < 65536) {
+    if(x >= START_PORT && x < END_PORT) {
         return true;
     }
     return false;
@@ -34,14 +36,14 @@ bool isPort(const char *port) {
  */
 bool isIp(const char *ip) {
     char *ptr = (char*)malloc(sizeof(ip)*IP_SIZE + 1);
-    if(ptr == NULL) {
+    if(ptr == nullptr) {
         return false;
     }
     memcpy(ptr, ip, IP_SIZE);
     int counter = 0;
     //take the  part until the first point.
     ptr = strtok(ptr,".");
-    while (ptr != NULL) {
+    while (ptr != nullptr) {
         counter++;
         //atoi function return 0 for any fail, so we check also that the string is not the number 0.
         if(atoi(ptr) == 0 && *ptr != '0') {
@@ -49,7 +51,7 @@ bool isIp(const char *ip) {
             return false;
         }
         atoi(ptr);
-        ptr = strtok(NULL,".");
+        ptr = strtok(nullptr,".");
     }
     //if there are 4 parts correspond to the pattern.
     if(counter == 4) {
@@ -91,6 +93,7 @@ int main(int argc, char *args[]) {
         << "./client.out <ip_address> <server_port>\n"
         << "for example: ./client.out 127.0.0.1 12345\n"
         << "Make sure the ip address is the same as the example and the port number is the same server port number.\n";
+        // exit program need to restart.
         exit(1);
     }
     //otherwise, the input is correct.
@@ -101,6 +104,7 @@ int main(int argc, char *args[]) {
     auto* client = new Client(port_no, ip_address);
     if(!client->getValid()) {
         input::print("failed to initializing the client.");
+        // deleting client and exiting program.
         delete(client);
         exit(1);
     }

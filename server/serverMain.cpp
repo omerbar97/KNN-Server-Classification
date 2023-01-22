@@ -10,8 +10,9 @@
 #include "../src/Commands/CLI.h"
 #include <pthread.h>
 #include "../src/IO/StandardIO.h"
-
 #define BUFFER_SIZE 4096
+#define LEGAL_SERVER_START_PORT 1024
+#define LEGAL_SERVER_END_PORT 59999
 
 static int globalClientId = 0;
 
@@ -60,134 +61,6 @@ int isArgsServerInputValid(char* args[]) {
     return flag;
 }
 
-/**
- * getting the input from the client in the form of <vector> <distance> <int k> and checking the input by all the parameters.
- * if all the input is correct then returning an vector of size 3 of string.
- * at index 0 - the string vector.
- * at index 1 - the distance string.
- * at index 2 - the integer k.
- * @param input - arrays of char in the size 4096
- * @return - std::vector<string>
- */
-std::vector<std::string> getClientInputVector(char input[BUFFER_SIZE]) {
-    // client data is in the form <vector> <distance> <int k>
-    std::string temp(input);
-    std::vector<std::string> result;
-    std::size_t distancePos = -1;
-    if(temp.find("MAN") != std::string::npos) {
-        distancePos = temp.find("MAN");
-    }
-    else if(temp.find("AUC") != std::string::npos) {
-        distancePos = temp.find("AUC");
-    }
-    else if(temp.find("CHB") != std::string::npos) {
-        distancePos = temp.find("CHB");
-    }
-    else if(temp.find("CAN") != std::string::npos) {
-        distancePos = temp.find("CAN");
-    }
-    else if(temp.find("MIN") != std::string::npos) {
-        distancePos = temp.find("MIN");
-    }
-    if(distancePos == -1) {
-        // error returning empty vector.
-        return {};
-    }
-    // getting the all the vector elements.
-    std::string vector(temp.substr(0, distancePos - 1));
-    // getting the distance name.
-    std::string distance(temp.substr(distancePos, 3));
-    // getting all the information after distance name.
-    temp = temp.substr(distancePos + 4);
-
-    result.push_back(vector);
-    result.push_back(distance);
-    result.push_back(temp);
-
-    // result vector should look like that: <vector> <distance> <int k>
-
-    return result;
-}
-
-std::string retrieveFilePath(std::string fileName, int flag) {
-    std::string path;
-    if(flag == 1) {
-        // 1 - the file path is relative (only name)
-        path = "../resources/datasets/" + fileName;
-    }
-    else {
-        // 2 - the file name is a full path.
-        path = fileName;
-    }
-    return path;
-}
-
-/**
- * calculating the client input, given the buffer input got from the client and reference to knn algorithm, separating the
- * buffer input into 3:
- * 1. vector
- * 2. distance
- * 3. integer k
- * returning the result classified of the vector with the given algorithm, file, integer k.
- * @param buffer - char arrays size 4096
- * @param knn - the knn algorithm.
- * @return if the input is correct. returning the classified result from the knn, otherwise returning empty object.
- */
-std::string calculateClientInput(char buffer[BUFFER_SIZE], Knn& knn) {
-    // vector DISTANCE K
-    std::vector<std::string> vInput = getClientInputVector(buffer);
-    if(vInput.empty()) {
-        // error invalid input returning empty string.
-        return {};
-    }
-
-    // client data is in the form <vector> <distance> <int k>
-    // vInput[0] - vectors string
-    // vInput[1] - distance string
-    // vInput[2] - k.
-
-    int k;
-    Distance* distance = nullptr;
-    std::vector<std::string> vString;
-    vString = input::splitString(vInput[0]);
-
-    std::vector<double> vDouble;
-    try{
-        vDouble = input::convertStrVecToDoubleVec(vString);
-        k = std::stoi(vInput[2]);
-    }
-    catch(std::invalid_argument &argument) {
-        return {};
-    }
-    // checking the input of the Vector<double>
-    if(vDouble.empty()) {
-        return {};
-    }
-    distance = input::getDistance(vInput[1]);
-    if(distance == nullptr) {
-        return {};
-    }
-
-    knn.setDistance(distance);
-    knn.setK(k);
-    knn.setVector(vDouble);
-
-    knn.calculate();
-
-    delete(distance);
-    knn.setDistance(nullptr);
-
-    return knn.getClassified();
-}
-
-//ICommand** initCommands(Server* server, int clientSocket) {
-//    // first command
-//    SocketIO io(clientSocket);
-//    ICommand** pCommand = (ICommand**)malloc(sizeof(ICommand)*1);
-//    ICommand* command = new UploadFilesCommand("1. uploading files to server\n", io, *server);
-//    pCommand[0] = command;
-//    return pCommand;
-//}
 
 void deleteCommands(ICommand** pCommand, int size) {
     for(int i = 0; i < size; i++) {
@@ -195,140 +68,59 @@ void deleteCommands(ICommand** pCommand, int size) {
     }
 }
 
+bool checkPort(int port) {
+    if(port >= LEGAL_SERVER_START_PORT && port <= LEGAL_SERVER_END_PORT) {
+        return true;
+    }
+    return false;
+}
 
-//void* handleConnection(void* data) {
-//    // handle all the client connection with the server
-//    int fails = 0;
-//    char buffer[BUFFER_SIZE];
-//    std::string menu = "1. uploading files to the server\n"
-//                       "2. change algorithm settings\n"
-//                       "3. classifying the data\n"
-//                       "4. display result\n"
-//                       "5. writing result to file\n"
-//                       "8. ending connection.";
-//    char bufferToSend[BUFFER_SIZE];
-//    ServerData* d = (ServerData*)data;
-//    int clientSocket = *((int*)d->clientSocket);
-//    int readBytes, sendBytes,choice;
-//    std::cout << "###-------------Connected to client-------------###" << std::endl;
-//    std::cout << "-------------Client Port Number: " << clientSocket << std::endl;
-//    SocketIO io(clientSocket);
-//    UploadFilesServerCommand uploadFiles(io, *d->clientId);
-//    AlgorithemSettingServerCommand algoSetting(io);
-//
-//    while(true) {
-//        // sending the client the menu choice
-//        strcpy(buffer, menu.c_str());
-//        sendBytes = send(clientSocket, buffer, BUFFER_SIZE, 0);
-//        if(sendBytes < 0) {
-//            perror("failed sending menu to client");
-//            fails++;
-//            if(fails > 10) {
-//                // max fails connection
-//                perror("failed sending to client to many times");
-//                break;
-//            }
-//            continue;
-//        }
-//        // waiting to client.
-//        readBytes = recv(clientSocket, buffer, BUFFER_SIZE, 0);
-//        if(readBytes == 0) {
-//            // the socket with client was closed.
-//            std::cout << "the connection with client_socket_number: " << clientSocket << "was closed" << std::endl;
-//            break;
-//        }
-//        else if(readBytes < 0) {
-//            perror("failed receiving data from the client");
-//            continue;
-//        }
-//        else {
-//            // client has 6 options:
-//            /**
-//             * 1. uploading files to the server
-//             * 2. change algorithm settings
-//             * 3. classifying the data
-//             * 4. display result
-//             * 5. writing result to file
-//             * 8. ending connection.
-//             */
-//             std::cout << "Message from client: " << buffer << std::endl;
-//            // calling the call command.
-//        }
-//        choice = std::atoi(&buffer[0]);
-//        if(choice == 0) {
-//            // invalid input.. print message and return to loop
-//            continue;
-//        }
-//        switch (choice) {
-//            case 1:
-//                uploadFiles.execute();
-//                break;
-//            case 2:
-//                algoSetting.execute();
-//                break;
-//            case 3:
-//
-//
-//            case 4:
-//
-//
-//            case 5:
-//
-//
-//            case 8:
-//
-//                break;
-//        }
-//        fails = 0;
-//    }
-//    return NULL;
-//}
+
 
 int main(int argc, char *args[]) {
 
-    // in args: <server.out> <file(name or path)> <int port>
-//    int flag = isArgsServerInputValid(args);
-    // in case flag is equal to:
-    // 0 - incorrect input.
-    // 1 - the file path is relative (only name)
-    // 2 - the file path is a full path.
-//    if(argc != 3 || isArgsServerInputValid(args) == 0) {
-//        std::cout <<"Invalid argument input, please make sure you execute the program as follow:\n"
-//                  << "./server.out <file name/full_path> <server_port>\n"
-//                  << "for example: ./server.out iris_classified.csv 12345\n"
-//                  << "Make sure the port number is between 1024 to 65536 and that the file name/path is case sensitive.\n";
-//        exit(1); // input exit code 1
-//    }
-
-    //std::string filePath = retrieveFilePath(args[1], flag);
+    // in args: <server.out> <int port>
 
     // input already check no need for try and catch.
-    int port = std::atoi(args[2]);
+    int port = std::atoi(args[1]);
+
+    if(!checkPort(port) || argc != 2){
+        // incorrect port
+        std::cout << "Invalid arguments input, please make sure you start program as follow:\n"
+                     "./server.out <port number>\n"
+                     "without the \"<\",\">\" and port number must be over 1024 and less then 60000\n";
+        exit(1);
+    }
 
     // creating the server instance:
-    // ICommand[] *commands = {AlgorithemSettingCommand() , ClassifyDataCommand(SocketIO())} ;
-    Server* mainServer = new Server(port);
+    auto* mainServer = new Server(port);
 
     // initializing the server:
     if(!mainServer->initServer()) {
         // failed initializing.
-        exit(2); // server exit code 2
+        std::cout << "failed initializing server, please wait a few minutes and start again\n";
+        delete(mainServer);
+        exit(1); // server exit code 2
     }
 
     struct sockaddr_in client_sin;
     unsigned int addr_len = sizeof(client_sin);
     int clientSocket;
 
-    std::cout << "-------------Server Socket number: " << mainServer->getSocketId() << std::endl;
-    std::cout << "-------------Server Port number: " << mainServer->getSockaddrIn().sin_port << std::endl;
+    //printing to server
+    std::cout << "-------------Main Server Socket number: " << mainServer->getSocketId() << " -------------" << std::endl;
+    std::cout << "-------------Main Server Port number: " << mainServer->getSockaddrIn().sin_port << " -------------" << std::endl;
 
     if(!mainServer->listenServer(10)){
         perror("failed listening to the socket");
+        delete(mainServer);
         exit(1);
     }
-    std::string* serverIp = new std::string("127.0.0.1");
-    // creating CLI class
-    CLI cli = CLI::getInstance(); // getting the singltone instance. allocated in the heap.
+
+    // localhost server port.
+    auto* serverIp = new std::string("127.0.0.1");
+    // creating CLI class to handle all clients.
+    CLI cli = CLI::getInstance(); // getting the singleton instance. allocated in the heap.
     while(true) {
         clientSocket = accept(mainServer->getSocketId(), (struct sockaddr *) &client_sin, &addr_len);
         if(clientSocket < 0) {
@@ -339,21 +131,45 @@ int main(int argc, char *args[]) {
         if(globalClientId == 1) {
             std::cout << "Test";
         }
-        auto *arguments = (ServerData*)malloc(sizeof(ServerData));
-        if(args == nullptr) {
+
+        // creating the struct to pass the server information to the client.
+        auto *arguments = new ServerData();
+
+        arguments->clientId = (int*)malloc(sizeof(int));
+        if(arguments->clientId == nullptr) {
+            perror("failed allocating memory for client");
+            delete(arguments);
             continue;
         }
-        arguments->clientId = (int*)malloc(sizeof(int));
+
         arguments->clientSocket = (int*)malloc(sizeof(int));
+        if(arguments->clientSocket == nullptr) {
+            perror("failed allocating memory for client");
+            free(arguments->clientId);
+            delete(arguments);
+            continue;
+        }
+
+        // setting unique client id.
         *(arguments->clientId) = globalClientId++;
         *(arguments->clientSocket) = clientSocket;
         arguments->mainServerIp = serverIp;
 
+        // creating new thread to handle the client.
         pthread_t tid;
         pthread_create(&tid, nullptr, CLI::start, (void*)arguments);
     }
     // deleting resources:
-    free(serverIp);
+    for(int i = 0; i < globalClientId; i++) {
+        clientData* d = CLI::getInstance().serverData.at(i);
+        if(d != nullptr) {
+            delete(d->classifiedResult);
+            delete(d->testData);
+            delete(d->trainData);
+            delete(d);
+        }
+    }
+    delete(serverIp);
     delete(mainServer);
     CLI::CliDelete();
     mainServer->closeServer();

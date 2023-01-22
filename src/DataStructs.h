@@ -53,13 +53,11 @@ struct clientData{
  * ServerData struct;
  * int* clientSocket ;
  * int* clientId;
- * clientData* data - Contain tha clientData struct;
  * std::string* mainServerIp;
  */
 struct ServerData{
     int* clientSocket;
     int* clientId;
-    clientData* data;
     std::string* mainServerIp;
 };
 

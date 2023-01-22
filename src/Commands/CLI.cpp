@@ -5,10 +5,9 @@
 
 CLI* CLI::instance = nullptr;
 std::string CLI::welcomeMessage = "Welcome to the KNN Classifier Server. Please choose an option:\n";
-
 std::mutex mtx;
-CLI::CLI(){
-    // init commands
+
+CLI::CLI() {
 
 }
 CLI::~CLI(){
@@ -34,29 +33,36 @@ void initClientData(clientData * data, int clientId, std::string* serverIp) {
 }
 
 void *CLI::start(void *data) {
-    // data is struct that have:
-    // 1.clientId
-    // 2.clientSocket
-    // 3.clientData strcuture
+    if(instance == nullptr) {
+        // not supposed to happened, but just in case.
+        std::cout << "failed starting new client session with client id: " << *(*(ServerData*)data).clientId << std::endl;
+        std::cout << "instance variable in CLI class was null\n";
+        free((*(ServerData*)data).clientId);
+        free((*(ServerData*)data).clientSocket);
+        free(data);
+        return nullptr;
+    }
+
+    /** data is the struct that have:
+     * int* clientSocket; malloc
+     * int* clientId; malloc
+     * std::string* mainServerIp; no need to delete
+     */
 
     // cast the data to serverData type
     int clientId = *(*(ServerData*)data).clientId;
     int clientSocket = *(*(ServerData*)data).clientSocket;
-    auto* p_Data = (clientData*)malloc(sizeof(clientData));
-    //init p_Data
-    if(clientId == 1) {
-        std::cout <<"test";
-    }
+    auto* p_Data = new clientData();
+
+    // initializing the client Data.
     initClientData(p_Data, clientId, (*(ServerData*)data).mainServerIp);
 
-
-    // check if malloc works
+    //releasing memory not in used.
     free((*(ServerData*)data).clientId);
     free((*(ServerData*)data).clientSocket);
     free(data);
 
     int choice, fails = 0;
-    char buffer[BUFFER_SIZE];
     std::cout << "############ Connected to client Socket Number: " << clientSocket <<  " ############" << std::endl;
 
     // init io and commands:
@@ -89,7 +95,7 @@ void *CLI::start(void *data) {
     for (int i = 0; i < 6; ++i) {
         menu << iCommandsVec[i]->description;
     }
-
+    // inserting the data into the server database.
     instance->serverData.insert({clientId, p_Data});
     std::string userInput;
     while(true) {
@@ -133,14 +139,17 @@ void *CLI::start(void *data) {
             std::cout << "Message from client-Socket-Number-" << clientSocket << ": " << userInput << std::endl;
             // calling the call command.
         }
+
         choice = std::atoi(userInput.c_str());
 
         //going to the correct position in the vector
         if(choice >= 1 && choice <= 5) {
             iCommandsVec[choice - 1]->execute();
         }
+        //resets fails.
         fails = 0;
     }
+
     // free the client memory data.
     instance->serverData.erase(clientId);
     deleteP_Data(p_Data);
