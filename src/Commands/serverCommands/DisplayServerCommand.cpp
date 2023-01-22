@@ -21,7 +21,7 @@ void DisplayServerCommand::execute() {
         message << "Please upload data\n";
     }
     //if not classified data yet
-    else if ( this->p_Data->classifiedResult == nullptr) {
+    else if(this->p_Data->classifiedResult == nullptr) {
         message << "Please classify the data\n";
     }
     //if we have one of the above problem, send the message and return.

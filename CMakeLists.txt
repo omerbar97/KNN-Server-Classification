@@ -42,7 +42,8 @@ add_executable(client.out
         src/Commands/clientCommands/DownloadClientCommand.cpp
         src/Commands/clientCommands/DownloadClientCommand.h
         src/Commands/clientCommands/UploadFilesClientCommand.cpp
-        src/Commands/clientCommands/UploadFilesClientCommand.h src/DataStructs.h)
+        src/Commands/clientCommands/UploadFilesClientCommand.h
+        src/DataStructs.h)
 
 add_executable(server.out
         src/Distance/Distance.cpp
@@ -81,8 +82,6 @@ add_executable(server.out
         src/IO/FileIO.h
         src/Commands/serverCommands/AlgorithemSettingServerCommand.h
         src/Commands/serverCommands/AlgorithemSettingServerCommand.cpp
-        src/Commands/serverCommands/EndingConnection.cpp
-        src/Commands/serverCommands/EndingConnection.h
         src/Commands/serverCommands/ClassifyDataServerCommand.cpp
         src/Commands/serverCommands/ClassifyDataServerCommand.h
         src/Commands/serverCommands/DisplayServerCommand.cpp
@@ -90,4 +89,5 @@ add_executable(server.out
         src/Commands/serverCommands/DownloadServerCommand.cpp
         src/Commands/serverCommands/DownloadServerCommand.h
         src/Commands/serverCommands/UploadFilesServerCommand.cpp
-        src/Commands/serverCommands/UploadFilesServerCommand.h src/DataStructs.h)
+        src/Commands/serverCommands/UploadFilesServerCommand.h
+        src/DataStructs.h)

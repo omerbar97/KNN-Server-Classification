@@ -75,7 +75,6 @@ void AlgorithemSettingServerCommand::execute() {
         return;
     }
 
-
     parameters = io.read();
 
     //if user want to change parameters

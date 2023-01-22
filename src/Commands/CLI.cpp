@@ -62,7 +62,7 @@ void *CLI::start(void *data) {
     free((*(ServerData*)data).clientSocket);
     free(data);
 
-    int choice, fails = 0;
+    int choice;
     std::cout << "############ Connected to client Socket Number: " << clientSocket <<  " ############" << std::endl;
 
     // init io and commands:
@@ -72,7 +72,6 @@ void *CLI::start(void *data) {
     ClassifyDataServerCommand* classify = new ClassifyDataServerCommand(io);
     DisplayServerCommand* display = new DisplayServerCommand(io);
     DownloadServerCommand* download = new DownloadServerCommand(io);
-    EndingConnection* exit = new EndingConnection(io);
 
     // binding the client data with the current thread that handle the client.
     (*(uploadFiles)).p_Data = p_Data;
@@ -80,7 +79,6 @@ void *CLI::start(void *data) {
     (*(classify)).p_Data = p_Data;
     (*(display)).p_Data = p_Data;
     (*(download)).p_Data = p_Data;
-    (*(exit)).p_Data = p_Data;
 
     std::vector<ICommand*> iCommandsVec;
     iCommandsVec.push_back(uploadFiles); // 0
@@ -88,29 +86,19 @@ void *CLI::start(void *data) {
     iCommandsVec.push_back(classify); // 2
     iCommandsVec.push_back(display); // 3
     iCommandsVec.push_back(download); // 4
-    iCommandsVec.push_back(exit); // 5
 
     std::stringstream menu;
     menu << welcomeMessage;
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < COMMAND_SIZE; ++i) {
         menu << iCommandsVec[i]->description;
     }
+    menu << "8. exit";
     // inserting the data into the server database.
     instance->serverData.insert({clientId, p_Data});
     std::string userInput;
     while(true) {
         // sending to the client the menu choice
         io.write(menu.str());
-        if(!io.isValid()) {
-            perror("failed sending menu to client");
-            fails++;
-            if(fails > 10) {
-                // max fails when sending data.
-                perror("failed sending to client to many times");
-                break;
-            }
-            continue;
-        }
         // waiting to client.
         userInput = io.read();
         if(!io.isValid()) {
@@ -143,11 +131,9 @@ void *CLI::start(void *data) {
         choice = std::atoi(userInput.c_str());
 
         //going to the correct position in the vector
-        if(choice >= 1 && choice <= 5) {
+        if(choice >= 1 && choice <= COMMAND_SIZE) {
             iCommandsVec[choice - 1]->execute();
         }
-        //resets fails.
-        fails = 0;
     }
 
     // free the client memory data.

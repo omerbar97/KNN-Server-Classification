@@ -23,13 +23,12 @@ void DisplayClientCommand::execute() {
 
     receiveData = io.read();
     //check if server have the asked data
-    if (std::atoi(receiveData.c_str()) == -1) {
+    if (receiveData == "-1") {
         //data aren't available
         receiveData = io.read();
         std::cout << receiveData;
         return;
     }
-
 
     //otherwise data are available,
     //read each line and print, when done the server will send "#"

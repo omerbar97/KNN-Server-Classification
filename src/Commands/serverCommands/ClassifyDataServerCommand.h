@@ -18,7 +18,6 @@ class ClassifyDataServerCommand : public ICommand{
 public:
 
     std::map<int, clientData> serverData;
-    int clientId;
     /**
     * constructor that get the IO(connection between client to server).
     * @param io

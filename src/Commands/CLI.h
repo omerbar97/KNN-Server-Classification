@@ -11,13 +11,14 @@
 #include "serverCommands/ClassifyDataServerCommand.h"
 #include "serverCommands/DisplayServerCommand.h"
 #include "serverCommands/DownloadServerCommand.h"
-#include "serverCommands/EndingConnection.h"
 #include <map>
 #include <mutex>
 #include "ICommand.h"
 #include "../Algorithim/Knn.h"
 #include "../../server/Server.h"
 #define BUFFER_SIZE 4096
+#define COMMAND_SIZE 5
+#define NUMBER_OF_FAILS 10
 
 
 /**

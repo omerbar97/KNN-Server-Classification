@@ -13,15 +13,24 @@ ClassifyDataServerCommand::ClassifyDataServerCommand(DefaultIO &io) : ICommand(i
 
 void ClassifyDataServerCommand::execute() {
     std::string sendData;
+    std::stringstream message;
 
     if(this->p_Data->testData == nullptr || this->p_Data->trainData == nullptr) {
         io.write("-1");
         io.write("Please upload data\n");
         return;
     }
+    else if(this->p_Data->trainData->size() < this->p_Data->k) {
+        // k cannot be greater than the number of vector in file
+        io.write("-1");
+        message << "Please change the number \"k\" in the Knn algorithm, K cannot be greater then the size of the trained file\n";
+        message << "currently K = " << this->p_Data->k << " and the trained vector size = " << this->p_Data->trainData->size() << std::endl;
+        io.write(message.str());
+        return;
+    }
     // everything okay with the setting
     io.write("1");
-    std::vector<std::string>* newClassify = new std::vector<std::string>;
+    auto* newClassify = new std::vector<std::string>;
 
     // setting Knn:
     Knn* knn = new Knn(*this->p_Data->trainData);
@@ -35,12 +44,11 @@ void ClassifyDataServerCommand::execute() {
         KNN.setVector(this->p_Data->testData->at(i));
         KNN.calculate();
         newClassify->push_back(KNN.getClassified());
-//        this->p_Data->classifiedResult.push_back(KNN.getClassified());
     }
     this->p_Data->classifiedResult = newClassify;
 
     io.write("complete data classifying\n");
-    //we will classified the data
+    //we will classify the data
 
     delete(metric);
     delete(knn);

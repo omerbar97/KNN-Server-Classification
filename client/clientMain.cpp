@@ -10,7 +10,7 @@
 #define IP_SIZE 15
 #define BUFFER_SIZE 4096
 #define START_PORT 1024
-#define END_PORT 65536
+#define END_PORT 59999
 #include "../src/IO/StandardIO.h"
 
 /**
@@ -19,7 +19,6 @@
  * @return bool.
  */
 bool isPort(const char *port) {
-
     int x;
     x = atoi(port);
     if(x >= START_PORT && x < END_PORT) {
@@ -27,6 +26,7 @@ bool isPort(const char *port) {
     }
     return false;
 }
+
 /**
  * This function get an const chat array and check if this array are match to the pattern of ip
  * which the pattern is x.y.z.q where x,y,z,q are numbers.
@@ -76,7 +76,6 @@ int userAskToClose(std::string str) {
         } else {
             return -1;
         }
-
     }
     catch (std::exception d) {
         return false;
@@ -92,7 +91,8 @@ int main(int argc, char *args[]) {
         std::cout <<"Invalid argument input, please make sure you execute the program as follow:\n"
         << "./client.out <ip_address> <server_port>\n"
         << "for example: ./client.out 127.0.0.1 12345\n"
-        << "Make sure the ip address is the same as the example and the port number is the same server port number.\n";
+        << "Make sure the ip address is the same as the example and the port number is the same server port number.\n"
+           "valid port number more or equal to 1024 and less then 60000\n";
         // exit program need to restart.
         exit(1);
     }
@@ -103,7 +103,7 @@ int main(int argc, char *args[]) {
     //initializing  Client.
     auto* client = new Client(port_no, ip_address);
     if(!client->getValid()) {
-        input::print("failed to initializing the client.");
+        standardIo.write("failed to initializing the client.\n");
         // deleting client and exiting program.
         delete(client);
         exit(1);
