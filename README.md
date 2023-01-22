@@ -61,6 +61,18 @@ Here are the valid metric string:
 In case the K is greator than the numbers of train vectors the server won't classify the result as we said In the Algorithm Setting section.
 Be aware that this part could take a few seconds and perhaps even a few minutes depands on how many vectors you calculate and how many vectors are in the trained file.</p>
 
+<h3>4. Displaing The Results</h3>
+<p>In this section we display the result that was calculate In the latest Classify section, every untrained vector in the file are listed, the first row Is vector number 1 the second row is vector number 2 and so on.. the display format Is as follow:
+<pre><code>1    Iris-setosa
+...
+...
+37   Iris-virginica
+...
+...
+</code></pre>
+Few thing you might want to consider, before classifying any data the server will send to the client "Please classify data." when the client already classify the vectors this section will display the results of the Latest classification that was made, doesn't matter if there is files or correct Metric\K or both of them.</p>
+
+
 <h2><i>------------------------------Milestone 2 - 1.1.2023------------------------------</i></h2>
 <p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas both client and server creating a socket to communicate.  When creating the server, we bind it to a specifc port given in the program arguments. When creating the client we give ip address and server port in the program argument.</p>
 <h5>Server side:</h5>
