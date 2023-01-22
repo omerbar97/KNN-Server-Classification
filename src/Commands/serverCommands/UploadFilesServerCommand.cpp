@@ -9,64 +9,13 @@
 UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io) : ICommand(io){
 
     this->description = "1. upload an unclassified csv data file\n";
-    //init this client in the map
-//    std::pair<int, clientData> c;
-//    clientData client;
-//    client.clientId = clientId;
-//    client.testData = {};
-//    client.trainData = {};
-//    c.first = clientId;
-//    c.second = client;
-//    (this->data).insert(c);
-//    this-> = clientId;
-
 
 }
-
-//void UploadFilesServerCommand::execute() {
-//    // all the logics to get user locally file for trainer and second file for classified.
-//    // getting the user first trained file locally on computer this function will be called from the server side.
-//    io.write("Please upload your local train CSV file.\n");
-//    // creating new folder for the client locally files.
-//    int status;
-//    if(std::atoi(io.read().c_str()) == -1) {
-//        // error from client
-//        return;
-//    }
-//    std::stringstream  dirPath;
-//    dirPath << "mkdir -p ../../../temporaryFiles/client-" << this->clientId;
-//    status = system(dirPath.str().c_str());
-//    if(status == -1) {
-//        std::stringstream error;
-//        error << "failed creating temporary files for client number " << this->clientId;
-//        perror(error.str().c_str());
-//        // sending error to socket.
-//        io.write("-1");
-//        return;
-//    }
-//    io.write("1"); // succeed creating the folder.
-//    // creating the trained file in the directory.
-//    std::stringstream train;
-//    train << "../../../temporaryFiles/client-" << this->clientId << "/train.txt";
-//    bool isSucceed = uploadFile(train.str());
-//    // sending to client Upload succeed.
-//    if(!isSucceed) {
-//        io.write("Failed Uploading\n");
-//        return;
-//    }
-//    io.write("Upload Succeed\n");
-//
-//    // uploading test file.
-//    io.write("Please upload your local test CSV file.\n");
-//    std::stringstream test;
-//    test << "../../../temporaryFiles/client-" << this->clientId << "/test.txt";
-//    isSucceed = uploadFile(test.str());
-//    if(!isSucceed) {
-//        io.write("Failed Uploading\n");
-//        return;
-//    }
-//    io.write("Upload Succeed\n");
-//}
+/**
+ * This function get a string and convert this line to vectorCSV, that contain double and string.
+ * @param line ,string
+ * @return VectorCSV
+ */
 VectorCSV lineToVectorCSV(std::string line) {
     std::string word;
     std::vector<double> id;
@@ -97,6 +46,12 @@ VectorCSV lineToVectorCSV(std::string line) {
     return singleData;
 
 }
+/**
+ * This function get a string , and splite the string to a vector of number.
+ * if the string contain nin number type, return empty vector.
+ * @param line , string.
+ * @return vector<double>, if fail return {}
+ */
 std::vector<double> lineToVectorTest(std::string line) {
     std::string word;
     std::vector<double> vector;
@@ -206,27 +161,6 @@ void UploadFilesServerCommand::execute() {
     io.write("Upload Succeed\n");
 
 }
-
-//bool UploadFilesServerCommand::uploadFile(std::string filePath) {
-//    std::fstream File(filePath, std::ios::out);
-//    FileIO fileToWrite(File, false);
-//    if(File.is_open()) {
-//        while(true) {
-//            // uploading the file.
-//            std::string temp(io.read());
-//            if(temp.c_str()[0] == '\0') {
-//                // end file token
-//                break;
-//            }
-//            fileToWrite.write(temp);
-//        }
-//    }
-//    else {
-//        return false;
-//    }
-//    File.close();
-//    return true;
-//}
 
 
 UploadFilesServerCommand::~UploadFilesServerCommand() {
