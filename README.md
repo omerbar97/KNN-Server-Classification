@@ -18,7 +18,7 @@ $ make                                     // Compiling the project.</code></pre
 
 <h2><i>------------------------------Milestone 3 - 22.1.2023------------------------------</i></h2>
 <p>This part of the project we made multithreading server side, that handle connection simultaneously with alot of clients. The idea behind that is to make 
-the server side more like a real server just like browsing the internet. Each client that connects to the server get an unique socket number that the server communicate through that socket. when a client connects to the server the menu below will appear:</p>
+the server side more like a real server just like browsing the internet. Each client that connects to the server get an unique socket number that the server communicate through that socket. We were implementing the Client\Server side with the command design pattern. When a client connects to the server the menu below will appear:</p>
 <pre><code>Welcome to the KNN Classifier Server. Please choose an option:
 1. upload an unclassified csv data file
 2. algorithm settings
@@ -27,11 +27,11 @@ the server side more like a real server just like browsing the internet. Each cl
 5. download results
 8. exit</code></pre>
 
-<p>lets explain each part:</p>
+<p>In case other option was choosen, an Invalid Input error will appear. Lets dive Into It and explain each part:</p>
 <h3>1. Uploading Files</h3>
 <p>In this section you would upload the trained vector csv file to the server, what is a trained vector data file? well it is a CSV file that in each row
 contains numbers (potential not limited) and at the end of the row CLASSIFY to that vector. for example:
-<pre><code>1.2 3.1 4.4 0.1 10.02 iris_setosa</code></pre> more examples are in the directory called resources.
+<pre><code>1.2 3.1 4.4 0.1 10.02 iris-setosa</code></pre> more examples are in the directory called resources.
 After that the server will ask the client to upload an untrained vector called "test vector" that are look like that:
 <pre><code>5.7 2.3 4.8 9.81 1.3</code></pre> more examples are in the directory called resources.
 Some crucial information: </p>
