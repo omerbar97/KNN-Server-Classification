@@ -55,6 +55,12 @@ Here are the valid metric string:
 
 <p>Few important thing, the number K can be only positive number (greater than 0) and must be less than the numbers of trained vectors, if it will be greator, the Knn algorithm setting will "accept" it but it won't classify until you change the K to be in the right values. Furthermore only the right syntax will be accpeted.</p>
 
+<h3>3. Classifing The Data</h3>
+<p>In this section as we saw in the previous millestones the server will classify each and every untrained vector with the trained data that was given In the Upload section. and will attach every untrained vector an classify tag. Afterward the server saves all the newly trained vectors.</p>
+<p>Few things you might want to consider, you must first upload correct files In the upload section, In case not file was upload an error will occur. 
+In case the K is greator than the numbers of train vectors the server won't classify the result as we said In the Algorithm Setting section.
+Be aware that this part could take a few seconds and perhaps even a few minutes depands on how many vectors you calculate and how many vectors are in the trained file.</p>
+
 <h2><i>------------------------------Milestone 2 - 1.1.2023------------------------------</i></h2>
 <p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas both client and server creating a socket to communicate.  When creating the server, we bind it to a specifc port given in the program arguments. When creating the client we give ip address and server port in the program argument.</p>
 <h5>Server side:</h5>
