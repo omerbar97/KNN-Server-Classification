@@ -9,8 +9,15 @@
 #include <string>
 #include "../../IO/DefaultIO.h"
 
+/**
+ * This class is one of the command client can make.
+ */
 class AlgorithemSettingClientCommand : public ICommand {
 public:
+    /**
+     * constructor that get the IO(connection between client to server).
+     * @param io
+     */
     AlgorithemSettingClientCommand(DefaultIO &io);
     void execute() override;
     ~AlgorithemSettingClientCommand() override;

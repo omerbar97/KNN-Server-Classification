@@ -9,15 +9,22 @@
 #include "../../IO/DefaultIO.h"
 #include <thread>
 
-
+/**
+ * This class is one of the command client can make.
+ */
 class DownloadClientCommand : public ICommand {
 private:
 
-    static void* newThreadDownloadClient(void* args);
-
-
-public:
+    /**
+    * constructor that get the IO(connection between client to server).
+    * @param io
+    */
     explicit DownloadClientCommand(DefaultIO &io);
+    /**
+     * This function run the download execute just with another thread.
+     */
+    static void* newThreadDownloadClient(void* args);
+public:
     ~DownloadClientCommand() override;
     void execute() override;
 private:
