@@ -9,6 +9,7 @@
 #include "../../IO/DefaultIO.h"
 /**
  * This class is one of the command client can make.
+ * which adk the server to classify the data.
  */
 class ClassifyDataClientCommand : public ICommand {
 public:

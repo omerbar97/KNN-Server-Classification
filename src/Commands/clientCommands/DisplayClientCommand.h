@@ -8,6 +8,7 @@
 #include "../../IO/DefaultIO.h"
 /**
  * This class is one of the command client can make.
+ * which display the result of the classify data.
  */
 class DisplayClientCommand : public ICommand {
 public:

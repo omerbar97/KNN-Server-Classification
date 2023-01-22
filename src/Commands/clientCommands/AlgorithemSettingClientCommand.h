@@ -10,7 +10,8 @@
 #include "../../IO/DefaultIO.h"
 
 /**
- * This class is one of the command client can make.
+ * This class is one of the command Client can make.
+ * which let the client change the setting of the KNN algorithm
  */
 class AlgorithemSettingClientCommand : public ICommand {
 public:

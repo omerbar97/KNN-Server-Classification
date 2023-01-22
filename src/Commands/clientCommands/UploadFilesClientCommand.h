@@ -12,6 +12,7 @@
 
 /**
  * This class is one of the command client can make.
+ * which update to server the data.
  */
 class UploadFilesClientCommand : public ICommand {
 public:

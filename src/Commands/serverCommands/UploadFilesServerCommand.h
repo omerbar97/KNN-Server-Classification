@@ -13,13 +13,19 @@
 #include <iostream>
 #include <map>
 
-
+/**
+ * This class is one of the command Server can make.
+ * which update the client data in server.
+ */
 class UploadFilesServerCommand : public ICommand{
 private:
 
 
 public:
-
+    /**
+    * constructor that get the IO(connection between client to server).
+    * @param io
+    */
     UploadFilesServerCommand(DefaultIO &io);
 
     ~UploadFilesServerCommand() override;

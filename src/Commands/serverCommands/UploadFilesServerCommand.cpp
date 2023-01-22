@@ -8,7 +8,14 @@
 
 UploadFilesServerCommand::UploadFilesServerCommand(DefaultIO &io) : ICommand(io){
     this->description = "1. upload an unclassified csv data file\n";
+
 }
+
+/**
+ * This function get a string and convert this line to vectorCSV, that contain double and string.
+ * @param line ,string
+ * @return VectorCSV
+ */
 
 VectorCSV lineToVectorCSV(std::string line) {
     std::string word;
@@ -39,6 +46,12 @@ VectorCSV lineToVectorCSV(std::string line) {
     return singleData;
 
 }
+/**
+ * This function get a string , and splite the string to a vector of number.
+ * if the string contain nin number type, return empty vector.
+ * @param line , string.
+ * @return vector<double>, if fail return {}
+ */
 std::vector<double> lineToVectorTest(std::string line) {
     std::string word;
     std::vector<double> vector;

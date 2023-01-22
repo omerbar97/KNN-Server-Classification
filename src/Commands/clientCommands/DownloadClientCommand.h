@@ -11,6 +11,7 @@
 
 /**
  * This class is one of the command client can make.
+ * which download the classify data.
  */
 class DownloadClientCommand : public ICommand {
 
