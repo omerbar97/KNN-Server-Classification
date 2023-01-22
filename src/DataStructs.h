@@ -30,7 +30,15 @@ struct VectorCSV {
     std::string className;
 };
 
-
+/**
+ * std::vector<VectorCSV>* trainData - vector of the data that is already classified;
+ * std::vector<std::vector<double>>* testData - vector of the data we want to classify;
+ * std::vector<std::string>* classifiedResult;
+ * int k - K for the KNN algorithm;
+ * int clientId;
+ * std::string metric - type of metric in the KNN algorithm;
+ * std::string* serverMainIp;
+ */
 struct clientData{
     std::vector<VectorCSV>* trainData;
     std::vector<std::vector<double>>* testData;
@@ -41,7 +49,13 @@ struct clientData{
     std::string* serverMainIp;
 };
 
-
+/**
+ * ServerData struct;
+ * int* clientSocket ;
+ * int* clientId;
+ * clientData* data - Contain tha clientData struct;
+ * std::string* mainServerIp;
+ */
 struct ServerData{
     int* clientSocket;
     int* clientId;
@@ -49,6 +63,14 @@ struct ServerData{
     std::string* mainServerIp;
 };
 
+/**
+ * DownloadFile struct;
+ * DefaultIO* io - type of connection;
+ * clientData* p_Data;
+ * std::string* filePath - name of path to store the result of classified data;
+ * Server* server;
+ * Client* client;
+ */
 struct DownloadFile {
     DefaultIO* io;
     clientData* p_Data;

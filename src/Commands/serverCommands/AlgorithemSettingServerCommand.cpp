@@ -11,7 +11,7 @@ AlgorithemSettingServerCommand::AlgorithemSettingServerCommand(DefaultIO &io, in
 }
 
 
-int AlgorithemSettingServerCommand::tokenize(std::string const &str, const char delim,std::vector<std::string> &out){
+int AlgorithemSettingServerCommand::tokenize(std::string const &str, const char delim){
     // construct a stream from the string
     std::stringstream ss(str);
 
@@ -32,14 +32,14 @@ int AlgorithemSettingServerCommand::tokenize(std::string const &str, const char 
         if (counter == 2) {
             if(s == "MIN") {
                 newMetric = "MIN";
-            } else if( s == "EUC") {
-                newMetric = "EUC";
-            } else if (s == "CAN") {
-                newMetric = "CAN";
+            } else if( s == "AUC") {
+                newMetric = "AUC";
+            } else if (s == "MAN") {
+                newMetric = "MAN";
             } else if (s == "CHB") {
                 newMetric = "CHB";
-            } else if (s == "AUC") {
-                newMetric = "AUC";
+            } else if (s == "CAN") {
+                newMetric = "CAN";
             } else {
                 if (result == 1) {
                     result = 3;
@@ -84,7 +84,7 @@ void AlgorithemSettingServerCommand::execute() {
     std::vector<std::string> out;
 
     //function that check if the input is valid and update the data;
-    int check = tokenize(parameters, delim, out);
+    int check = tokenize(parameters, delim);
 
     //if the input is invalid we split the cases what part of the input is invalid.
     if(check) {

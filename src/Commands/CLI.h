@@ -20,7 +20,10 @@
 #define BUFFER_SIZE 4096
 
 
-
+/**
+ * This class is a singleton this instance hold the information of all clients.
+ * The server use in this data.
+ */
 class CLI {
 private:
     static CLI* instance;
@@ -31,13 +34,25 @@ public:
     ~CLI();
 
     std::map<int, clientData*> serverData;
-
+/**
+ * Function that return the one instance(depend if the instance is already initialized or not).
+ * We update in lock in the condition of if the instance is already initialized for handle cases tht we work with some threads.
+ * @return CLI& , instance of CLI.
+ */
     static CLI& getInstance();
-
+/**
+ * This function used to open a new client in the server, so the server start to work with him.
+ * handle with  the logic's of how to work with the input the client given to the server.
+ * @param data , pointer to the struct- (1)int - client id (2)int - clientSocket (3)clientData* (struct in DataStructs)
+ * @return void*.
+ */
     static void* start(void * data);
 
     static void CliDelete();
-
+/**
+ * Function to delete all data for the specific client the we allocate in the heap.
+ * @param data ,pointer to the struct- (1)int - client id (2)int - clientSocket (3)clientData* (struct in DataStructs)
+ */
     static void deleteP_Data(clientData* data);
 };
 

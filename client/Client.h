@@ -85,7 +85,10 @@ public:
      * @return bool.
      */
     bool getValid();
-
+    /**
+     * Getter for socket.
+     * @return int.
+     */
     int getsocketNum();
 };
 
