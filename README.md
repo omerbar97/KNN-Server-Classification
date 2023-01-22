@@ -43,7 +43,17 @@ Some crucial information: </p>
 <p>We made some assumptions when you enter a file (train/test) all the vectors in that file are in the same length, we didn't check for that, so we "accept" it but the 
 classify function won't work in that case. So don't expect anything.</p>
 
+<h3>2. The Algorithm Settings</h3>
+<p>In this section is all about controling the algorithm settings, there are 2 parameters: number K and metric algorithm when entring this section, the server send the current algorithm setting, the server expect the following string: "Positive_Number_K Metric" for example:
+<pre><code>27 AUC</code></pre>
+Here are the valid metric string: 
+<pre><code>"AUC" - Euclidean metric
+"MAN" - Manhattan metric
+"CHB" - Chebyshev metric
+"CAN" - Canberra metric
+"MIN" - Minkowski metric</code></pre></p>
 
+<p>Few important thing, the number K can be only positive number (greater than 0) and must be less than the numbers of trained vectors, if it will be greator, the Knn algorithm setting will "accept" it but it won't classify until you change the K to be in the right values. Furthermore only the right syntax will be accpeted.</p>
 
 <h2><i>------------------------------Milestone 2 - 1.1.2023------------------------------</i></h2>
 <p>In this part of the project we implemented a client and an server side. we used the class socket "sys/socket" whereas both client and server creating a socket to communicate.  When creating the server, we bind it to a specifc port given in the program arguments. When creating the client we give ip address and server port in the program argument.</p>
