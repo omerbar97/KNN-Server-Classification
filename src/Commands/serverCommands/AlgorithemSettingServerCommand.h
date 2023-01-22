@@ -23,9 +23,13 @@ private:
      * @param delim ,delim is the space.
      * @return int-in{1,2,3,4} - 1= k invalid, 2 = metric invalid , 3 = k and metric invlaid, 4 = too many args.
      */
-    int tokenize(std::string const &str, const char delim, std::vector<std::string> &out);
+    int tokenize(std::string const &str, const char delim);
 
 public:
+    /**
+     * constructor that get the IO(connection between client to server).
+     * @param io
+     */
     AlgorithemSettingServerCommand(DefaultIO &io, int k);
 
     ~AlgorithemSettingServerCommand() override;
