@@ -2,7 +2,7 @@
 <p>This project was made by Omer Bar and Shilo Padael in our second year of our Computer Science B.A. This project was written in C++ language, this course is all about "Advanced-Porigramming" through out this course we learn new stuff, such as: C++ language syntax, Socket, Procceing, MultiThreading, Desgin patterns, and so on..</p>
 <p>The main purpose of this project is the classification of vectors by trained vectors. The clients upload file with trained data vectors and untrained data vectors and the server side does all calculation and classification by the client files input.</p>
 
-<h2>How To Run On Bar-Ilan Server?</h2>
+<h2>How To Run?</h2>
 <h4>TO RUN THIS PROJECT ON BIU SERVER:</h4>
 <p>The Makefile is inside the folder "build-for-linux", Before executing the command "make" make sure you are inside the desired folder.</p>
 <ol>
@@ -20,6 +20,7 @@ $ make                                     // Compiling the project.</code></pre
 <p><b>Important! valid server port are between 1024 and less than 60000, the ports from 60000 till 65500 are saved for the server Download section.</b></p>
 
 <h2><i>------------------------------Milestone 3 - 22.1.2023------------------------------</i></h2>
+<p><b>Multithreading server side, files uploading and handling alot of client's simultaneously</b></p>
 <p>This part of the project we made multithreading server side that handle connection simultaneously with more than 1 client. The idea behind that is to make 
 the server side more like a real server just like browsing the internet. Each client that connects to the server get an unique socket number that the server communicate through that socket. We were implementing the Client\Server side with the command design pattern. The client connects to the server by running the client.out with 2 argurments: server ip and server port, as shown in the Section "How To Run?". a valid port number is between 1024 and less than 60000. the ports from 60000 to 65500 are used for the server download feature as will be shown In the Download File section. When a client connects to the server the menu below will appear:</p>
 <pre><code>Welcome to the KNN Classifier Server. Please choose an option:
@@ -158,19 +159,20 @@ double result = (*pDistance)(v1, v2); // Returning the distance between v1 and v
   <li>Inheritance the Distance class (after including it).</li>
   <li>Override the virtual function in Distance class named: operator().</li>
 </ol>
-<h2>How To Run?</h2>
+<h2>How To Create A Specify MakeFile For A Desired Machine?</h2>
 <h4>----------------------------------------To Create A Makefile For A Specifc Machine----------------------------------------</h4>
 <h4>To compile the project for a desired machine, you need to install cmake: https://cmake.org/download/ and follow the tutorial:</h4>
 <h4>For Linux:</h4>
 <ol>
-  <li>Download the zip file of the project, and exctract the zip.</li>
+  <li>Download the zip file of the project, and exctract the zip / Clone git repository.</li>
   <li>Open terminal in the project folder.</li>
   <li>Run the following commands: (without the '$' and the comments)</li>
  </ol>
   <pre><code>$ mkdir build                              // Creating a folder for the build files.
 $ cd build                                 // Moving to the build folder path.
 $ cmake -S ../                             // -S flag for the source CMakeList.txt file.
-$ make                                     // Compiling the project. make sure you inside the folder 'build'.
-$ ./a.out                                  // Executing the program.</code></pre>
+$ make                                     // Compiling the project. make sure you inside the folder 'build'.</code></pre>
+
+<p>After compiling the project go back to the first section In this file and read the instruction on How To Run?.</p>
 
 <h4>For Windows: unfortunately cannot run on windows because the use of libraries only for linux.</h4>
