@@ -1,5 +1,6 @@
 # Advanced-Programming-Project
-<p>This project was made by Omer Bar and Shilo Padael in our second year of our Computer Science B.A. This project was written in C++ language, this course is all about "Advanced-Porigramming" through out this course we learn new stuff, such as: C++ language syntax, Socket, Procceing, MultiThreading -- for now --</p>
+<p>This project was made by Omer Bar and Shilo Padael in our second year of our Computer Science B.A. This project was written in C++ language, this course is all about "Advanced-Porigramming" through out this course we learn new stuff, such as: C++ language syntax, Socket, Procceing, MultiThreading, Desgin patterns, and so on..</p>
+<p>The main purpose of this project is the classification of vectors by trained vectors. The clients upload file with trained data vectors and untrained data vectors and the server side does all calculation and classification by the client files input.</p>
 
 <h2>How To Run On Bar-Ilan Server?</h2>
 <h4>TO RUN THIS PROJECT ON BIU SERVER:</h4>
@@ -17,8 +18,8 @@ $ make                                     // Compiling the project.</code></pre
 <pre><code>$ ./client.out &#60ip address&#62 &#60server port&#62   // For example: ./client.out 127.0.0.1 12345</code></pre>
 
 <h2><i>------------------------------Milestone 3 - 22.1.2023------------------------------</i></h2>
-<p>This part of the project we made multithreading server side, that handle connection simultaneously with alot of clients. The idea behind that is to make 
-the server side more like a real server just like browsing the internet. Each client that connects to the server get an unique socket number that the server communicate through that socket. We were implementing the Client\Server side with the command design pattern. When a client connects to the server the menu below will appear:</p>
+<p>This part of the project we made multithreading server side that handle connection simultaneously with more than 1 client. The idea behind that is to make 
+the server side more like a real server just like browsing the internet. Each client that connects to the server get an unique socket number that the server communicate through that socket. We were implementing the Client\Server side with the command design pattern. The client connects to the server by running the client.out with 2 argurments: server ip and server port, as shown in the Section "How To Run?". a valid port number is between 1024 and less than 60000. the ports from 60000 to 65500 are used for the server download feature as will be shown In the Download File section. When a client connects to the server the menu below will appear:</p>
 <pre><code>Welcome to the KNN Classifier Server. Please choose an option:
 1. upload an unclassified csv data file
 2. algorithm settings
