@@ -1,7 +1,6 @@
 //
 // Created by omerb on 16/11/2022.
 //
-
 #ifndef ADVANCED_PROGRAMMING_DISTANCE_H
 #define ADVANCED_PROGRAMMING_DISTANCE_H
 #include <vector>
@@ -20,7 +19,7 @@ protected:
     bool checkVectors(std::vector<double> v1, std::vector<double> v2);
 
     /**
-     * this function takes two vectors and for each element in the vector it calculate |x1 - x2|
+     * this function takes two vectors and for each element in the vector it src |x1 - x2|
      * and assign it to the result vector.
      * @param v1
      * @param v2
@@ -38,8 +37,6 @@ public:
      * @return return the distance between them.
      */
     virtual double operator()(std::vector<double> v1, std::vector<double> v2) = 0;
-
-
 
 };
 

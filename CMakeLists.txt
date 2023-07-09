@@ -1,20 +1,93 @@
 cmake_minimum_required(VERSION 2.8.12.2)
-project(runnable)
+project(a.out)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
-add_executable(${PROJECT_NAME}
-        main.cpp
-        calculate/Distance.cpp
-        calculate/Distance.h
-        calculate/Euclidean.h
-        calculate/Euclidean.cpp
-        calculate/Minkowski.h
-        calculate/Minkowski.cpp
-        calculate/Canberra.h
-        calculate/Canberra.cpp
-        calculate/Chebyshev.cpp
-        calculate/Chebyshev.h
-        calculate/Manhattan.cpp
-        calculate/Manhattan.h)
+add_executable(client.out
+        src/ReadCSV.h
+        src/ReadCSV.cpp
+        src/input.h
+        src/input.cpp
+        client/Client.h
+        client/Client.cpp
+        src/Distance/Distance.cpp
+        src/Distance/Distance.h
+        src/Distance/Euclidean.h
+        src/Distance/Euclidean.cpp
+        src/Distance/Minkowski.h
+        src/Distance/Minkowski.cpp
+        src/Distance/Canberra.h
+        src/Distance/Canberra.cpp
+        src/Distance/Chebyshev.cpp
+        src/Distance/Chebyshev.h
+        src/Distance/Manhattan.cpp
+        src/Distance/Manhattan.h
+        client/clientMain.cpp
+        src/IO/StandardIO.cpp
+        src/IO/StandardIO.h
+        src/IO/DefaultIO.cpp
+        src/IO/DefaultIO.h
+        src/IO/SocketIO.cpp
+        src/IO/SocketIO.h
+        src/Commands/ICommand.h
+        src/IO/FileIO.cpp
+        src/IO/FileIO.h
+        src/Commands/clientCommands/AlgorithemSettingClientCommand.h
+        src/Commands/clientCommands/AlgorithemSettingClientCommand.cpp
+        src/Commands/clientCommands/ClassifyDataClientCommand.cpp
+        src/Commands/clientCommands/ClassifyDataClientCommand.h
+        src/Commands/clientCommands/DisplayClientCommand.cpp
+        src/Commands/clientCommands/DisplayClientCommand.h
+        src/Commands/clientCommands/DownloadClientCommand.cpp
+        src/Commands/clientCommands/DownloadClientCommand.h
+        src/Commands/clientCommands/UploadFilesClientCommand.cpp
+        src/Commands/clientCommands/UploadFilesClientCommand.h
+        src/DataStructs.h)
+
+add_executable(server.out
+        src/Distance/Distance.cpp
+        src/Distance/Distance.h
+        src/Distance/Euclidean.h
+        src/Distance/Euclidean.cpp
+        src/Distance/Minkowski.h
+        src/Distance/Minkowski.cpp
+        src/Distance/Canberra.h
+        src/Distance/Canberra.cpp
+        src/Distance/Chebyshev.cpp
+        src/Distance/Chebyshev.h
+        src/Distance/Manhattan.cpp
+        src/Distance/Manhattan.h
+        src/ReadCSV.cpp
+        src/ReadCSV.h
+        src/Algorithim/Select.cpp
+        src/Algorithim/Select.h
+        src/Algorithim/Knn.h
+        src/Algorithim/Knn.cpp
+        src/input.cpp
+        src/input.h
+        server/Server.cpp
+        server/Server.h
+        server/serverMain.cpp
+        src/IO/StandardIO.cpp
+        src/IO/StandardIO.h
+        src/IO/DefaultIO.cpp
+        src/IO/DefaultIO.h
+        src/IO/SocketIO.cpp
+        src/IO/SocketIO.h
+        src/Commands/ICommand.h
+        src/Commands/CLI.cpp
+        src/Commands/CLI.h
+        src/IO/FileIO.cpp
+        src/IO/FileIO.h
+        src/Commands/serverCommands/AlgorithemSettingServerCommand.h
+        src/Commands/serverCommands/AlgorithemSettingServerCommand.cpp
+        src/Commands/serverCommands/ClassifyDataServerCommand.cpp
+        src/Commands/serverCommands/ClassifyDataServerCommand.h
+        src/Commands/serverCommands/DisplayServerCommand.cpp
+        src/Commands/serverCommands/DisplayServerCommand.h
+        src/Commands/serverCommands/DownloadServerCommand.cpp
+        src/Commands/serverCommands/DownloadServerCommand.h
+        src/Commands/serverCommands/UploadFilesServerCommand.cpp
+        src/Commands/serverCommands/UploadFilesServerCommand.h
+        src/DataStructs.h)
